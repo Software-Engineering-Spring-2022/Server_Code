@@ -8,6 +8,6 @@ def index():
 	flash("Hello World")
 	return render_template("index.html")
 
-@app.route("/greet")
-def greeter():
+@app.route("/playerEntry")
+def playerEntry():
 	return render_template("playerEntry.html")
