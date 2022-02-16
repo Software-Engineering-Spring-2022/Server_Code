@@ -10,4 +10,4 @@ def index():
 
 @app.route("/playerEntry")
 def playerEntry():
-	return render_template("index.html")
+	return render_template("playerEntry.html")
