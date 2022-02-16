@@ -6,8 +6,8 @@ app.secret_key = "manbearpig_MUDMAN888"
 @app.route("/hello")
 def index():
 	flash("Hello World")
-	return render_template("playerEntry.html")
+	return render_template("index.html")
 
 @app.route("/playerEntry")
 def playerEntry():
-	return render_template("playerEntry.html")
+	return render_template("index.html")
