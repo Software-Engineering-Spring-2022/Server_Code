@@ -5,10 +5,10 @@ app.secret_key = "manbearpig_MUDMAN888"
 
 @app.route("/hello")
 def index():
-	flash("what's your name?")
+	flash("Hello World")
 	return render_template("index.html")
 
 @app.route("/greet", methods=['POST', 'GET'])
 def greeter():
-	flash("Hi " + str(request.form['name_input']) + ", great to see you!")
+	flash("Hello World" + str(request.form['name_input']) + ", is this number")
 	return render_template("index.html")

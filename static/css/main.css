@@ -1,9 +1,9 @@
 body {
     text-align: center;
-    background-color: SlateGrey;
+    background-color: IndianRed;
 }
 p {
-    color: white;
+    color: LightCyan;
     font-family: Shanti;
     font-size: 1.2em;
     display: inline-block;
@@ -30,12 +30,12 @@ input:focus {
 }
 
 #greet {
-    background-color: PaleVioletRed;
+    background-color: Maroon;
     border:  none;
     width:  200px;
     color: white;
 }
 
 #greet:hover {
-    background-color: MediumVioletRed;
+    background-color: Maroon;
 }
