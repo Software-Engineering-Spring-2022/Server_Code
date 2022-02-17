@@ -7,3 +7,5 @@ a simple greeting app built with flask, ready to deploy to Heroku
 Author: Mariya Sha
 <br>
 Watch on YouTube: https://youtu.be/6plVs_ytIH8
+Loads the splash screen and initializes the application.
+Will transfer to player entry screen.
