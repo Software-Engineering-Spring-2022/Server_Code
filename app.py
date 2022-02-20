@@ -43,7 +43,7 @@ def playerEntry2():
 	flash("player entry test")
 	return render_template("playerEntry2.html")
 
-	id = request.form['player_input']
+	#id = request.form['player_input']
 
 
 	
