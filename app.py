@@ -16,7 +16,7 @@ app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
 
 # if ENV == 'dev':
 app.debug = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://lezbitgtjkbfrs:aa6fa77497eff9cdf22c8d618ab6277c8df71e537b9c2e46237fd3901277f7f8@ec2-34-206-148-196.compute-1.amazonaws.com:5432/d2gpgbag2bgopb
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://lezbitgtjkbfrs:aa6fa77497eff9cdf22c8d618ab6277c8df71e537b9c2e46237fd3901277f7f8@ec2-34-206-148-196.compute-1.amazonaws.com:5432/d2gpgbag2bgopb'
 # else:
 # 	app.debug = False
 # 	app.config['SQLALCHEMY_DATABASE_URI'] = ''
