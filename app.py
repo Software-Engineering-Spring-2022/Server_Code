@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request, flash
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
 # from flask import SQLAlchemy 
 # from flask_sqlalchemy import SQLAlchemy
 
@@ -18,6 +20,15 @@ app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
 # 	app.config['SQLALCHEMY_DATABASE_URI'] = ''
 
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+
+
+#added some database stuff?
+
+engine = "postgres://lezbitgtjkbfrs:aa6fa77497eff9cdf22c8d618ab6277c8df71e537b9c2e46237fd3901277f7f8@ec2-34-206-148-196.compute-1.amazonaws.com:5432/d2gpgbag2bgopb"
+db = scoped_session(sessionmaker(bind=engine))
+db.execute("INSERT INTO codename VALUES (1,1,1,1)")
+db.commit()
 
 # db = SQLAlchemy(app)#connect app to database
 
@@ -43,7 +54,11 @@ def playerEntry2():
 	flash("player entry test")
 	return render_template("playerEntry2.html")
 
-
+@app.route("/edit", methods = ["POST", "GET"])
+def edit():
+	flash("hi " + str(request.form["player_input"]))
+	id = str(request.form["player_input"])
+	return render_template("playerEntry2.html")
 	
 
 # @app.route('/submit', methods=['POST'])#route to submit form,sends information to the database due to POST 
