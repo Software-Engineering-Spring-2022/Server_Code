@@ -38,9 +38,15 @@ app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
 # 	flash("Hello World")
 # 	return render_template("index.html")
 
-@app.route("/edit") #player entry route to the player entry form
-def playerEntry():
+@app.route("/edit", methods = ['POST']) #player entry route to the player entry form
+def playerEntry2():
+	flash("player entry test")
 	return render_template("playerEntry2.html")
+
+	id = request.form['player_input']
+
+
+	
 
 # @app.route('/submit', methods=['POST'])#route to submit form,sends information to the database due to POST 
 # def submit():
