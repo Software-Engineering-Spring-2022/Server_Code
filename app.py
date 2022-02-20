@@ -38,7 +38,7 @@ class Player(db.Model):
 		self.last_name  = last_name
 		self.codename   = codename
 	def __repr__(self):
-		return f "dang"
+		return f"dang"
 	
 # @app.route("/")#allows for us to change something when a user uses one of our inputs
 # def index():
