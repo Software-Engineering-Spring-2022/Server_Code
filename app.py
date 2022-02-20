@@ -3,7 +3,8 @@ import os
 try:
 	from flask_sqlalchemy import SQLAlchemy
 except:
-	os.system("pip install flask_sqlalchemy") #trying to install dependencies if failed?
+	os.system("pip install flask_sqlalchemy") #trying to install dependencies if failed
+	from flask_sqlalchemy import SQLAlchemy
 
 
 # -- sample program from this video <https://youtu.be/6plVs_ytIH8>
