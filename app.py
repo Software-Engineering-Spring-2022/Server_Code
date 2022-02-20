@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, flash\
+from flask import Flask, render_template, request, flash
+import os
 try:
 	from flask_sqlalchemy import SQLAlchemy
 except:
-	print("couldnt get the flask_sql stuff")
-# from flask_sqlalchemy import SQLAlchemy
+	os.system("pip install flask_sqlalchemy") #trying to install dependencies if failed?
+
 
 # -- sample program from this video <https://youtu.be/6plVs_ytIH8>
 #  --specific code was created by Matt and james.
