@@ -1,8 +1,11 @@
 from flask import Flask, render_template, request, flash
 from flask import flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
-app.secret_key = "manbearpig_MUDMAN888"
+#sample program from this video <https://youtu.be/6plVs_ytIH8>
+#our specific code was created by Matt and james.
+
+app = Flask(__name__)#makes a class for the app or program we wish to run
+app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
 
 ENV = 'dev'
 
@@ -15,7 +18,7 @@ else:
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-db = SQLAlchemy(app)
+db = SQLAlchemy(app)#connect app to database
 
 class Player(db.Model):
 	__tablename__ = 'player'
@@ -29,19 +32,19 @@ class Player(db.Model):
 		self.last_name  = last_name
 		self.codename   = codename
 	
-@app.route("/")
+@app.route("/")#allows for us to change something when a user uses one of our inputs
 def index():
 	flash("Hello World")
 	return render_template("index.html")
 
-@app.route("/playerEntry")
+@app.route("/edit") #player entry route to the player entry form
 def playerEntry():
-	return render_template("playerEntry.html")
+	return render_template("playerEntry2.html")
 
-@app.route('/submit', methods=['POST'])
+@app.route('/submit', methods=['POST'])#route to submit form,sends information to the database due to POST 
 def submit():
 	if request.method == 'POST':
-		id = request.form['id']
+		id = request.form['id'] #request form gets the data stored 
 		first_name = request.form['first_name']
 		last_name = request.form['last_name']
 		codename = request.form['codename']
