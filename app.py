@@ -27,19 +27,19 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://lezbitgtjkbfrs:aa6fa77497eff
 
 db = SQLAlchemy(app)#connect app to database?
 
-class Player(db.Model):
-	__tablename__ = 'player'
-	id = db.Column(db.Integer)
-	first_name = db.Column(db.String(30))
-	last_name  = db.Column(db.String(30))
-	codename   = db.Column(db.String(30))
+# class Player(db.Model):
+# 	__tablename__ = 'player'
+# 	id = db.Column(db.Integer)
+# 	first_name = db.Column(db.String(30))
+# 	last_name  = db.Column(db.String(30))
+# 	codename   = db.Column(db.String(30))
 	
-	def __init__(self, first_name, last_name, codename):
-		self.first_name = first_name
-		self.last_name  = last_name
-		self.codename   = codename
-	def __repr__(self):
-		return f"dang"
+# 	def __init__(self, first_name, last_name, codename):
+# 		self.first_name = first_name
+# 		self.last_name  = last_name
+# 		self.codename   = codename
+# 	def __repr__(self):
+# 		return f"dang"
 	
 # @app.route("/")#allows for us to change something when a user uses one of our inputs
 # def index():
