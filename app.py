@@ -46,12 +46,12 @@ db = SQLAlchemy(app)#connect app to database?
 # 	flash("Hello World")
 # 	return render_template("index.html")
 
-@app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form
+@app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
 def playerEntry2():
 	flash("player entry test")
 	return render_template("playerEntry2.html")
 
-@app.route("/edit", methods = ["POST", "GET"])
+@app.route("/edit", methods = ["POST", "GET"]) 
 def edit():
 	flash("hi " + str(request.form["player_input"]))
 	id = str(request.form["player_input"])
