@@ -41,17 +41,17 @@ def index():
 def playerEntry():
 	return render_template("playerEntry2.html")
 
-@app.route('/submit', methods=['POST'])#route to submit form,sends information to the database due to POST 
-def submit():
-	if request.method == 'POST':
-		id = request.form['id'] #request form gets the data stored 
-		first_name = request.form['first_name']
-		last_name = request.form['last_name']
-		codename = request.form['codename']
+# @app.route('/submit', methods=['POST'])#route to submit form,sends information to the database due to POST 
+# def submit():
+# 	if request.method == 'POST':
+# 		id = request.form['id'] #request form gets the data stored 
+# 		first_name = request.form['first_name']
+# 		last_name = request.form['last_name']
+# 		codename = request.form['codename']
 		
-		if db.session.query(Player).filter(Player.id == id).count() == 0:
-			data = Player(id, first_name, last_name, codename)
-			db.session.add(data)
-			db.session.commit()
-			--return render_template('success.html')
-		return render_template('index.html')
+# 		if db.session.query(Player).filter(Player.id == id).count() == 0:
+# 			data = Player(id, first_name, last_name, codename)
+# 			db.session.add(data)
+# 			db.session.commit()
+# 			--return render_template('success.html')
+# 		return render_template('index.html')
