@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, flash
 import os
+import playerEnt
 try:
 	from flask_sqlalchemy import SQLAlchemy
 except:
@@ -24,7 +25,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://lezbitgtjkbfrs:aa6fa77497eff
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-
 db = SQLAlchemy(app)#connect app to database?
 
 # class Player(db.Model):
@@ -41,22 +41,23 @@ db = SQLAlchemy(app)#connect app to database?
 # 	def __repr__(self):
 # 		return f"dang"
 	
-# @app.route("/")#allows for us to change something when a user uses one of our inputs
-# def index():
-# 	flash("Hello World")
-# 	return render_template("index.html")
+@app.route("/")#allows for us to change something when a user uses one of our inputs
+def index():
+	test_obj = playerEnt(app)
+	test_obj.plyr_sc1()
+	return render_template("index.html")
 
-@app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
-def playerEntry2():
-	flash("player entry test")
-	return render_template("playerEntry2.html")
+# @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
+# def playerEntry2():
+# 	flash("player entry test")
+# 	return render_template("playerEntry2.html")
 
-@app.route("/edit", methods = ["POST", "GET"]) 
-def edit():
-	flash("hi " + str(request.form["player_input"]))
-	id = str(request.form["player_input"])
-	print(id)
-	return render_template("playerEntry2.html")
+# @app.route("/edit", methods = ["POST", "GET"]) 
+# def edit():
+# 	flash("hi " + str(request.form["player_input"]))
+# 	id = str(request.form["player_input"])
+# 	print(id)
+# 	return render_template("playerEntry2.html")
 	
 
 # @app.route('/submit', methods=['POST'])#route to submit form,sends information to the database due to POST 
