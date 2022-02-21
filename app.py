@@ -36,8 +36,7 @@ def insert_player(id, first_name, last_name, codename):	# Call this to insert pl
 			conn.close()
 
 
-# Testing insert player function
-insert_player(2, 'Matt', 'Clemence', 'Shark')
+
 			
 			
 @app.route("/")#allows for us to change something when a user uses one of our inputs
@@ -47,6 +46,10 @@ def index():
 	render_template("playerEntry2.html")
 	
 
+if __name__ == '__main':
+	# Testing insert player function
+	insert_player(2, 'Matt', 'Clemence', 'Shark')
+	
 # @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
 # def playerEntry2():
 # 	flash("player entry test")
