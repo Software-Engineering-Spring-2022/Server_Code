@@ -2,11 +2,7 @@ from flask import Flask, render_template, request, flash
 import os
 import playerEnt
 import psycopg2
-try:
-	from flask_sqlalchemy import SQLAlchemy
-except:
-	os.system("pip install flask_sqlalchemy") #trying to install dependencies if failed
-	from flask_sqlalchemy import SQLAlchemy
+from config import config
 
 # -- sample program from this video <https://youtu.be/6plVs_ytIH8>
 #  --specific code was created by Matt and james.
@@ -14,41 +10,31 @@ except:
 app = Flask(__name__)#makes a class for the app or program we wish to run
 app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
 
-conn = psycopg2.connect(
-	host="ec2-34-206-148-196.compute-1.amazonaws.com"
-	database="d2gpgbag2bgopb"
-	user="lezbitgtjkbfrs"
-	password="aa6fa77497eff9cdf22c8d618ab6277c8df71e537b9c2e46237fd3901277f7f8"
-)
-	
-# ENV = 'dev'
+def insert_player(id, first_name, last_name, codename):	# Call this to insert players into the database table player
+	""" insert a new player int players table """
+	sql = """INSERT INTO player(id, first_name, last_name, codename)
+		 VALUES(id, first_name, last_name, codename);"""
+	conn = None
+	try:
+		conn = psycopg2.connect( # connects to database
+			host="ec2-34-206-148-196.compute-1.amazonaws.com"
+			database="d2gpgbag2bgopb"
+			user="lezbitgtjkbfrs"
+			password="aa6fa77497eff9cdf22c8d618ab6277c8df71e537b9c2e46237fd3901277f7f8"
+		)
+		cur = conn.cursor() # creating cursor object
 
-# if ENV == 'dev':
-# app.debug = True
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://lezbitgtjkbfrs:aa6fa77497eff9cdf22c8d618ab6277c8df71e537b9c2e46237fd3901277f7f8@ec2-34-206-148-196.compute-1.amazonaws.com:5432/d2gpgbag2bgopb'
-# else:
-# 	app.debug = False
-# 	app.config['SQLALCHEMY_DATABASE_URI'] = ''
+		cur.execute(sql, (id, first_name, last_name, codename)) # execute the INSERT command
+		
+		conn.commit() # commit the changes to the database
+		
+		cur.close() # close communication with the database
+	except (Exception, psycopg2.DatabaseError) as error:
+		print(error)
+	finally:
+		if conn is not None:
+			conn.close()
 
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-# db = SQLAlchemy(app)#connect app to database?
-
-
-
-# class Player(db.Model):
-# 	__tablename__ = 'player'
-# 	id = db.Column(db.Integer)
-# 	first_name = db.Column(db.String(30))
-# 	last_name  = db.Column(db.String(30))
-# 	codename   = db.Column(db.String(30))
-	
-# 	def __init__(self, first_name, last_name, codename):
-# 		self.first_name = first_name
-# 		self.last_name  = last_name
-# 		self.codename   = codename
-# 	def __repr__(self):
-# 		return f"dang"
 	
 @app.route("/")#allows for us to change something when a user uses one of our inputs
 def index():
@@ -77,10 +63,5 @@ def index():
 # 		first_name = request.form['first_name']
 # 		last_name = request.form['last_name']
 # 		codename = request.form['codename']
-		
-# 		if db.session.query(Player).filter(Player.id == id).count() == 0:
-# 			data = Player(id, first_name, last_name, codename)
-# 			db.session.add(data)
-# 			db.session.commit()
-# 			return render_template('success.html')
+
 # 		return render_template('index.html')
