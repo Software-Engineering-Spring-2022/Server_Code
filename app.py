@@ -35,7 +35,11 @@ def insert_player(id, first_name, last_name, codename):	# Call this to insert pl
 		if conn is not None:
 			conn.close()
 
-	
+
+# Testing insert player function
+insert_player(2, 'Matt', 'Clemence', 'Shark')
+			
+			
 @app.route("/")#allows for us to change something when a user uses one of our inputs
 def index():
 	test_obj = playerEnt.playerEnt(app)
