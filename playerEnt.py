@@ -18,7 +18,10 @@ class playerEnt:
         
 
     def plyr_sc1(self):
-        app = Flask(self.app)
+        app = self.app
+        app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
+        app.debug = True
+        
         print("in method plyr_scr1")
         @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
         def playerEntry2():

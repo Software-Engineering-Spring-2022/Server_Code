@@ -41,10 +41,11 @@ db = SQLAlchemy(app)#connect app to database?
 # 	def __repr__(self):
 # 		return f"dang"
 	
-@app.route("/start")#allows for us to change something when a user uses one of our inputs
+@app.route("/")#allows for us to change something when a user uses one of our inputs
 def index():
 	test_obj = playerEnt.playerEnt(app)
 	test_obj.plyr_sc1()
+	render_template("playerEntry2.html")
 	
 
 # @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
