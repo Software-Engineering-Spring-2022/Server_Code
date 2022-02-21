@@ -20,7 +20,7 @@ class playerEnt:
     def plyr_sc1(self):
         app = self.app
         print("in method plyr_scr1")
-        @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
+        @app.route("/start", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
         def playerEntry2():
             flash("player entry test")
             return render_template("playerEntry2.html")
