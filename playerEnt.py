@@ -14,7 +14,8 @@ class playerEnt:
 
     def __init__(self,app_name):
         print("in class playerEnt")
-        app = app_name
+        self.app = app_name
+        
 
     def plyr_sc1(self):
         app = self.app
