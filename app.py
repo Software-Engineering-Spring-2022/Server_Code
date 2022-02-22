@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, flash
 import os
+import time
 #import playerEnt
 try:
 	import psycopg2
@@ -47,11 +48,17 @@ if __name__ == '__main__':
 #Splash screen (default) route. Redirect to player entry screen after initializing components
 @app.route("/")#allows for us to change something when a user uses one of our inputs
 def index():
-	return render_template("splash.html")
+	render_template("splash.html")
+    time.sleep(4)
+    return redirect(url_for('playerEntry2'))
 	#test_obj = playerEnt.playerEnt(app)
 	#test_obj.plyr_sc1(app)
 	#render_template("playerEntry2.html")
-	
+
+@app.route("/playerEntry2")
+def playerEntry2():
+    return render_template("playerEntry2.html")
+
 # @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
 # def playerEntry2():
 # 	flash("player entry test")
