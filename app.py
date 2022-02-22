@@ -52,7 +52,7 @@ def index():
 def splash():
 	#insert_player(2, "Matthew", "Clemence", "Shark")
 	# splishSplash()
-	if i=0
+	if i==0
 		i=1
 		return render_template("splash.html")
 	time.sleep(5)
