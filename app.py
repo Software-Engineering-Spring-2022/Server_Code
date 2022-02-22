@@ -50,14 +50,10 @@ if __name__ == '__main__':
 def index():
 	render_template("splash.html")
     time.sleep(4)
-    return redirect(url_for('playerEntry2'))
+    return render_template("index.html")
 	#test_obj = playerEnt.playerEnt(app)
 	#test_obj.plyr_sc1(app)
 	#render_template("playerEntry2.html")
-
-@app.route("/playerEntry2")
-def playerEntry2():
-    return render_template("playerEntry2.html")
 
 # @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
 # def playerEntry2():
