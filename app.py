@@ -4,7 +4,7 @@ import os
 try:
 	import psycopg2
 except:
-	os.system("pip install psycopg2")
+	os.system("pip install psycopg2-binary")
 # -- sample program from this video <https://youtu.be/6plVs_ytIH8>
 #  --specific code was created by Matt and james.
 
