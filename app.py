@@ -1,8 +1,7 @@
 from flask import Flask, render_template, request, flash
 import os
-import playerEnt
+#import playerEnt
 import psycopg2
-from config import config
 
 # -- sample program from this video <https://youtu.be/6plVs_ytIH8>
 #  --specific code was created by Matt and james.
