@@ -10,21 +10,23 @@ from config import config
 app = Flask(__name__)#makes a class for the app or program we wish to run
 app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
 
-def insert_player(id, first_name, last_name, codename):	# Call this to insert players into the database table player
-	""" insert a new player int players table """
-	sql = """INSERT INTO player(id, first_name, last_name, codename)
-		 VALUES(id, first_name, last_name, codename);"""
+def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert players into the database table player
 	conn = None
 	try:
 		conn = psycopg2.connect( # connects to database
-			host="ec2-34-206-148-196.compute-1.amazonaws.com"
-			database="d2gpgbag2bgopb"
-			user="lezbitgtjkbfrs"
-			password="aa6fa77497eff9cdf22c8d618ab6277c8df71e537b9c2e46237fd3901277f7f8"
-		)
+			user="lezbitgtjkbfrs",
+			password="aa6fa77497eff9cdf22c8d618ab6277c8df71e537b9c2e46237fd3901277f7f8",
+			host="ec2-34-206-148-196.compute-1.amazonaws.com",
+			port="5432",
+			database="d2gpgbag2bgopb")
+
 		cur = conn.cursor() # creating cursor object
 
-		cur.execute(sql, (id, first_name, last_name, codename)) # execute the INSERT command
+		""" insert a new player int players table """
+		sql = """INSERT INTO player(id, first_name, last_name, codename) VALUES(%s,%s,%s,%s)"""
+		record_to_insert = (ID, FIRST_NAME, LAST_NAME, CODENAME)
+
+		cur.execute(sql, record_to_insert) # execute the INSERT command
 		
 		conn.commit() # commit the changes to the database
 		
@@ -34,6 +36,11 @@ def insert_player(id, first_name, last_name, codename):	# Call this to insert pl
 	finally:
 		if conn is not None:
 			conn.close()
+
+
+# Press the green button in the gutter to run the script.
+if __name__ == '__main__':
+	insert_player(2, "Matthew", "Clemence", "Shark")
 
 
 
