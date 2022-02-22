@@ -45,7 +45,7 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 @app.route("/")#allows for us to change something when a user uses one of our inputs
 def splash():
     #insert_player(2, "Matthew", "Clemence", "Shark")
-    redirect("/index")
+    # redirect("/index")
     time.sleep(5)
     return render_template("splash.html")
 	#test_obj = playerEnt.playerEnt(app)
