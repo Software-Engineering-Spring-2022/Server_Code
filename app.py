@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request, flash
 import os
 #import playerEnt
-import psycopg2
-
+try:
+	import psycopg2
+except:
+	os.system("pip install psycopg2")
 # -- sample program from this video <https://youtu.be/6plVs_ytIH8>
 #  --specific code was created by Matt and james.
 
