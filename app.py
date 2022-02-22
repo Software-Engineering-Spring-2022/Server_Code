@@ -5,7 +5,7 @@ import time
 try:
 	import psycopg2
 except:
-	os.system("pip install psycopg2-binary")
+	os.system("sudo apt install libpq-dev python3-dev")
 # -- sample program from this video <https://youtu.be/6plVs_ytIH8>
 #  --specific code was created by Matt and james.
 
