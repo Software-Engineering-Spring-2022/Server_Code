@@ -42,15 +42,14 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 @app.route("/index")
 def index():
 	return render_template("index.html")
-		
+
 #Splash screen (default) route. Redirect to player entry screen after initializing components
 @app.route("/")#allows for us to change something when a user uses one of our inputs
 def splash():
 	#insert_player(2, "Matthew", "Clemence", "Shark")
-
-	
-	redirect("/index")
-	return render_template("splash.html")
+	success = render_template("splash.html")
+	time.sleep(5)
+	return redirect("/index")
 	#test_obj = playerEnt.playerEnt(app)
 	#test_obj.plyr_sc1(app)
 	#render_template("playerEntry2.html")
