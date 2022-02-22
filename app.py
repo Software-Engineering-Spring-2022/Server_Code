@@ -49,6 +49,7 @@ if __name__ == '__main__':
 @app.route("/")#allows for us to change something when a user uses one of our inputs
 def index():
     i = render_template("splash.html")
+    time.sleep(5)
     return render_template("splash.html")
 	#test_obj = playerEnt.playerEnt(app)
 	#test_obj.plyr_sc1(app)
