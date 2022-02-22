@@ -45,7 +45,8 @@ if __name__ == '__main__':
 			
 			
 @app.route("/")#allows for us to change something when a user uses one of our inputs
-#def index():
+def index():
+	return 0
 	#test_obj = playerEnt.playerEnt(app)
 	#test_obj.plyr_sc1(app)
 	#render_template("playerEntry2.html")
@@ -70,5 +71,4 @@ if __name__ == '__main__':
 # 		first_name = request.form['first_name']
 # 		last_name = request.form['last_name']
 # 		codename = request.form['codename']
-
 # 		return render_template('index.html')
