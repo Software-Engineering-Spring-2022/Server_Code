@@ -37,7 +37,7 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 		print(error)
 	finally:
 		if conn is not None:
-           conn.close()
+            conn.close()
 
 @app.route("/index")
 def index():
