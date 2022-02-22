@@ -50,7 +50,7 @@ if __name__ == '__main__':
 def index():
     i = render_template("splash.html")
     time.sleep(5)
-    return render_template("splash.html")
+    return render_template("index.html")
 	#test_obj = playerEnt.playerEnt(app)
 	#test_obj.plyr_sc1(app)
 	#render_template("playerEntry2.html")
