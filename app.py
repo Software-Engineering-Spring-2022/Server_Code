@@ -47,12 +47,15 @@ def index():
 @app.route("/")#allows for us to change something when a user uses one of our inputs
 def splash():
     #insert_player(2, "Matthew", "Clemence", "Shark")
-    success = redirect("/index")
+    renderSplash()
     time.sleep(5)
-    return render_template("splash.html")
+    return redirect("/index")
 	#test_obj = playerEnt.playerEnt(app)
 	#test_obj.plyr_sc1(app)
 	#render_template("playerEntry2.html")
+    
+def renderSplash():
+    return flask.render_template("splash.html")
 
 # @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
 # def playerEntry2():
