@@ -39,7 +39,8 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 			conn.close()
 
 
-
+if __name__ == '__main__':
+	insert_player(2, "Matthew", "Clemence", "Shark")
 
 			
 			
@@ -48,10 +49,6 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 	#test_obj = playerEnt.playerEnt(app)
 	#test_obj.plyr_sc1(app)
 	#render_template("playerEntry2.html")
-	
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-	insert_player(2, "Matthew", "Clemence", "Shark")
 	
 # @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
 # def playerEntry2():
