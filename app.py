@@ -39,24 +39,19 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 			conn.close()
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-	insert_player(2, "Matthew", "Clemence", "Shark")
-
 
 
 			
 			
 @app.route("/")#allows for us to change something when a user uses one of our inputs
 def index():
-	test_obj = playerEnt.playerEnt(app)
-	test_obj.plyr_sc1(app)
-	render_template("playerEntry2.html")
+	#test_obj = playerEnt.playerEnt(app)
+	#test_obj.plyr_sc1(app)
+	#render_template("playerEntry2.html")
 	
-
-if __name__ == '__main':
-	# Testing insert player function
-	insert_player(2, 'Matt', 'Clemence', 'Shark')
+# Press the green button in the gutter to run the script.
+if __name__ == '__main__':
+	insert_player(2, "Matthew", "Clemence", "Shark")
 	
 # @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
 # def playerEntry2():
