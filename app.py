@@ -44,7 +44,7 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 			
 			
 @app.route("/")#allows for us to change something when a user uses one of our inputs
-def index():
+#def index():
 	#test_obj = playerEnt.playerEnt(app)
 	#test_obj.plyr_sc1(app)
 	#render_template("playerEntry2.html")
