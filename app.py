@@ -41,17 +41,17 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 
 @app.route("/index")
 def index():
-    print("index render")
+    print('index render',file=sys.stderr)
     return render_template("index.html")
 		
 #Splash screen (default) route. Redirect to player entry screen after initializing components
 @app.route("/")#allows for us to change something when a user uses one of our inputs
 def splash():
     #insert_player(2, "Matthew", "Clemence", "Shark")
-    print("splash open")
+    print('splash open',file=sys.stderr)
     renderSplash()
     time.sleep(5)
-    print("splash sleep")
+    print('splash open',file=sys.stderr)
     
     return redirect("/index")
 	#test_obj = playerEnt.playerEnt(app)
@@ -59,7 +59,7 @@ def splash():
 	#render_template("playerEntry2.html")
     
 def renderSplash():
-    print("splash render")
+    print('splash render',file=sys.stderr)
     return flask.render_template("splash.html")
 
 # @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
