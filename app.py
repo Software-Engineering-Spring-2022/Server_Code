@@ -41,7 +41,7 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 
 @app.route("/index")
 def index():
-    time.sleep(5)
+	time.sleep(5)
 	return render_template("index.html")
 		
 #Splash screen (default) route. Redirect to player entry screen after initializing components
