@@ -44,9 +44,10 @@ if __name__ == '__main__':
 
 			
 			
+#Splash screen (default) route. Redirect to player entry screen after initializing components
 @app.route("/")#allows for us to change something when a user uses one of our inputs
 def index():
-	return 0
+	return render_template("index.html")
 	#test_obj = playerEnt.playerEnt(app)
 	#test_obj.plyr_sc1(app)
 	#render_template("playerEntry2.html")
