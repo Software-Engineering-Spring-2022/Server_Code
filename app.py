@@ -65,6 +65,7 @@ def edit():
 		last_name = data.getlist("player_last")
 		#using try catch in case the program breaks
 		try:
+			print(len(iD))
 			
 			for x in len(iD): #there always be as many ID's as there are players
 				insert_player(str(iD[x]),str(first_name[x]),str(last_name[x]),str(codename[x])) #calls the DB insert player method
