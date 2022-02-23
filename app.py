@@ -57,10 +57,10 @@ def edit():
 		first_name=[]
 		last_name=[]
 		data = request.form
-		iD = data["player_id_1"]
-		codename = data["player_codename_1"]
-		first_name = data["player_first_1"]
-		last_name = data["player_last_1"]
+		iD = data["player_id"]
+		codename = data["player_codename"]
+		first_name = data["player_first"]
+		last_name = data["player_last"]
 		try:
 			print(iD)
 			print(codename)
@@ -68,7 +68,7 @@ def edit():
 			print(last_name)
 		except:
 			print("cant get data")
-			
+
 	return render_template("playerEntry2.html")
 
 if __name__ == "__main__":
