@@ -56,7 +56,7 @@ def edit():
 		codename=[]
 		first_name=[]
 		last_name=[]
-		data = request.form
+		data = request.form.getlist
 		iD = data["player_id"]
 		codename = data["player_codename"]
 		first_name = data["player_first"]
