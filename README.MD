@@ -1,9 +1,18 @@
-# greetingApp_FLASK
-a simple greeting app built with flask, ready to deploy to Heroku
+# LazerTag
+A laser tag system for fun and family
 
-![ss](https://user-images.githubusercontent.com/32107652/134775021-659d1384-0c37-43a7-b373-593d87f2b475.png)
-<br>
-<br>
-Author: Mariya Sha
-<br>
-Watch on YouTube: https://youtu.be/6plVs_ytIH8
+Made to be deployed on Heroku AWS interface
+ - Python, Flask, PostgreSQL
+
+Authors:
+ - Anusha Bhattacharyya
+ - Julio Bonilla
+ - Matthew Clemence
+ - Ryan Drake
+ - Katie Kettler
+ - James Swaim
+ - John Swaim
+ - Gavin Tomlinson
+
+UARK CSCE 3513 Software Engineering
+https://computer-science-and-computer-engineering.uark.edu/
