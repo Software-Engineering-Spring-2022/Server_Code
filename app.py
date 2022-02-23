@@ -57,14 +57,14 @@ def edit():
 		first_name=[]
 		last_name=[]
 		# data = []
-		data = request.form
-		# print(data) #test for printing data
+		data = str(request.form)
+		print(data) #test for printing data
 		iD = data["player_id"]
 		codename = data["player_codename"]
 		first_name = data["player_first"]
 		last_name = data["player_last"]
 		try:
-			print(iD(1))
+			print(iD)
 			print(codename)
 			print(first_name)
 			print(last_name)
