@@ -64,7 +64,7 @@ def playerEntry2():
 	
 
 @app.route("/edit", methods = ["POST", "GET"]) 
-def row2():
+def edit():
 	iD = []
 	codename=[]
 	first_name=[]
