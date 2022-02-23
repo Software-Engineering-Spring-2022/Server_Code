@@ -59,15 +59,16 @@ def edit():
 		# data = []
 		data = str(request.form)
 		print(data) #test for printing data
-		iD = data["player_id"]
-		codename = data["player_codename"]
-		first_name = data["player_first"]
-		last_name = data["player_last"]
+		iD = data[0]
+		iD2 = data[1]
+		# codename = data["player_codename"]
+		# first_name = data["player_first"]
+		# last_name = data["player_last"]
 		try:
 			print(iD)
-			print(codename)
-			print(first_name)
-			print(last_name)
+			print(iD2)
+			# print(first_name)
+			# print(last_name)
 		except:
 			print("cant get data")
 
