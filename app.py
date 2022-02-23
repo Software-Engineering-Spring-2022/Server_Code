@@ -11,20 +11,13 @@ app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
 i = 0
 
 def config():
-	conn = None
-	try:
-		conn = psycopg2.connect( # connects to database
-				user="lezbitgtjkbfrs",
-				password="aa6fa77497eff9cdf22c8d618ab6277c8df71e537b9c2e46237fd3901277f7f8",
-				host="ec2-34-206-148-196.compute-1.amazonaws.com",
-				port="5432",
-				database="d2gpgbag2bgopb")
-	except (Exception, psycopg2.DatabseError) as error:
-			print(error)
-	finally:
-			if conn is not None:
-					conn.close()
-					
+	conn = """
+		user="lezbitgtjkbfrs",
+		password="aa6fa77497eff9cdf22c8d618ab6277c8df71e537b9c2e46237fd3901277f7f8",
+		host="ec2-34-206-148-196.compute-1.amazonaws.com",
+		port="5432",
+		database="d2gpgbag2bgopb")
+		"""	
 	return conn
 
 def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert players into the database table player
