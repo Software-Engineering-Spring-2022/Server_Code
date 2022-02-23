@@ -44,26 +44,31 @@ def splash():
 	return render_template('splash.html'),{"Refresh": "3; url=./playerEntry2"}
 
 @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
-def playerEntry2():
-	flash("player entry test")
-	return render_template("playerEntry2.html")
+# def playerEntry2():
+# 	flash("player entry test")
+# 	return render_template("playerEntry2.html")
 	
 
-@app.route("/edit", methods = ["POST", "GET"]) 
+# @app.route("/edit", methods = ["POST", "GET"]) 
 def edit():
-	iD = []
-	codename=[]
-	first_name=[]
-	last_name=[]
-	data = request.form
-	iD = data["player_id_1"]
-	codename = data["player_codename_1"]
-	first_name = request.form["player_first_1"]
-	last_name = request.form["player_last_1"]
-	print(iD)
-	print(codename)
-	print(first_name)
-	print(last_name)
+	if request.method == "POST":
+		iD = []
+		codename=[]
+		first_name=[]
+		last_name=[]
+		data = request.form
+		iD = data["player_id_1"]
+		codename = data["player_codename_1"]
+		first_name = data["player_first_1"]
+		last_name = data["player_last_1"]
+		try:
+			print(iD)
+			print(codename)
+			print(first_name)
+			print(last_name)
+		except:
+			print("cant get data")
+			
 	return render_template("playerEntry2.html")
 
 if __name__ == "__main__":
