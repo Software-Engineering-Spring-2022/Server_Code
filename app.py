@@ -66,11 +66,12 @@ def edit():
 		#using try catch in case the program breaks
 		try:
 			
-			L = len(iD)
 			
-			for x in L: #there always be as many ID's as there are players
-				insert_player(iD[x],first_name[x],last_name[x],codename[x]) #calls the DB insert player method
+			
+			for x,y,z,l in iD,first_name,last_name,codename: #there always be as many ID's as there are players
 				print(x)#error checking
+				insert_player(x,y,z,l) #calls the DB insert player method
+				
 			
 		except:
 			print("cant push data, check code")
