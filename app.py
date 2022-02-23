@@ -30,7 +30,7 @@ def config():
 def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert players into the database table player
 	conn = None
 	try:
-		conn = psycopg2-binary.connect( # connects to database
+		conn = psycopg2.connect( # connects to database
 			user="lezbitgtjkbfrs",
 			password="aa6fa77497eff9cdf22c8d618ab6277c8df71e537b9c2e46237fd3901277f7f8",
 			host="ec2-34-206-148-196.compute-1.amazonaws.com",
