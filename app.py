@@ -76,10 +76,10 @@ def row2():
 	codename=[]
 	first_name=[]
 	last_name=[]
-	iD = str(request.form.getlist["player_id"])
-	codename = str(request.form.getlist["player_codename"])
-	first_name = str(request.form.getlist["player_first"])
-	last_name = str(request.form.getlist["player_last"])
+	iD = request.form.getlist["player_id"]
+	codename = request.form.getlist["player_codename"]
+	first_name = request.form.getlist["player_first"]
+	last_name = request.form.getlist["player_last"]
 	print(iD(0))
 	print(codename)
 	print(first_name)
