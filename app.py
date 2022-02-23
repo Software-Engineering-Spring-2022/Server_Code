@@ -63,7 +63,7 @@ def edit():
 		first_name = data["player_first"]
 		last_name = data["player_last"]
 		try:
-			print(iD)
+			print(iD(2))
 			print(codename)
 			print(first_name)
 			print(last_name)
