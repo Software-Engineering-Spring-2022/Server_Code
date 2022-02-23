@@ -57,16 +57,16 @@ def edit():
 		first_name=[]
 		last_name=[]
 		# data = []
-		data = str(request.form)
-		print(data) #test for printing data
-		iD = data[0]
-		iD2 = data[1]
+		data = request.form
+		print(data.getlist('player_id')) #test for printing data
+		iD = data.getlist('player_id')
+		# iD2 = data[1]
 		# codename = data["player_codename"]
 		# first_name = data["player_first"]
 		# last_name = data["player_last"]
 		try:
 			print(iD)
-			print(iD2)
+			# print(iD2)
 			# print(first_name)
 			# print(last_name)
 		except:
