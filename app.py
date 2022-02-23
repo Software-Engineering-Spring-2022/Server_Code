@@ -67,27 +67,23 @@ def splash():
 	insert_player(2, "Big", "Boi", "Hulk")
 	return render_template('splash.html'),{"Refresh": "3; url=./index"}
 
-# @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
-# def playerEntry2():
-# 	flash("player entry test")
-# 	return render_template("playerEntry2.html")
+@app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
+def playerEntry2():
+	flash("player entry test")
+	return render_template("playerEntry2.html")
 
-# @app.route("/edit", methods = ["POST", "GET"]) 
-# def edit():
-# 	flash("hi " + str(request.form["player_input"]))
-# 	id = str(request.form["player_input"])
-# 	print(id)
-# 	return render_template("playerEntry2.html")
-	
-
-# @app.route('/submit', methods=['POST'])#route to submit form,sends information to the database due to POST 
-# def submit():
-# 	if request.method == 'POST':
-# 		id = request.form['id'] #request form gets the data stored 
-# 		first_name = request.form['first_name']
-# 		last_name = request.form['last_name']
-# 		codename = request.form['codename']
-# 		return render_template('index.html')
+@app.route("/edit", methods = ["POST", "GET"]) 
+def row2():
+	flash("hi " + str(request.form["player_input"]))
+	iD = str(request.form.getlist["player_id"])
+	codename = str(request.form.getlist["player_codename"])
+	first_name = str(request.form.getlist["player_first"])
+	last_name = str(request.form.getlist["player_last"])
+	print(iD)
+	print(codename)
+	print(first_name)
+	print(last_name)
+	pass
 
 if __name__ == "__main__":
 	app.run(debug=True)
