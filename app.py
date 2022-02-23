@@ -72,11 +72,15 @@ def playerEntry2():
 @app.route("/edit", methods = ["POST", "GET"]) 
 def row2():
 	flash("hi " + str(request.form["player_input"]))
+	iD = []
+	codename=[]
+	first_name=[]
+	last_name=[]
 	iD = str(request.form.getlist["player_id"])
 	codename = str(request.form.getlist["player_codename"])
 	first_name = str(request.form.getlist["player_first"])
 	last_name = str(request.form.getlist["player_last"])
-	print(iD)
+	print(iD(0))
 	print(codename)
 	print(first_name)
 	print(last_name)
