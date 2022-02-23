@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect
+from flask import Flask, render_template, request, flash, redirect, url_for
 import os
 import time
 #import playerEnt
@@ -47,16 +47,7 @@ def index():
 #Splash screen (default) route. Redirect to player entry screen after initializing components
 @app.route("/")#allows for us to change something when a user uses one of our inputs
 def splash():
-	#insert_player(2, "Matthew", "Clemence", "Shark")
-	f = render_template("splash.html")
-	splishSplash()
-	#return render_template("splash.html")
-	time.sleep(5)
-	return redirect("/index")
-	#test_obj = playerEnt.playerEnt(app)
-	#test_obj.plyr_sc1(app)
-	#render_template("playerEntry2.html")
-	
+	return render_template('splash.html'),{"Refresh": "3; url=./index"}
 
 # @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
 # def playerEntry2():
