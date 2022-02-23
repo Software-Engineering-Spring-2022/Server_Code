@@ -61,7 +61,7 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 #Splash screen (default) route. Redirect to player entry screen after initializing components
 @app.route("/")#allows for us to change something when a user uses one of our inputs
 def splash():
-	insert_player(2, "Big", "Boi", "Hulk")
+	insert_player(3, "Jiggly", "Boi", "Kirby")
 	return render_template('splash.html'),{"Refresh": "3; url=./playerEntry2"}
 
 @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
