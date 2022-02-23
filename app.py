@@ -64,7 +64,6 @@ def index():
 #Splash screen (default) route. Redirect to player entry screen after initializing components
 @app.route("/")#allows for us to change something when a user uses one of our inputs
 def splash():
-	insert_player(2, "Big", "Boi", "Hulk")
 	return render_template('splash.html'),{"Refresh": "3; url=./index"}
 
 # @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
@@ -90,4 +89,5 @@ def splash():
 # 		return render_template('index.html')
 
 if __name__ == "__main__":
+	insert_player(2, "Big", "Boi", "Hulk")
 	app.run(debug=True)
