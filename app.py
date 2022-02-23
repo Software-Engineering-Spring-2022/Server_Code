@@ -67,7 +67,7 @@ def splash():
 @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
 def playerEntry2():
 	flash("player entry test")
-	return render_template("playerEntry2.html")
+	
 
 @app.route("/edit", methods = ["POST", "GET"]) 
 def row2():
@@ -84,7 +84,7 @@ def row2():
 	print(codename)
 	print(first_name)
 	print(last_name)
-	pass
+	return render_template("playerEntry2.html")
 
 if __name__ == "__main__":
 	app.run(debug=True)
