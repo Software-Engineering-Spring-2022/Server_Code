@@ -67,10 +67,11 @@ def edit():
 		try:
 			
 			
-			
-			for x,y,z,l in iD,first_name,last_name,codename: #there always be as many ID's as there are players
-				print(x)#error checking
-				insert_player(x,y,z,l) #calls the DB insert player method
+			print(iD)
+			print(first_name)
+			print(last_name)
+			print(codename)
+			insert_player(iD,first_name,last_name,codename)
 				
 			
 		except:
