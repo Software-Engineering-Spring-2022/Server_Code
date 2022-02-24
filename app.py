@@ -67,7 +67,7 @@ def edit():
 		try:
 			
 			
-			print(iD)
+			print(str(iD))
 			print(first_name)
 			print(last_name)
 			print(codename)
