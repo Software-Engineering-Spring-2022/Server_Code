@@ -12,21 +12,25 @@
 
 		.ENT1 {
 			position: relative;
+			font-weight: bold;
+			/* cant change anything below this */
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			text-align: center;
   			min-height: 100vh;
-			font-weight: bold;
+			
 		}		
 		.CHILD1{
 			
 			width: 1000px;
 			height:200px;
+
+			
 			font-family: Arial;
+			/* cant change anything below this */
 			float: left;
 			display: flex;
-
 			justify-content: center;
 			align-items: center;
 			text-align: center;			
@@ -34,14 +38,14 @@
 
 	</style>
 	</head>
-	<body background-color: rgba(25,80,206,0.53);>
+	<body>
         <form action="{{ url_for("edit")}}" method="post" style="text-align:center">
 			<p>PLAYER ENTRY</p>
 		        <div class = "ENT1">
 					<div class="CHILD1">	
 					<table>
 						<tr name ="row0">
-						<td>ID #</td>
+						<td>ID #</td> 
 						<td>CODENAME</td>
 						<td>FIRST NAME</td>
 						<td>LAST NAME</td>

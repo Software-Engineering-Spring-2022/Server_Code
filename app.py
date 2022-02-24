@@ -24,6 +24,7 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 
 		""" insert a new player int players table """
 		sql = """INSERT INTO player(id, first_name, last_name, codename) VALUES(%s,%s,%s,%s)"""
+		
 		record_to_insert = (ID, FIRST_NAME, LAST_NAME, CODENAME)
 
 		cur.execute(sql, record_to_insert) # execute the INSERT command
@@ -59,27 +60,16 @@ def edit():
 		last_name=[]
 		#request data from the 'edit' form (check <form action="{{ url_for("edit")}}" ... in the html)
 		data = request.form
-		iD = data.getlist("player_id")#the .getlist("name") method is from the flask module. changes the dict to a indexable list
+		iD = data.getlist("player_id")#the .getlist("name") method is from the flask module. changes the dict to an indexable list
 		codename = data.getlist("player_codename")
 		first_name = data.getlist("player_first")
 		last_name = data.getlist("player_last")
 		#using try catch in case the program breaks
 		try:
 			
-			
-			print(iD)
-			print(first_name)
-			print(last_name)
-			print(codename)
-
-			for x in range(len(iD)):
+			for x in range(len(iD)): #there always be as many ID's as players
 				
 				insert_player(iD[x],first_name[x],last_name[x],codename[x])
-				# pass
-				
-			
-			
-				
 			
 		except:
 			print("cant push data, check code")
