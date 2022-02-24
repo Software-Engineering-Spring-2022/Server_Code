@@ -59,7 +59,7 @@ def edit():
 		last_name=[]
 		#request data from the 'edit' form (check <form action="{{ url_for("edit")}}" ... in the html)
 		data = request.form
-		iD = data.getlist('player_id')#the .getlist("name") method is from the flask module. changes the dict to a indexable list
+		iD = data.getlist("player_id")#the .getlist("name") method is from the flask module. changes the dict to a indexable list
 		codename = data.getlist("player_codename")
 		first_name = data.getlist("player_first")
 		last_name = data.getlist("player_last")
@@ -67,7 +67,7 @@ def edit():
 		try:
 			
 			
-			print(str(iD))
+			print(iD)
 			print(first_name)
 			print(last_name)
 			print(codename)
