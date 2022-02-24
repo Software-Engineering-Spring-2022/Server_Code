@@ -73,9 +73,10 @@ def edit():
 			print(codename)
 
 			for x in range(len(iD)):
-				# insert_player(iD[x],first_name[x],last_name[x],codename[x])
-				print(x)
-				print(iD[x])
+				
+				insert_player(iD[x],first_name[x],last_name[x],codename[x])
+				# pass
+				
 			
 			
 				
