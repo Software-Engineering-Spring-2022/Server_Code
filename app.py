@@ -79,7 +79,7 @@ def edit():
 @app.route("/playerReg", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
 def regi():
 	#need a method for player registration for later sprint
-	#need html as well
+	#need html as well -> playerReg.html
 	#needs to be able to generate IDS and submit players 
 	pass
 
