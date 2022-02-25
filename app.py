@@ -67,14 +67,22 @@ def edit():
 		#using try catch in case the program breaks
 		try:
 			
-			for x in range(len(iD)): #there always be as many ID's as players
-				
+			for x in range(len(iD)): #there always be as many ID's as players				
 				insert_player(iD[x],first_name[x],last_name[x],codename[x])
+				#we need to filter blank inputs so as to not fill the database with empty entries  
 			
 		except:
 			print("cant push data, check code")
 
 	return render_template("playerEntry2.html") #needs to be edited so that the user input persists
+
+@app.route("/playerReg", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
+def regi():
+	#need a method for player registration for later sprint
+	#need html as well
+	#needs to be able to generate IDS and submit players 
+	pass
+
 
 if __name__ == "__main__":
 	app.run(debug=True)
