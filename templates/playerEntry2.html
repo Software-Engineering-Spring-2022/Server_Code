@@ -5,7 +5,12 @@
 		<title>PlayerEntryV2</title>
 	<style>
 
-		body {background-color: rgb(51, 153, 255);}
+		body {
+			background: url(765663.jpg), url(000001.jpg);
+			background-size: 200%, 200%;
+			background-repeat: no-repeat, no-repeat;
+			background-position: -2826px 0, 42% 0;
+		}
 		table{
 			table-layout: fixed;
 			border-collapse: collapse;
@@ -42,26 +47,28 @@
 			align-items: center;
 			text-align: center;			
 		}	
-
+		p{
+			font-size: 713%;
+		}
 	</style>
 	</head>
 	<body background-color: rgba(25,80,206,0.53);>
         <form action="{{ url_for("edit")}}" method="post" style="text-align:center">
-			<p>PLAYER ENTRY</p>
+			<p style="color: azure;">PLAYER ENTRY</p>
 		        <div class = "ENT1">
 					<div class="CHILD1">	
 					<table class="BLUE">
 						<thead class = "BLUE">
 							<tr>
-							  <th scope="row" colspan="4">Blue Team</th>
+							  <th scope="row" colspan="4" style="color: azure;">Blue Team</th>
 							</tr>
 						</thead>
 						<thead class = "BLUE">
 							<tr name ="row0">
-								<th>ID #</th>
-								<th>CODENAME</th>
-								<th>FIRST NAME</th>
-								<th>LAST NAME</th>
+								<th style="color: azure;">ID #</th>
+								<th style="color: azure;">CODENAME</th>
+								<th style="color: azure;">FIRST NAME</th>
+								<th style="color: azure;">LAST NAME</th>
 							</tr>
 						</thead>
 						<tr name="row1">
@@ -118,15 +125,15 @@
 					<table class = "RED">
 						<thead class = "RED">
 							<tr>
-							  <th scope="row" colspan="4">Red Team</th>
+							  <th scope="row" colspan="4" style="color: azure;">Red Team</th>
 							</tr>
 						</thead>
 						<thead class = "RED">
 							<tr name ="row0">
-								<th>ID #</th>
-								<th>CODENAME</th>
-								<th>FIRST NAME</th>
-								<th>LAST NAME</th>
+								<th style="color: azure;">ID #</th>
+								<th style="color: azure;">CODENAME</th>
+								<th style="color: azure;">FIRST NAME</th>
+								<th style="color: azure;">LAST NAME</th>
 							</tr>
 						</thead>
 						<tr name="row1">
