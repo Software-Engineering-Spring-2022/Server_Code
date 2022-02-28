@@ -68,9 +68,17 @@ def edit():
 		try:
 			
 			for x in range(len(iD)): #there always be as many ID's as players				
-				insert_player(iD[x],first_name[x],last_name[x],codename[x])
-				#we need to filter blank inputs so as to not fill the database with empty entries  
-			
+				if(iD[x] == ''	):
+					print("Skipping this line because the entire line was not filled out.")
+				elif(first_name[x] == ''):
+					print("Skipping this line because the entire line was not filled out.")
+				elif(last_name[x] == ''):
+					print("Skipping this line because the entire line was not filled out.")
+				elif(codename[x] == ''):
+					print("Skipping this line because the entire line was not filled out.")
+				else:
+					insert_player(iD[x],first_name[x],last_name[x],codename[x])
+				#we need to filter blank inputs so as to not fill the database with empty entries
 		except:
 			print("cant push data, check code")
 
