@@ -91,6 +91,9 @@ def regi():
 	#needs to be able to generate IDS and submit players 
 	pass
 
+@app.route("/actionScreen") #game action screen page
+def playGame():
+	return render_template("actionScreen.html")
 
 if __name__ == "__main__":
 	app.run(debug=True)
