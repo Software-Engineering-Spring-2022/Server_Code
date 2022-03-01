@@ -195,8 +195,9 @@
 			</div>
 			<div style = "text-align: center; position: relative; bottom: 10px"><input onkeyup="if(event.keyCode===13){submit.click()}" input type = "submit" style="display: none" value = "Submit" /></div>
 		</form>
-		<form action="/actionScreen">
-				<input onkeyup="if(event.keyCode===53){submit.click()}" input type="submit" style="display: none" value = "submit"/>
-		</form>
+		<!-- <form action="/actionScreen"> -->
+				<!-- <input onkeyup="if(event.keyCode===53){submit.click()}" input type="submit" style="display: none" value = "submit"/> -->
+		<!-- </form> -->
+		<form action="{{ url_for("playGame")}}" method="post" style="text-align:center"> </form>
 	</body>
 </html>
