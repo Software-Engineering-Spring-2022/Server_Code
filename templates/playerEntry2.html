@@ -196,7 +196,7 @@
 			<div style = "text-align: center; position: relative; bottom: 10px"><input onkeyup="if(event.keyCode===13){submit.click()}" input type = "submit" style="display: none" value = "Submit" /></div>
 		</form>
 		<form action="/actionScreen">
-				<input type="submit"/>
+				<input onkeyup="if(event.keyCode===53){submit.click()}" input type="submit" style="display: none" value = "submit"/>
 		</form>
 	</body>
 </html>
