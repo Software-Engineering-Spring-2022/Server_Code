@@ -80,13 +80,13 @@ def edit():
 		try:
 			
 			for x in range(len(iD)): #there always be as many ID's as players				
-				if((iD_b[x] == '') || (iD_r[x] == '')):
+				if((iD_b[x] == '') or (iD_r[x] == '')):
 					print("Skipping this line because the entire line was not filled out.")
-				elif((first_name_b[x] == '') || (first_name_r[x] == '')):
+				elif((first_name_b[x] == '') or (first_name_r[x] == '')):
 					print("Skipping this line because the entire line was not filled out.")
-				elif((last_name_b[x] == '') || (last_name_r[x] == '')):
+				elif((last_name_b[x] == '') or (last_name_r[x] == '')):
 					print("Skipping this line because the entire line was not filled out.")
-				elif((codename_b[x] == '') || (codename_r[x] == '')):
+				elif((codename_b[x] == '') or (codename_r[x] == '')):
 					print("Skipping this line because the entire line was not filled out.")
 				else:
 					insert_player(iD_b[x],first_name_b[x],last_name_b[x],codename_b[x])
