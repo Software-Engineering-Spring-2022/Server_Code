@@ -79,21 +79,37 @@ def edit():
 		#using try catch in case the program breaks
 		try:
 			
-			for x in range(len(iD)): #there always be as many ID's as players				
-				if((iD_b[x] == '') or (iD_r[x] == '')):
+			for x in range(len(iD_b)): #there always be as many ID's as players				
+				if(iD_b[x] == ''):
 					print("Skipping this line because the entire line was not filled out.")
-				elif((first_name_b[x] == '') or (first_name_r[x] == '')):
+				elif(first_name_b[x] == ''):
 					print("Skipping this line because the entire line was not filled out.")
-				elif((last_name_b[x] == '') or (last_name_r[x] == '')):
+				elif(last_name_b[x] == ''):
 					print("Skipping this line because the entire line was not filled out.")
-				elif((codename_b[x] == '') or (codename_r[x] == '')):
+				elif(codename_b[x] == ''):
 					print("Skipping this line because the entire line was not filled out.")
 				else:
 					insert_player(iD_b[x],first_name_b[x],last_name_b[x],codename_b[x])
+				#we need to filter blank inputs so as to not fill the database with empty entries
+		except:
+			print("cant push blue team data, check code")
+			
+		try:
+			
+			for x in range(len(iD_r)): #there always be as many ID's as players				
+				if(iD_r[x] == ''):
+					print("Skipping this line because the entire line was not filled out.")
+				elif(first_name_r[x] == ''):
+					print("Skipping this line because the entire line was not filled out.")
+				elif(last_name_r[x] == ''):
+					print("Skipping this line because the entire line was not filled out.")
+				elif(codename_r[x] == ''):
+					print("Skipping this line because the entire line was not filled out.")
+				else:
 					insert_player(iD_r[x],first_name_r[x],last_name_r[x],codename_r[x])
 				#we need to filter blank inputs so as to not fill the database with empty entries
 		except:
-			print("cant push data, check code")
+			print("cant push red team data, check code")
 
 	return render_template("playerEntry2.html") #needs to be edited so that the user input persists
 
