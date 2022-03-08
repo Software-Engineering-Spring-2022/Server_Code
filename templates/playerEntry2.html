@@ -60,6 +60,14 @@
 	</style>
 	</head>
 	<body background-color: rgba(25,80,206,0.53);>
+		document.addEventListener('keydown', function (event)
+			{
+				if(event.key === 't')
+				{
+					<!-- <meta http-equiv="Refresh" content="0; url='https://laser-software.herokuapp.com/actionScreen'" /> -->
+					window.location.replace("https://laser-software.herokuapp.com/actionScreen");
+				}
+			});
 		<form action="{{ url_for("edit")}}" method="post" style="text-align:center">
 			<p style="color: azure; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; margin-bottom: 0px; margin-top: 0px;">PLAYER ENTRY</p>
 				<div class = "ENT1">
@@ -194,14 +202,6 @@
 					</div>
 			</div>
 			<div style = "text-align: center; position: relative; bottom: 10px"><input onkeyup="if(event.keyCode===13){submit.click()}" input type = "submit" style="display: none" value = "Submit" /></div>
-			document.body.addEventListener('keydown', function (event)
-			{
-				if(event.key === 't')
-				{
-					<!-- <meta http-equiv="Refresh" content="0; url='https://laser-software.herokuapp.com/actionScreen'" /> -->
-					window.location.replace("https://laser-software.herokuapp.com/actionScreen");
-				}
-			});
 		</form>
 		
 	</body>
