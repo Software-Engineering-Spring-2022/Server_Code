@@ -193,13 +193,12 @@
 					</table>
 					</div>
 			</div>
-			<button onclick="document.location='https://laser-software.herokuapp.com/actionScreen'">ActionScreen</button>
 			<div style = "text-align: center; position: relative; bottom: 10px"><input onkeyup="if(event.keyCode===13){submit.click()}" input type = "submit" style="display: none" value = "Submit" /></div>
 			document.addEventListener('keydown', function (event)
 			{
 				if(event.key === 't')
 				{
-					ActionScreen.click()
+					document.location='https://laser-software.herokuapp.com/actionScreen'
 				}
 			}
 		</form>
