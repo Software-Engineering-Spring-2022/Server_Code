@@ -194,11 +194,12 @@
 					</div>
 			</div>
 			<div style = "text-align: center; position: relative; bottom: 10px"><input onkeyup="if(event.keyCode===13){submit.click()}" input type = "submit" style="display: none" value = "Submit" /></div>
-			document.addEventListener('keydown', function (event)
+			document.body.addEventListener('keydown', function (event)
 			{
-				if(event.key === 't')
+				if(event.key === '53')
 				{
-					<meta http-equiv="Refresh" content="0; url='https://www.w3docs.com'" />
+					<!-- <meta http-equiv="Refresh" content="0; url='https://laser-software.herokuapp.com/actionScreen'" /> -->
+					window.location.replace("https://laser-software.herokuapp.com/actionScreen");
 				}
 			}
 		</form>
