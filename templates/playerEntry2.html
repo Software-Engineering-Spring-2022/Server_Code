@@ -193,13 +193,16 @@
 					</table>
 					</div>
 			</div>
+			<button onclick="document.location='https://laser-software.herokuapp.com/actionScreen'">ActionScreen</button>
 			<div style = "text-align: center; position: relative; bottom: 10px"><input onkeyup="if(event.keyCode===13){submit.click()}" input type = "submit" style="display: none" value = "Submit" /></div>
+			document.addEventListener('keydown', function (event)
+			{
+				if(event.key === 't')
+				{
+					ActionScreen.click()
+				}
+			}
 		</form>
-		<!-- <form action="/actionScreen"> -->
-				<!-- <input onkeyup="if(event.keyCode===53){submit.click()}" input type="submit" style="display: none" value = "submit"/> -->
-		<!-- </form> -->
-		<form action="{{ url_for("playGame")}}" method="post" style="text-align:center">
-				<div style = "text-align: center; position: relative; bottom: 10px"><input onkeyup="if(event.keyCode===53){submit.click()}" input type="submit" style="display: none" value = "Submit"/></div>
-			</form>
+		
 	</body>
 </html>
