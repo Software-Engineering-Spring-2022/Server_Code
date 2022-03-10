@@ -58,17 +58,19 @@
 		}
 
 	</style>
+	<script>
+		document.addEventListener('keydown', function (event)
+				{
+					if(event.key === 't')
+					{
+						<!-- <meta http-equiv="Refresh" content="0; url='https://laser-software.herokuapp.com/actionScreen'" /> -->
+						window.location.replace("https://laser-software.herokuapp.com/actionScreen");
+					}
+				});
+	</script>
 	</head>
 	<body background-color: rgba(25,80,206,0.53);>
 		<form action="{{ url_for("edit")}}" method="post" style="text-align:center">
-			document.addEventListener('keydown', function (event)
-			{
-				if(event.key === 't')
-				{
-					<!-- <meta http-equiv="Refresh" content="0; url='https://laser-software.herokuapp.com/actionScreen'" /> -->
-					window.location.replace("https://laser-software.herokuapp.com/actionScreen");
-				}
-			});
 			<p style="color: azure; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; margin-bottom: 0px; margin-top: 0px;">PLAYER ENTRY</p>
 				<div class = "ENT1">
 					<div class="CHILD1">	
