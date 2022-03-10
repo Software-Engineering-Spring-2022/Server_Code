@@ -122,8 +122,7 @@ def regi():
 
 @app.route("/actionScreen", methods = ["POST", "GET"]) #game action screen page
 def playGame():
-	if request.method == "POST":
-		return render_template("actionScreen.html")
+	return render_template("actionScreen.html")
 
 if __name__ == "__main__":
 	app.run(debug=True)
