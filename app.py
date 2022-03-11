@@ -126,8 +126,12 @@ def plyr_scrn():
 	if request.method == "GET":
 		
 		data_test = ["testa","testb","testc"]
-	
-	return render_template("actionScreen.html", plyr_id = data_test[0:2], plyr_codename = "yep")
+		data = request.form
+
+		print(data)
+
+		
+	return render_template("actionScreen.html", plyr_id = data_test, plyr_codename = "yep")
 
 if __name__ == "__main__":
 	app.run(debug=True)
