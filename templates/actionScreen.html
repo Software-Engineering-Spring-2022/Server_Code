@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
 	<title>Action Screen</title>
- <!-- <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}"> -->
+    <script>
+		document.getElementById('plyr_id').innerHTML = ye;
+        console.log(ye);
+
+
+	</script>
+    
 </head>
 
 <body>
 <h1>Lazer Tag</h1>
-<!-- <br>
-<img src="/static/b.png">
-<br> -->
 <h1>Playing</h1>
 <form action="{{ url_for("plyr_scrn")}}" method="get" style="text-align:center">
     <table>
         <tr>
-        <td><output type="text" name="player_id_b" required></output></td>
-        <td><output type="text" name="player_codename_b" required></output></td>
+        <td><output type="text" id= "plyr_id" name="player_id_b" required></output></td>
+        <td><output type="text" id = "plyr_cdnm" name="player_codename_b" required></output></td>
         </tr>
     </table>
 
