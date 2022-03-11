@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
+from werkzeug.datastructures import MultiDict #used to push data to html
 import os
 import time
 os.system("pip install psycopg2-binary")
@@ -138,7 +139,7 @@ def plyr_scrn():
 
 
 def create_dict(key,values):
-	return dict([(key,v) for v in values])
+	return MultiDict([(key,v) for v in values])
 
 if __name__ == "__main__":
 	app.run(debug=True)
