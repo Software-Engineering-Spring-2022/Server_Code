@@ -12,21 +12,14 @@
 <img src="/static/b.png">
 <br> -->
 <h1>Playing</h1>
-    <form action="{{ url_for("plyr_scrn")}}" method="post" style="text-align:center">
-        <table>
-            <tr>
-            <td><input type="text" name="player_id_b" required></td>
-            <td><input type="text" name="player_codename_b" required></td>
-            </tr>
+<form action="{{ url_for("plyr_scrn")}}" method="get" style="text-align:center">
+    <table>
+        <tr>
+        <td><output type="text" name="player_id_b" required></td>
+        <td><output type="text" name="player_codename_b" required></td>
+        </tr>
+    </table>
 
-
-        </table>
-
-
-
-    </form>
-
-
-
+</form>
 </body>
 </html>
