@@ -138,7 +138,7 @@ def plyr_scrn():
 
 
 def create_dict(key,values):
-	return dict((key(v),v) for v in values)
+	return dict([(key,v) for v in values])
 
 if __name__ == "__main__":
 	app.run(debug=True)
