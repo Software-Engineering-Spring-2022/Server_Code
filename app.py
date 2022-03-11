@@ -120,13 +120,16 @@ def regi():
 	#needs to be able to generate IDS and submit players 
 	pass
 
-@app.route("/actionScreen", methods = ["POST", "GET"]) #game action screen page
+@app.route("/actionScreen", methods = ["GET"]) #game action screen page
 def plyr_scrn():
 
 	if request.method == "GET":
 		
 		data_test = ["testa","testb"]
-	return render_template("actionScreen.html", player_id_b = data_test[0], player_codename_b = data_test[1])
+
+
+		
+	return render_template("actionScreen.html", data = data_test)
 
 if __name__ == "__main__":
 	app.run(debug=True)
