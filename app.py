@@ -126,12 +126,19 @@ def plyr_scrn():
 	if request.method == "GET":
 		
 		data_test = ["testa","testb","testc"]
-		data = request.form
-
-		print(data)
+		
+		data = create_dict("plur_id",data_test)
+		
 
 		
+		print(data)
+
+
 	return render_template("actionScreen.html", plyr_id = data_test, plyr_codename = "yep")
+
+
+def create_dict(key,values):
+	return dict((key,v) for v in values)
 
 if __name__ == "__main__":
 	app.run(debug=True)
