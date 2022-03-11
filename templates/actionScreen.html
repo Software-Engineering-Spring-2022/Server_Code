@@ -1,18 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
- <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+    <meta charset="UTF-8">
+	<title>Action Screen</title>
+ <!-- <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}"> -->
 </head>
 
 <body>
-
-<title>Action Screen</title>
-
 <h1>Lazer Tag</h1>
-<br>
+<!-- <br>
 <img src="/static/b.png">
-<br>
+<br> -->
 <h1>Playing</h1>
+    <form action="{{ url_for("plyr_scrn")}}" method="post" style="text-align:center">
+        <table>
+            <tr>
+            <td><input type="text" name="player_id_b" required></td>
+            <td><input type="text" name="player_codename_b" required></td>
+            </tr>
+
+
+        </table>
+
+
+
+    </form>
+
+
 
 </body>
 </html>
