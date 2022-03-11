@@ -135,7 +135,7 @@ def plyr_scrn():
 		print(data)
 
 
-	return render_template("actionScreen.html", plyr_id = ((data[d]) for d in data), plyr_codename = "yep")
+	return render_template("actionScreen.html", plyr_id = ((str(data[d])) for d in data), plyr_codename = "yep")
 
 
 def create_dict(key,values):
