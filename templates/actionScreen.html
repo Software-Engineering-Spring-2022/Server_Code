@@ -33,14 +33,22 @@
         </tr>
     </table>
 
-    <ul>
+    <table>
         {% for plyr_id in data %}
-            <li>{{plyr_id}}</li>     
-            <li>{{plyr_id}}</li>     
-            <li>{{plyr_id}}</li>     
-            <li>{{plyr_id}}</li>           
+            <tr>
+               <td> {{plyr_id.plyr_id}}</td>
+            </tr>     
+            <tr>
+                <td> {{plyr_id.plyr_id}}</td>
+            </tr>     
+            <tr>
+                <td> {{plyr_id.plyr_id}}</td>
+            </tr>     
+            <tr>
+                <td> {{plyr_id.plyr_id}}</td>
+            </tr>           
         {% endfor %}
-    </ul>
+    </table>
 
 </form>
 </body>
