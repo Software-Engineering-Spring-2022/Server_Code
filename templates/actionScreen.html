@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
 	<title>Action Screen</title>
 <style>
-    .ENT1 {
+    .RED_TEAMA {
         position: relative;
         display: flex;
         justify-content: center;
@@ -13,8 +13,8 @@
           min-height: 100vh;
         font-weight: bold;
     }		
-    .CHILD1{
-        color: rgb(228, 216, 207);
+    .RED_TEAMB{
+        color: rgb(0, 0, 0);
         width: 1000px;
         height:200px;
         font-family: Arial;
@@ -30,17 +30,17 @@
 </head>
 
 <body>
-<!-- <h1>Lazer Tag</h1>
-<h1>Playing</h1> -->
+
 <form action="{{url_for("plyr_scrn")}}" method="get" style="text-align:center">
-     
-    <table class = "CHILD1">
-        {% for item in data %}
+    <div class = "RED_TEAMA">
+    <table class = "RED_TEAMB">
+        {% for item in red_team %}
             <tr>
                 <td>{{item}}</td>
             </tr>
         {% endfor %}
     </table>
+    </div>
     
 </form>
 </body>
