@@ -57,6 +57,42 @@
 			}
 		}
 
+		{box-sizing: border-box;}
+
+		.new_player_popup {
+		background-color: white;
+		background-image: linear-gradient(to right, rgb(11, 37, 124), rgb(90, 12, 12));
+		display: none;
+		position: fixed;
+		bottom: 0;
+		right: 15px;
+		
+		z-index: 9;
+		}
+
+		/* Full-width input fields */
+		.new_form_box input[type=text], .new_form_box input[type=password] {
+		width: 100%;
+		padding: 15px;
+		margin: 5px 0 22px 0;
+		border: none;
+		background: #f1f1f1;
+		}
+
+		/* When the inputs get focus, do something */
+		.new_form_box input[type=text]:focus, .new_form_box input[type=password]:focus {
+		background-color: #ddd;
+		outline: none;
+		}
+
+		h1 {
+			color: white;
+		}
+
+		label {
+			color: white;
+		}
+
 	</style>
 	<script>
 		document.addEventListener('keydown', function (event)
@@ -66,11 +102,46 @@
 						window.location.replace("./actionScreen");
 					}
 				});
+
+		function newplayer()
+		{
+			document.getElementById("newPlayerForm").style.display = "block";
+		}
+
+		function cancelNewPlayer() {
+  			document.getElementById("newPlayerForm").style.display = "none";	
+		}
 	</script>
 	</head>
 	<body background-color: rgba(25,80,206,0.53);>
 		<form action="{{ url_for("edit")}}" method="post" style="text-align:center">
 			<p style="color: azure; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; margin-bottom: 0px; margin-top: 0px;">PLAYER ENTRY</p>
+				
+				<!-- Creating a new player button -->
+				<button type="button"; onclick="newplayer()" >New Player</button>
+
+				<div class="new_player_popup" id="newPlayerForm">
+					<!--form action="/action_page.php" class="new_form_box"-->
+					  <h1> Add New Player</h1>
+				  
+					  <label for="ID"><b>ID: </b></label>
+					  <input type="text" name="player_id_new" required>
+
+					  <label for="CodeName"><b>Enter your code name: </b></label>
+					  <input type="text" name="player_codename_new" required>
+
+					  <label for="First Name"><b>Enter your first name: </b></label>
+					  <input type="text" name="player_first_new" required>
+
+					  <label for="Last Name" Name"><b>Enter your last name: </b></label>
+					  <input type="text" name="player_last_new" required>
+				  
+				  
+					  <button type="submit" class="btn">Create New Player</button>
+					  <button type="button" class="btn cancel" onclick="cancelNewPlayer()">Cancel</button>
+					</form>
+				  </div>
+						
 				<div class = "ENT1">
 					<div class="CHILD1">	
 					<table class="BLUE">
