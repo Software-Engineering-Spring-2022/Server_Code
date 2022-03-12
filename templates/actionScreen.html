@@ -34,10 +34,8 @@
     </table>
 
     <ul>
-        {% for plyr_id in data %}
-            <li>{{plyr_id}}</li>
-            
-            
+        {% for row in data %}
+            <li>{{row.plyr_id}}</li>           
         {% endfor %}
     </ul>
 
