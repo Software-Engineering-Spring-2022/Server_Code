@@ -1,3 +1,4 @@
+from venv import create
 from flask import Flask, render_template, request, flash, redirect, url_for
 from werkzeug.datastructures import MultiDict #used to push data to html
 import os
@@ -128,11 +129,12 @@ def plyr_scrn():
 		
 		data_test = ["testa","testb","testc","testd"]
 		
-		data = create_dict("plyr_id",data_test) #creates the multidict 		
+		data = create_dict("plyr_id",data_test) #creates the multidict 
+		data2 = create_dict("plyr_id",data_test)		
 		print(data)
 
 
-	return render_template("actionScreen.html", data = data)
+	return render_template("actionScreen.html", data = data, data2 = data2)
 
 
 def create_dict(key,values):
