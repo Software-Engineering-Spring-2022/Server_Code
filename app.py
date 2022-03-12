@@ -128,14 +128,11 @@ def plyr_scrn():
 		
 		data_test = ["testa","testb","testc","testd"]
 		
-		data = create_dict("plyr_id",data_test) #creates the multidict 
-
-
-		
+		data = create_dict("plyr_id",data_test) #creates the multidict 		
 		print(data)
 
 
-	return render_template("actionScreen.html", data = data)
+	return render_template("actionScreen.html", plyr_id = data)
 
 
 def create_dict(key,values):

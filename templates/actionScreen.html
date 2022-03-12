@@ -15,6 +15,9 @@
             <td>{{plyr_id}}</td>
             <p></p>
             <td>{{plyr_codename}}</td>
+            <td><div type = "text" name = "plyr_id"></div></td>
+            <td><output type = "text" name = "plyr_id"></output></td>
+            <td><input type = "text" name = "plyr_id"></input></td>
         </tr>
         <tr>
             <td>{{plyr_id}}</td>
@@ -29,6 +32,14 @@
             <td>{{plyr_codename}}</td>
         </tr>
     </table>
+
+    <ul>
+        {% for item in data %}
+            <li>{{item.play}}</li>
+            <li>{{item.place}}</li>
+            <li>{{item.mob}}</li>
+        {% endfor %}
+    </ul>
 
 </form>
 </body>
