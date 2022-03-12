@@ -134,7 +134,7 @@ def plyr_scrn():
 		print(data)
 
 
-	return render_template("actionScreen.html", data = data, data2 = data2)
+	return render_template("actionScreen.html", data = data)
 
 
 def create_dict(key,values):
