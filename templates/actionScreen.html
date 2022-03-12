@@ -10,34 +10,17 @@
 <!-- <h1>Lazer Tag</h1>
 <h1>Playing</h1> -->
 <form action="{{ url_for("plyr_scrn")}}" method="get" style="text-align:center">
-    <table>
-        <tr>
-            <td>{{plyr_id}}</td>
-            <p></p>
-            <td>{{plyr_codename}}</td>
-            <td><div type = "text" name = "plyr_id"></div></td>
-            <td><output type = "text" name = "plyr_id"></output></td>
-            <td><input type = "text" name = "plyr_id"></input></td>
-        </tr>
-        <tr>
-            <td>{{plyr_id}}</td>
-            <td>{{plyr_codename}}</td>
-        </tr>
-        <tr>
-            <td>{{plyr_id}}</td>
-            <td>{{plyr_codename}}</td>
-        </tr>
-        <tr>
-            <td>{{plyr_id}}</td>
-            <td>{{plyr_codename}}</td>
-        </tr>
-    </table>111
 
     <ul>
         {% for plyr_id in data %}
             <li>{{plyr_id}}</li>            
         {% endfor %}
     </ul>
+    <!-- <ul>
+        {% for plyr_id in data2 %}
+            <li>{{plyr_id}}</li>            
+        {% endfor %}
+    </ul> -->
 
 </form>
 </body>
