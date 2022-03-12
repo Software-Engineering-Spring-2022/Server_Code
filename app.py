@@ -127,10 +127,10 @@ def plyr_scrn():
 
 	if request.method == "GET":
 		
-		data_test = ["testa","testb","testc","testd"]
+		data_test = ["testa","testb","testc"]
 		
 		data = create_dict("plyr_id",data_test) #creates the multidict 
-		data2 = create_dict("plyr_id",data_test)		
+			
 		print(data)
 
 
