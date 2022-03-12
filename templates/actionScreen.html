@@ -3,20 +3,45 @@
 <head>
     <meta charset="UTF-8">
 	<title>Action Screen</title>
-    
+<style>
+    .ENT1 {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+          min-height: 100vh;
+        font-weight: bold;
+    }		
+    .CHILD1{
+        color: rgb(228, 216, 207);
+        width: 1000px;
+        height:200px;
+        font-family: Arial;
+        float: left;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;			
+    }
+</style>
+
+
 </head>
 
 <body>
 <!-- <h1>Lazer Tag</h1>
 <h1>Playing</h1> -->
-<form action="{{ url_for("plyr_scrn")}}" method="get" style="text-align:center">
-      
-    <table>
+<form action="{{url_for("plyr_scrn")}}" method="get" style="text-align:center">
+    <p class = "ENT1">  
+    <table class = "CHILD1">
         {% for item in data %}
-            <tr>{{item}}</tr>
+            <tr>
+                <td>{{item}}</td>
+            </tr>
         {% endfor %}
     </table>
-
+    </p>
 </form>
 </body>
 </html>
