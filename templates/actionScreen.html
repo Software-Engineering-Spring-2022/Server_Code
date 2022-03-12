@@ -32,15 +32,27 @@
 <body>
 
 <form action="{{url_for("plyr_scrn")}}" method="get" style="text-align:center">
-    <div class = "RED_TEAMA">
-    <table class = "RED_TEAMB">
+    
+    <table>
         {% for item in red_team %}
+            <tr>
+                <td>{{item}}</td>
+            </tr>
+            <tr>
+                <td>{{item}}</td>
+            </tr>
+            <tr>
+                <td>{{item}}</td>
+            </tr>
+            <tr>
+                <td>{{item}}</td>
+            </tr>
             <tr>
                 <td>{{item}}</td>
             </tr>
         {% endfor %}
     </table>
-    </div>
+    
     
 </form>
 </body>
