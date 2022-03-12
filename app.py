@@ -132,7 +132,7 @@ def plyr_scrn():
 		print(data)
 
 
-	return render_template("actionScreen.html", plyr_id = data)
+	return render_template("actionScreen.html", data = data_test)
 
 
 def create_dict(key,values):
