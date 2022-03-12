@@ -3,37 +3,75 @@
 <head>
     <meta charset="UTF-8">
 	<title>Action Screen</title>
+<style>
+
+
+        table{
+			table-layout: fixed;
+			border-collapse: collapse;
+		}
+		.BLUE{
+			background-color:rgb(11, 37, 124);
+			border: 2px solid rgb(40, 23, 196);
+		}
+		.RED{
+			background-color:rgb(90, 12, 12);
+			border: 2px solid rgb(196, 23, 23);
+		}
+		th, td {
+			padding: 5px;
+		}
+        .TOP{
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+  			min-height: 100vh;
+			font-weight: bold;
+		}		
+		.BOTTOM{
+			color: rgb(0, 0, 0);
+			width: 1000px;
+			height:200px;
+			font-family: Arial;
+			float: left;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-align: center;			
+		}
+
+
+
+</style>
+
+
 
 </head>
 
 <body>
 
 <form action="{{url_for("plyr_scrn")}}" method="get" style="text-align:center">
-    
-    <table>
-        {% for item in red_team %}
-            <tr>
-                <td>{{item}}</td>
-            </tr>
-            <tr>
-                <td>{{item}}</td>
-            </tr>
-           
-        {% endfor %}
-    </table>
-    <br>
-    <table>
-        {% for item in blue_team %}
-            <tr>
-                <td>{{item}}</td>
-            </tr>
-            <tr>
-                <td>{{item}}</td>
-            </tr>
-           
-        {% endfor %}
-    </table>
-    
+    <div class = "TOP">
+        <div class = "BOTTOM">
+            <table class = "RED">
+                {% for item in red_team %}
+                    <tr>
+                        <td>{{item}}</td>
+                    </tr>           
+                {% endfor %}
+            </table>
+
+            <table class = "BLUE">
+                {% for item in blue_team %}
+                    <tr>
+                        <td>{{item}}</td>
+                    </tr>                 
+                {% endfor %}
+            </table>
+        </div>
+    </div>
     
 </form>
 </body>

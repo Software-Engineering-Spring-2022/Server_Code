@@ -128,7 +128,7 @@ def plyr_scrn():
 	if request.method == "GET":
 		
 		red_team = ["opus","bill_the_cat","calvin"]
-		blue_team = ["opus","bill_the_cat","calvin"]
+		blue_team = ["HOBBES","razor","missy"]
 		
 		data = create_dict("plyr_id",red_team) #creates the multidict 
 			
