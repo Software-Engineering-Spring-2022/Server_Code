@@ -129,13 +129,14 @@ def plyr_scrn():
 		
 		red_team = ["opus","bill_the_cat","calvin"]
 		blue_team = ["HOBBES","razor","missy"]
+		events = ["opus hit HOBBES", "missy hit calvin", "razor hit bill_the_cat"]
 		
 		data = create_dict("plyr_id",red_team) #creates the multidict 
-			
+		
 		print(data)
 
 
-	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team)
+	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = events)
 
 
 def create_dict(key,values):

@@ -154,6 +154,11 @@
 				<tr>
 					<td>EVENT</td>
 				</tr>
+				{% for item in events %}
+					<tr>
+						<td>{{item}}</td>
+					</tr>
+				{% endfor %}
 			</table>
 		</div>
 	</form>
