@@ -167,7 +167,7 @@ def plyr_scrn():
 		
 		
 		
-		red_team = str(Players._get_())
+		red_team = Players._get_()
 		blue_team = ["HOBBES","razor","missy"]
 		events = ["opus hit HOBBES", "missy hit calvin", "razor hit bill_the_cat"]
 		
