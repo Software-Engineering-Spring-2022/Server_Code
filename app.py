@@ -163,9 +163,7 @@ def regi():
 @app.route("/actionScreen", methods = ["GET"]) #game action screen page
 def plyr_scrn():
 
-	if request.method == "GET":
-		
-		
+	if request.method == "GET":	
 		
 		red_team = Players._get_()
 		blue_team = ["HOBBES","razor","missy"]
@@ -182,9 +180,10 @@ class Players:
 	def __init__(self,red,blue):
 		Players.curr_red_plyrs = red
 		Players.curr_blue_plyrs = blue
+		print(Players.curr_red_plyrs)
 	@classmethod	
 	def _get_(self):
-		return [Players.curr_red_plyrs]
+		return Players.curr_red_plyrs
 	
 
 
