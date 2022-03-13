@@ -50,13 +50,7 @@
 		p{
 			font-size: 713%;
 		}
-
-		searchInput.onkeyup = function (e) {
-		if (e.key === 'Enter') {
-			searchBtn.click();
-			}
-		}
-
+		
 		{box-sizing: border-box;}
 
 		.new_player_popup {
@@ -92,13 +86,21 @@
 		label {
 			color: white;
 		}
+		
+		searchInput.onkeyup = function (e) {
+		if (e.key === 'Enter') {
+			searchBtn.click();
+			}
+		}
+
 	</style>
 	
 	<script>
-		document.addEventListener('onkeyup', function (e)
+		document.addEventListener('keydown', function (event)
 				{
-					if (e.key === 'Enter') {
-					searchBtn.click();
+					if(event.key === 'F4')
+					{
+						window.location.replace("./actionScreen");
 					}
 				});
 
@@ -111,13 +113,6 @@
   			document.getElementById("newPlayerForm").style.display = "none";	
 		}
 		
-		document.addEventListener('keydown', function (event)
-				{
-					if(event.key === 'F4')
-					{
-						window.location.replace("./actionScreen");
-					}
-				});
 	</script>
 	</head>
 	<body background-color: rgba(25,80,206,0.53);>
