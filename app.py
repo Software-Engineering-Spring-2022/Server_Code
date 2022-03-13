@@ -98,7 +98,7 @@ def edit():
 		
 
 		#running list of players in current game
-		Players(codename_r,codename_b) 
+		ye = Players(codename_r,codename_b) 
 		#using try catch in case the program breaks
 		try:
 			
@@ -165,9 +165,9 @@ def plyr_scrn():
 
 	if request.method == "GET":
 		
-		print(Players._get_(Players))
+		print(ye._get_(ye))
 		
-		red_team = players.__get__(curr_red_plyrs)
+		
 		blue_team = ["HOBBES","razor","missy"]
 		events = ["opus hit HOBBES", "missy hit calvin", "razor hit bill_the_cat"]
 		
