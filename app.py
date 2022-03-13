@@ -44,8 +44,7 @@ class Players:
 	@classmethod
 	def __init__(self,red,blue):
 		Players.curr_red_plyrs = red
-		Players.curr_blue_plyrs = blue
-			
+		Players.curr_blue_plyrs = blue			
 
 	def _get_red(self):
 		return Players.curr_red_plyrs[0:len(Players.curr_red_plyrs)]
@@ -194,7 +193,7 @@ def plyr_scrn():
 	
 
 
-	return render_template("actionScreen.html", red_team = red_team,seblue_team = blue_team,events = events)
+	return render_template("actionScreen.html", red_team = red_team, blue_team = blue_team,events = events)
 
 
 if __name__ == "__main__":
