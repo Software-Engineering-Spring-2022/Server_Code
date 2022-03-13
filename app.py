@@ -161,19 +161,19 @@ def regi():
 	pass
 
 @app.route("/actionScreen", methods = ["GET"]) #game action screen page
-def plyr_scrn(self):
+def plyr_scrn():
 
 	if request.method == "GET":
 		
-		self.players()
-		self.red_team = players.curr_red_plyrs
-		self.blue_team = ["HOBBES","razor","missy"]
-		self.events = ["opus hit HOBBES", "missy hit calvin", "razor hit bill_the_cat"]
 		
-		print(self.red_team)
+		red_team = players.curr_red_plyrs
+		blue_team = ["HOBBES","razor","missy"]
+		events = ["opus hit HOBBES", "missy hit calvin", "razor hit bill_the_cat"]
+		
+		print(red_team)
 
 
-	return render_template("actionScreen.html", red_team = self.red_team,seblue_team = self.blue_team,events = self.events)
+	return render_template("actionScreen.html", red_team = red_team,seblue_team = blue_team,events = events)
 
 
 
