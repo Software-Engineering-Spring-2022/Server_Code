@@ -29,21 +29,21 @@
       width:1000px;
       height:200px;           
 			background-color:rgb(34, 34, 34);
-			border: 5px solid rgb(0, 0, 0);
+			border: 5px solid rgb(53, 52, 52);
       color: rgb(255, 255, 255);
 		}
 		th, td {
-			padding: 5px;
+			padding: 10px;
 		}
-        .TOP{
+    .TOP{
 			position: relative;
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			text-align: center;
-  			min-height: 50vh;
+  		min-height: 50vh;
 			font-weight: bold;
-		}		
+		}
 		.BOTTOM{
 			color: rgb(255, 255, 255);
 			width: 1000px;
@@ -55,14 +55,13 @@
 			text-align: center;
 		}
 
-
 		body {
       background-color: black;
 			font-family: sans-serif;
 			display: grid;
       grid-template-rows: 1fr 1fr 1fr;
       grid-template-columns: 1fr;
-      grid-gap: 1px;
+      gap: 1px;
 			height: 100vh;
 			place-items: center;
 		}
@@ -163,7 +162,9 @@
 
     <table class = "EVENT">
       <thead>
-        <td><strong>EVENT</strong></td>
+        <tr>
+          <th><strong>EVENT</strong></th>
+        </tr>
       </thead>
       <tbody>
       {% for item in events %}
