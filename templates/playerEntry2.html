@@ -51,12 +51,6 @@
 			font-size: 713%;
 		}
 
-		searchInput.onkeyup = function (e) {
-		if (e.key === 'Enter') {
-			searchBtn.click();
-			}
-		}
-
 		{box-sizing: border-box;}
 
 		.new_player_popup {
@@ -65,7 +59,7 @@
 		display: none;
 		position: center;
 		bottom: 0;
-		<!-- right: 15px; -->
+		right: 15px;
 		
 		z-index: 9;
 		}
@@ -92,8 +86,8 @@
 		label {
 			color: white;
 		}
-
 	</style>
+	
 	<script>
 		document.addEventListener('keydown', function (event)
 				{
@@ -110,6 +104,12 @@
 
 		function cancelNewPlayer() {
   			document.getElementById("newPlayerForm").style.display = "none";	
+		}
+		
+		searchInput.onkeyup = function (e) {
+		if (e.key === 'Enter') {
+			searchBtn.click();
+			}
 		}
 	</script>
 	</head>
@@ -272,8 +272,8 @@
 						</tr>
 					</table>
 					</div>
-				<div style = "text-align: center; position: relative; bottom: 10px"><input onkeyup="if(event.keyCode===13){submit.click()}" input type = "submit" style="display: none" value = "Submit" /></div>
 			</div>
+			<div style = "text-align: center; position: relative; bottom: 10px"><input onkeyup="if(event.keyCode===13){submit.click()}" input type = "submit" style="display: none" value = "Submit" /></div>
 		</form>
 		
 	</body>
