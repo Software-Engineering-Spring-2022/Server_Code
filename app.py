@@ -165,7 +165,7 @@ def plyr_scrn():
 
 	if request.method == "GET":
 		
-		print(Players._get_())
+		print(Players._get_(self))
 		
 		red_team = players.__get__(curr_red_plyrs)
 		blue_team = ["HOBBES","razor","missy"]
