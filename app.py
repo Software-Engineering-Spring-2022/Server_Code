@@ -165,24 +165,24 @@ def plyr_scrn():
 
 	if request.method == "GET":
 		
-		red_team = players.curr_red_plyrs()
+		
+		red_team = players.curr_red_plyrs
 		blue_team = ["HOBBES","razor","missy"]
 		events = ["opus hit HOBBES", "missy hit calvin", "razor hit bill_the_cat"]
 		
 		print(red_team)
 
 
-	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = events)
+	return render_template("actionScreen.html", red_team = red_team,seblue_team = blue_team,events = events)
 
 
 
 def players(red,blue):
-	
 	curr_red_plyrs = red
 	curr_blue_plyrs = blue
-
-	print(curr_blue_plyrs)
-	return 0
+	print(curr_red_plyrs)
+	
+	
 
 
 
