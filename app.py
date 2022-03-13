@@ -88,12 +88,17 @@ def edit():
 		first_name_b = data.getlist("player_first_b")
 		last_name_b = data.getlist("player_last_b")
 
+		
+
 		#Red Team
 		iD_r = data.getlist("player_id_r")#the .getlist("name") method is from the flask module. changes the dict to an indexable list
 		codename_r = data.getlist("player_codename_r")
 		first_name_r = data.getlist("player_first_r")
 		last_name_r = data.getlist("player_last_r")
 		
+
+		#running list of players in current game
+		players(codename_r,codename_b) 
 		#using try catch in case the program breaks
 		try:
 			
@@ -160,20 +165,26 @@ def plyr_scrn():
 
 	if request.method == "GET":
 		
-		red_team = ["opus","bill_the_cat","calvin"]
+		red_team = players.curr_red_plyrs()
 		blue_team = ["HOBBES","razor","missy"]
 		events = ["opus hit HOBBES", "missy hit calvin", "razor hit bill_the_cat"]
 		
-		data = create_dict("plyr_id",red_team) #creates the multidict 
-		
-		print(data)
+		print(red_team)
 
 
 	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = events)
 
 
-def create_dict(key,values):
-	return MultiDict([(key,v) for v in values])
+
+def players(red,blue):
+	
+	curr_red_plyrs = red
+	curr_blue_plyrs = blue
+
+	print(curr_blue_plyrs)
+	return 0
+
+
 
 if __name__ == "__main__":
 	app.run(debug=True)
