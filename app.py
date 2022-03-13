@@ -167,7 +167,7 @@ def plyr_scrn():
 		
 		print(Players._get_())
 		
-		red_team = Players._get_()
+		red_team = [Players._get_()]
 		blue_team = ["HOBBES","razor","missy"]
 		events = ["opus hit HOBBES", "missy hit calvin", "razor hit bill_the_cat"]
 		
@@ -180,11 +180,11 @@ def plyr_scrn():
 class Players:
 	@classmethod
 	def __init__(self,red,blue):
-		Players.curr_red_plyrs = red
-		Players.curr_blue_plyrs = blue
+		Players.curr_red_plyrs = [red]
+		Players.curr_blue_plyrs = [blue]
 	@classmethod	
 	def _get_(self):
-		return Players.curr_red_plyrs
+		return [Players.curr_red_plyrs]
 	
 
 
