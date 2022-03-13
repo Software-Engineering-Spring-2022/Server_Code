@@ -11,22 +11,25 @@
 			border-collapse: collapse;
 		}
 		.BLUE{
-            width:500px;
+            width:33vw;
             height:500px;
 			background-color:rgb(11, 37, 124);
-			border: 2px solid rgb(40, 23, 196);
+			border: 5px solid rgb(40, 23, 196);
 		}
 		.RED{
-            width:500px;
+            width:33vw;
             height:500px;
 			background-color:rgb(90, 12, 12);
-			border: 2px solid rgb(196, 23, 23);
+			border: 5px solid rgb(196, 23, 23);
 		}
 		.EVENT{
-            width:500px;
-            height:500px;
+            position: relative;
+			display: flex;
+			justify-content: center;
+            width:1000px;
+            height:200px;           
 			background-color:rgb(34, 34, 34);
-			border: 2px solid rgb(0, 0, 0);
+			border: 5px solid rgb(0, 0, 0);
 		}
 		th, td {
 			padding: 5px;
@@ -37,15 +40,14 @@
 			justify-content: center;
 			align-items: center;
 			text-align: center;
-  			min-height: 100vh;
+  			min-height: 50vh;
 			font-weight: bold;
 		}		
 		.BOTTOM{
 			color: rgb(255, 255, 255);
 			width: 1000px;
-			height:200px;
+			height:700px;
 			font-family: Arial;
-			float: left;
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -54,8 +56,12 @@
 
 
 		body {
+            background-color: black;
 			font-family: sans-serif;
 			display: grid;
+            grid-template-rows: 1fr 1fr 1fr;
+            grid-template-columns: 1fr;
+            grid-gap: 1px;
 			height: 100vh;
 			place-items: center;
 		}
@@ -116,51 +122,58 @@
 
 </style>
 
-
-
 </head>
 
-<body >
+<body>
 
-	<div id="app"></div>
-
+	
+    
 	<form action="{{url_for("plyr_scrn")}}" method="get" style="text-align:center">
-		<div class = "TOP">
-			<div class = "BOTTOM">
+          
+        <div class = "TOP">
+            
+			<div class = "BOTTOM">               
 				<table class = "BLUE">
-					<tr>
+					<thead>
 						<td><strong>CODENAME</strong></td>
-					</tr>
+                    </thead>
+                    <tbody>
 					{% for item in blue_team %}
 						<tr>
 							<td>{{item}}</td>
 						</tr>                 
 					{% endfor %}
+                    </tbody>
 				</table>
+                <div id="app"></div>   
 				<table class = "RED">
-					<tr>
+					<thead>
 						<td><strong>CODENAME</strong></td>
-					</tr>
+					</thead>
 					{% for item in red_team %}
 						<tr>
 							<td>{{item}}</td>
 						</tr>           
 					{% endfor %}
-				</table>
-			</div>
+				</table>               
+			</div>                   
 		</div>
-		<div class = "BOTTOM">
-			<table class = "EVENT">
-				<tr>
-					<td>EVENT</td>
-				</tr>
-				{% for item in events %}
-					<tr>
-						<td>{{item}}</td>
-					</tr>
-				{% endfor %}
-			</table>
-		</div>
+
+        <table class = "EVENT">
+            <thead>
+                <td>EVENT</td>
+            </thead>
+            <tbody>
+            {% for item in events %}
+                <tr>
+                    <td>{{item}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>   
+                    
+
+         
 	</form>
 	
 	<script type="text/javascript">
