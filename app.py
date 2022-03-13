@@ -183,7 +183,7 @@ class Players:
 		print(Players.curr_red_plyrs)
 	@classmethod	
 	def _get_(self):
-		return Players.curr_red_plyrs
+		return Players.curr_red_plyrs[1:len(Players.curr_red_plyrs)]
 	
 
 
