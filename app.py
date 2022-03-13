@@ -39,7 +39,20 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 	finally:
 		if conn is not None:
 			conn.close()
+#this class will allows other methods to access the current game players
+class Players:
+	@classmethod
+	def __init__(self,red,blue):
+		Players.curr_red_plyrs = red
+		Players.curr_blue_plyrs = blue
+			
 
+	def _get_red(self):
+		return Players.curr_red_plyrs[0:len(Players.curr_red_plyrs)]
+
+	def _get_blue(self):
+		return Players.curr_blue_plyrs[0:len(Players.curr_blue_plyrs)]
+	
 
 #Splash screen (default) route. Redirect to player entry screen after initializing components
 @app.route("/")#allows for us to change something when a user uses one of our inputs
@@ -164,35 +177,24 @@ def regi():
 def plyr_scrn():
 
 	if request.method == "GET":	
-		
-		red_team = Players._get_()
-		blue_team = ["HOBBES","razor","missy"]
+
+		#calls the Players class. it is a class method, which may need to be changed in the future
+		try:
+			red_team = Players._get_red()
+			
+		except:
+			red_team = ["no players entered"] #in case one side isnt entered
+		try:
+			blue_team = Players._get_blue()
+			
+		except:
+			blue_team = ["no players entered"]
+
 		events = ["opus hit HOBBES", "missy hit calvin", "razor hit bill_the_cat"]
-		
-		print(red_team)
+	
 
 
 	return render_template("actionScreen.html", red_team = red_team,seblue_team = blue_team,events = events)
-
-
-class Players:
-	@classmethod
-	def __init__(self,red,blue):
-		Players.curr_red_plyrs = red
-		Players.curr_blue_plyrs = blue
-		print(Players.curr_red_plyrs)
-	@classmethod	
-	def _get_(self):
-		return Players.curr_red_plyrs[1:len(Players.curr_red_plyrs)]
-	
-
-
-	
-
-
-	
-	
-
 
 
 if __name__ == "__main__":
