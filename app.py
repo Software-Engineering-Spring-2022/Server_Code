@@ -165,7 +165,8 @@ def plyr_scrn():
 
 	if request.method == "GET":
 		
-	
+		print(Players._get_())
+		
 		red_team = Players._get_()
 		blue_team = ["HOBBES","razor","missy"]
 		events = ["opus hit HOBBES", "missy hit calvin", "razor hit bill_the_cat"]
@@ -183,7 +184,7 @@ class Players:
 		Players.curr_blue_plyrs = blue
 	@classmethod	
 	def _get_(self):
-		return Players.curr_red_plyrs
+		return [Players.curr_red_plyrs]
 	
 
 
