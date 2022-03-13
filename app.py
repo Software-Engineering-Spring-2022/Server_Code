@@ -179,7 +179,7 @@ def plyr_scrn():
 
 class Players:
 	@classmethod
-	def __init_f_(self,red,blue):
+	def __init__(self,red,blue):
 		Players.curr_red_plyrs = red
 		Players.curr_blue_plyrs = blue
 	@classmethod	
