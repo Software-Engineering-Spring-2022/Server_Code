@@ -164,9 +164,9 @@ def regi():
 def plyr_scrn(self):
 
 	if request.method == "GET":
+		
 		self.players()
-
-		self.red_team = self.curr_red_plyrs
+		self.red_team = players.curr_red_plyrs
 		self.blue_team = ["HOBBES","razor","missy"]
 		self.events = ["opus hit HOBBES", "missy hit calvin", "razor hit bill_the_cat"]
 		
@@ -177,10 +177,10 @@ def plyr_scrn(self):
 
 
 
-def players(self,red,blue):
-	self.curr_red_plyrs = red
-	self.curr_blue_plyrs = blue
-	print(self.curr_red_plyrs)
+def players(red,blue):
+	curr_red_plyrs = red
+	curr_blue_plyrs = blue
+	print(curr_red_plyrs)
 	
 	
 
