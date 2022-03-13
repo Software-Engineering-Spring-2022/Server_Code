@@ -165,7 +165,7 @@ def plyr_scrn():
 
 	if request.method == "GET":
 		
-		red_team = players.curr_red_plyrs()
+		red_team = players.curr_red_plyrs
 		blue_team = ["HOBBES","razor","missy"]
 		events = ["opus hit HOBBES", "missy hit calvin", "razor hit bill_the_cat"]
 		
