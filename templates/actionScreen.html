@@ -6,30 +6,31 @@
 <style>
 
 
-        table{
+    table{
 			table-layout: fixed;
 			border-collapse: collapse;
 		}
 		.BLUE{
-            width:33vw;
-            height:500px;
+      width:33vw;
+      height:500px;
 			background-color:rgb(11, 37, 124);
 			border: 5px solid rgb(40, 23, 196);
 		}
 		.RED{
-            width:33vw;
-            height:500px;
+      width:33vw;
+      height:500px;
 			background-color:rgb(90, 12, 12);
 			border: 5px solid rgb(196, 23, 23);
 		}
 		.EVENT{
-            position: relative;
+      position: relative;
 			display: flex;
 			justify-content: center;
-            width:1000px;
-            height:200px;           
+      width:1000px;
+      height:200px;           
 			background-color:rgb(34, 34, 34);
 			border: 5px solid rgb(0, 0, 0);
+      color: rgb(255, 255, 255);
 		}
 		th, td {
 			padding: 5px;
@@ -56,12 +57,12 @@
 
 
 		body {
-            background-color: black;
+      background-color: black;
 			font-family: sans-serif;
 			display: grid;
-            grid-template-rows: 1fr 1fr 1fr;
-            grid-template-columns: 1fr;
-            grid-gap: 1px;
+      grid-template-rows: 1fr 1fr 1fr;
+      grid-template-columns: 1fr;
+      grid-gap: 1px;
 			height: 100vh;
 			place-items: center;
 		}
@@ -121,59 +122,57 @@
 
 
 </style>
-
 </head>
 
 <body>
 
-	
-    
 	<form action="{{url_for("plyr_scrn")}}" method="get" style="text-align:center">
-          
-        <div class = "TOP">
-            
+    <div class = "TOP">   
 			<div class = "BOTTOM">               
 				<table class = "BLUE">
 					<thead>
 						<td><strong>CODENAME</strong></td>
-                    </thead>
-                    <tbody>
+          </thead>
+
+          <tbody>
 					{% for item in blue_team %}
 						<tr>
 							<td>{{item}}</td>
 						</tr>                 
 					{% endfor %}
-                    </tbody>
-				</table>
-                <div id="app"></div>   
+          </tbody>
+        </table>
+
+        <div id="app"></div>
+
 				<table class = "RED">
 					<thead>
 						<td><strong>CODENAME</strong></td>
 					</thead>
+
+          <tbody>
 					{% for item in red_team %}
 						<tr>
 							<td>{{item}}</td>
-						</tr>           
+						</tr>
 					{% endfor %}
-				</table>               
-			</div>                   
+          </tbody>
+				</table>
+			</div>
 		</div>
 
-        <table class = "EVENT">
-            <thead>
-                <td>EVENT</td>
-            </thead>
-            <tbody>
-            {% for item in events %}
-                <tr>
-                    <td>{{item}}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>   
-                    
-
-         
+    <table class = "EVENT">
+      <thead>
+        <td><strong>EVENT</strong></td>
+      </thead>
+      <tbody>
+      {% for item in events %}
+        <tr>
+          <td>{{item}}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>   
 	</form>
 	
 	<script type="text/javascript">
