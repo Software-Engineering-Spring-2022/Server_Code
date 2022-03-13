@@ -109,7 +109,8 @@
 			document.getElementById("newPlayerForm").style.display = "block";
 		}
 
-		function cancelNewPlayer() {
+		function cancelNewPlayer() 
+		{
   			document.getElementById("newPlayerForm").style.display = "none";	
 		}
 		
@@ -122,27 +123,25 @@
 				<!-- Creating a new player button -->
 				<button type="button"; onclick="newplayer()" >New Player</button>
 
-				<!--div class="new_player_popup" id="newPlayerForm">
-					<form action="/action_page.php" class="new_form_box">
+				<div class="new_player_popup" id="newPlayerForm">
 					  <h1> Add New Player</h1>
 				  
 					  <label for="ID"><b>ID: </b></label>
-					  <input type="text" name="player_id_new" required>
+					  <input type="text" name="player_id_new">
 
 					  <label for="CodeName"><b>Enter your code name: </b></label>
-					  <input type="text" name="player_codename_new" required>
+					  <input type="text" name="player_codename_new">
 
 					  <label for="First Name"><b>Enter your first name: </b></label>
-					  <input type="text" name="player_first_new" required>
+					  <input type="text" name="player_first_new">
 
 					  <label for="Last Name" Name"><b>Enter your last name: </b></label>
-					  <input type="text" name="player_last_new" required>
+					  <input type="text" name="player_last_new">
 				  
 				  
 					  <button type="submit" class="btn">Create New Player</button>
 					  <button type="button" class="btn cancel" onclick="cancelNewPlayer()">Cancel</button>
-					</form>
-				  </div-->
+				  </div>
 						
 				<div class = "ENT1">
 					<div class="CHILD1">	
@@ -161,10 +160,10 @@
 							</tr>
 						</thead>
 						<tr name="row1">
-							<td><input type="text" name="player_id_b" required></td>
-							<td><input type="text" name="player_codename_b" required></td>
-							<td><input type="text" name="player_first_b" required></td>
-							<td><input type="text" name="player_last_b" required></td>
+							<td><input type="text" name="player_id_b" ></td>
+							<td><input type="text" name="player_codename_b" ></td>
+							<td><input type="text" name="player_first_b" ></td>
+							<td><input type="text" name="player_last_b" ></td>
 						</tr>
 						<tr name="row2">
 							<td><input type="text" name="player_id_b"></td>
@@ -225,10 +224,10 @@
 							</tr>
 						</thead>
 						<tr name="row1">
-							<td><input type="text" name="player_id_r" required></td>
-							<td><input type="text" name="player_codename_r" required></td>
-							<td><input type="text" name="player_first_r" required></td>
-							<td><input type="text" name="player_last_r" required></td>
+							<td><input type="text" name="player_id_r" ></td>
+							<td><input type="text" name="player_codename_r" ></td>
+							<td><input type="text" name="player_first_r" ></td>
+							<td><input type="text" name="player_last_r"></td>
 						</tr>
 						<tr name="row2">
 							<td><input type="text" name="player_id_r"></td>
@@ -273,9 +272,7 @@
 							<td><input type="text" name="player_last_r"></td>
 						</tr>
 					</table>
-				<!-- <div style = "text-align: center; position: relative; bottom: 10px"><input onkeyup="if(event.keyCode===13){submit.click()}" input type = "submit" value = "Submit" /></div> -->
 					</div>
-			<!-- <button style = "text-align: center; position: relative; bottom: 10px"><input onkeyup="if(event.keyCode===13){submit.click()}" input type = "submit" style="display: none" value = "Submit" /></button> -->
 			</div>
 			<div style = "text-align: center; position: relative; bottom: 10px"><input onkeyup="if(event.keyCode===13){submit.click()}" input type = "submit" style="display: none" value = "Submit" /></div>
 		</form>
