@@ -180,16 +180,16 @@ def plyr_scrn():
 	if request.method == "GET":	
 
 		#calls the Players class. it is a class method, which may need to be changed in the future
-		try:
-			red_team = Players._get_red()
+		# try:
+		red_team = Players._get_red()
 			
-		except:
-			red_team = ["no players entered"] #in case one side isnt entered
-		try:
-			blue_team = Players._get_blue()
+		# except:
+			# red_team = ["no players entered"] #in case one side isnt entered
+		# try:
+		blue_team = Players._get_blue()
 			
-		except:
-			blue_team = ["no players entered"]
+		# except:
+		# 	blue_team = ["no players entered"]
 
 		events = ["opus hit HOBBES", "missy hit calvin", "razor hit bill_the_cat"]	
 
