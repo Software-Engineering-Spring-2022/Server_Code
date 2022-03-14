@@ -1,6 +1,6 @@
 from venv import create
 from flask import Flask, render_template, request, flash, redirect, url_for
-from werkzeug.datastructures import MultiDict #used to push data to html
+
 import os
 import time
 os.system("pip install psycopg2-binary")
@@ -45,10 +45,10 @@ class Players:
 	def __init__(self,red,blue):
 		Players.curr_red_plyrs = red
 		Players.curr_blue_plyrs = blue			
-
+	@classmethod
 	def _get_red(self):
 		return Players.curr_red_plyrs[0:len(Players.curr_red_plyrs)]
-
+	@classmethod
 	def _get_blue(self):
 		return Players.curr_blue_plyrs[0:len(Players.curr_blue_plyrs)]
 	
