@@ -111,6 +111,7 @@ def edit():
 		
 
 		#running list of players in current game
+		print(codename_r)
 		Players(codename_r,codename_b) 
 		#using try catch in case the program breaks
 		try:
