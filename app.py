@@ -185,11 +185,11 @@ def plyr_scrn():
 			
 		# except:
 			# red_team = ["no players entered"] #in case one side isnt entered
-		# try:
-		blue_team = Players._get_blue()
+		try:
+			blue_team = Players._get_blue()
 			
-		# except:
-		# 	blue_team = ["no players entered"]
+		except:
+		 	blue_team = ["no players entered"]
 
 		events = ["opus hit HOBBES", "missy hit calvin", "razor hit bill_the_cat"]	
 
