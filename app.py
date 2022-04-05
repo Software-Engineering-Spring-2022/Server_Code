@@ -3,6 +3,8 @@ from flask import Flask, render_template, request, flash, redirect, url_for
 
 import os
 import time
+import socket
+import random
 os.system("pip install psycopg2-binary")
 import psycopg2
 # -- sample program from this video <https://youtu.be/6plVs_ytIH8>
@@ -176,7 +178,7 @@ def regi():
 
 @app.route("/actionScreen", methods = ["GET"]) #game action screen page
 def plyr_scrn():
-
+	
 	if request.method == "GET":	
 
 		#calls the Players class. it is a class method, which may need to be changed in the future
@@ -194,7 +196,52 @@ def plyr_scrn():
 
 		events = ["opus hit HOBBES", "missy hit calvin", "razor hit bill_the_cat"]	
 
+	""" Traffic Generator
+	bufferSize  = 1024
+	serverAddressPort   = ("127.0.0.1", 7501)
 
+
+	print('this program will generate some test traffic for 2 players on the red ')
+	print('team as well as 2 players on the blue team')
+	print('')
+
+	red1 = input('Enter id of red player 1 ==> ')
+	red2 = input('Enter id of red player 2 ==> ')
+	blue1 = input('Enter id of blue player 1 ==> ')
+	blue2 = input('Enter id of blue player 2 ==> ')
+
+	print('')
+	counter = input('How many events do you want ==> ')
+
+	# Create datagram socket
+	UDPClientSocketTransmit = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+
+	# counter number of events, random player and order
+	i = 1
+	while i < int(counter):
+		if random.randint(1,2) == 1:
+			redplayer = red1
+		else:
+			redplayer = red2
+
+		if random.randint(1,2) == 1:
+			blueplayer = blue1
+		else: 
+			blueplayer = blue2	
+
+		if random.randint(1,2) == 1:
+			message = redplayer + ":" + blueplayer
+		else:
+			message = blueplayer + ":" + blueplayer
+
+		print(message)
+		i+=1;
+		UDPClientSocketTransmit.sendto(str.encode(str(message)), serverAddressPort)
+		time.sleep(random.randint(1,3))
+
+	print("program complete")
+	"""
+	
 	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = events)
 
 
