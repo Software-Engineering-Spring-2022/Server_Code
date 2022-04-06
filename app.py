@@ -1,6 +1,4 @@
-from venv import create
 
-from pygame import BLEND_MULT
 from flask import Flask, render_template, request, flash, redirect, url_for
 
 import os
