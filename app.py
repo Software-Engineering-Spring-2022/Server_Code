@@ -192,6 +192,8 @@ def edit():
 			
 		if(iD_r[0] == ''):
 			print("skip")
+			red = codename_r
+			blue = 
 		else:
 			red = codename_r
 			blue = codename_b
@@ -221,7 +223,7 @@ def plyr_scrn():
 		blue_team = ["no players entered"]
 
 	events = ["opus hit HOBBES", "missy hit calvin", "razor hit bill_the_cat"]	
-
+	print(red_team)
 	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = events)
 
 
