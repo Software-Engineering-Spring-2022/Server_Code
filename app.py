@@ -68,7 +68,7 @@ class Players:
 	@classmethod
 	def _get_red(self):
 		print(Players.curr_red_plyrs)
-		return Players.curr_red_plyrs[0:len(Players.curr_red_plyrs)]
+		return Players.curr_red_plyrs
 	@classmethod
 	def _get_blue(self):
 		
@@ -204,15 +204,10 @@ def plyr_scrn():
 	try:
 		print("in try 1")
 		red_team = Players._get_red()
-		
-	except:
-		red_team = ["no players entered"] #in case one side isnt entered
-	
-	try:
 		blue_team = Players._get_blue()
 		
 	except:
-
+		red_team = ["no players entered"] #in case one side isnt entered
 		blue_team = ["no players entered"]
 
 	events = ["opus hit HOBBES", "missy hit calvin", "razor hit bill_the_cat"]	
