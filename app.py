@@ -67,11 +67,11 @@ class Players:
 		Players.curr_blue_plyrs = blue			
 	@classmethod
 	def _get_red(self):
-		print(Players.curr_red_plyrs[0:len(Players.curr_red_plyrs)])
+		print(Players.curr_red_plyrs)
 		return Players.curr_red_plyrs[0:len(Players.curr_red_plyrs)]
 	@classmethod
 	def _get_blue(self):
-		print(Players.curr_blue_plyrs)
+		
 		return Players.curr_blue_plyrs[0:len(Players.curr_blue_plyrs)]
 	
 
@@ -132,8 +132,8 @@ def edit():
 		
 
 		#running list of players in current game
-		print(codename_r)
-		Players(codename_r,codename_b) 
+		
+		
 		#using try catch in case the program breaks
 		try:
 			
@@ -186,6 +186,8 @@ def edit():
 		except:
 			print("cant push red team data, check code")
 
+		Players(codename_r,codename_b) 
+
 	return render_template("playerEntry2.html") #needs to be edited so that the user input persists
 
 @app.route("/playerReg", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
@@ -198,21 +200,20 @@ def regi():
 @app.route("/actionScreen", methods = ["GET"]) #game action screen page
 def plyr_scrn():
 	
-	if request.method == "GET":	
-
-		#calls the Players class. it is a class method, which may need to be changed in the future
-		try:
-			red_team = Players._get_red()
-			
-		except:
-			red_team = ["no players entered"] #in case one side isnt entered
+	#calls the Players class. it is a class method, which may need to be changed in the future
+	try:
+		print("in try 1")
+		red_team = Players._get_red()
 		
-		try:
-			blue_team = Players._get_blue()
-			
-		except:
+	except:
+		red_team = ["no players entered"] #in case one side isnt entered
+	
+	try:
+		blue_team = Players._get_blue()
+		
+	except:
 
-			blue_team = ["no players entered"]
+		blue_team = ["no players entered"]
 
 	events = ["opus hit HOBBES", "missy hit calvin", "razor hit bill_the_cat"]	
 
