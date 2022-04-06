@@ -193,7 +193,7 @@ def edit():
 		if(iD_r[0] == ''):
 			print("skip")
 			red = codename_r
-			blue = 
+			blue = codename_b
 		else:
 			red = codename_r
 			blue = codename_b
