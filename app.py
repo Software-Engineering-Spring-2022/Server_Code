@@ -3,6 +3,8 @@ from flask import Flask, render_template, request, flash, redirect, url_for
 
 import os
 import time
+import socket
+import random
 os.system("pip install psycopg2-binary")
 import psycopg2
 # -- sample program from this video <https://youtu.be/6plVs_ytIH8>
@@ -11,6 +13,24 @@ import psycopg2
 app = Flask(__name__)#makes a class for the app or program we wish to run
 app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
 i = 0
+
+"""
+msgFromClient       = "Hello UDP Server"
+bytesToSend         = str.encode(msgFromClient)
+serverAddressPort   = ("127.0.0.1", 20001)
+bufferSize          = 1024
+
+# Create a UDP socket at client side
+UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+
+# Send to server using created UDP socket
+UDPClientSocket.sendto(bytesToSend, serverAddressPort)
+
+msgFromServer = UDPClientSocket.recvfrom(bufferSize)
+msg = "Message from Server {}".format(msgFromServer[0])
+
+print(msg)
+"""
 
 def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert players into the database table player
 	conn = None
@@ -177,7 +197,7 @@ def regi():
 
 @app.route("/actionScreen", methods = ["GET"]) #game action screen page
 def plyr_scrn():
-
+	
 	if request.method == "GET":	
 
 		#calls the Players class. it is a class method, which may need to be changed in the future
