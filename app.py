@@ -1,4 +1,6 @@
 from venv import create
+
+from pygame import BLEND_MULT
 from flask import Flask, render_template, request, flash, redirect, url_for
 
 import os
@@ -189,6 +191,14 @@ def edit():
 			print("skip")
 		else:
 			Players(codename_r,codename_b)
+
+		global red
+		global blue
+
+		red = codename_r
+		blue = codename_b
+
+		print(red)
 		 
 
 	return render_template("playerEntry2.html") #needs to be edited so that the user input persists
@@ -205,9 +215,9 @@ def plyr_scrn():
 	
 	#calls the Players class. it is a class method, which may need to be changed in the future
 	try:
-		print("in try 1")
-		red_team = Players._get_red()
-		blue_team = Players._get_blue()
+		
+		red_team = red
+		blue_team = blue
 		
 	except:
 		red_team = ["no players entered"] #in case one side isnt entered
