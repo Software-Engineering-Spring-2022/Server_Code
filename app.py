@@ -83,6 +83,10 @@ def splash():
 @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
 def edit():
 	if request.method == "POST":
+
+		global red
+		global blue
+
 		#this method routes to the template for player entry
 		#it will allow the user to input data in the text boxes provided 
 		#when the user presses submit it will send the data to app.py
@@ -185,19 +189,14 @@ def edit():
 				#we need to filter blank inputs so as to not fill the database with empty entries
 		except:
 			print("cant push red team data, check code")
+			
 		if(iD_r[1] == ''):
 			print("skip")
 		else:
-			Players(codename_r,codename_b)
+			red = codename_r
+			blue = codename_b
 
-		global red
-		global blue
-
-		red = codename_r
-		blue = codename_b
-
-		print(red)
-		 
+			 
 
 	return render_template("playerEntry2.html") #needs to be edited so that the user input persists
 
