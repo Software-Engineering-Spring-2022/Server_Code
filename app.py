@@ -60,19 +60,19 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 		if conn is not None:
 			conn.close()
 #this class will allows other methods to access the current game players
-class Players:
-	@classmethod
-	def __init__(self,red,blue):
-		Players.curr_red_plyrs = red
-		Players.curr_blue_plyrs = blue			
-	@classmethod
-	def _get_red(self):
-		print(Players.curr_red_plyrs)
-		return self.curr_red_plyrs
-	@classmethod
-	def _get_blue(self):
+# class Players:
+# 	@classmethod
+# 	def __init__(self,red,blue):
+# 		Players.curr_red_plyrs = red
+# 		Players.curr_blue_plyrs = blue			
+# 	@classmethod
+# 	def _get_red(self):
+# 		print(Players.curr_red_plyrs)
+# 		return self.curr_red_plyrs
+# 	@classmethod
+# 	def _get_blue(self):
 		
-		return self.curr_blue_plyrs
+# 		return self.curr_blue_plyrs
 	
 
 #Splash screen (default) route. Redirect to player entry screen after initializing components
@@ -192,8 +192,8 @@ def edit():
 			
 		if(iD_r[0] == ''):
 			print("skip")
-			red = codename_r
-			blue = codename_b
+			red = "error"
+			blue = "error"
 		else:
 			red = codename_r
 			blue = codename_b
