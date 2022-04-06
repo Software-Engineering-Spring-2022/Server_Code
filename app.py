@@ -190,7 +190,7 @@ def edit():
 		except:
 			print("cant push red team data, check code")
 			
-		if(iD_r[1] == ''):
+		if(iD_r[0] == ''):
 			print("skip")
 		else:
 			red = codename_r
