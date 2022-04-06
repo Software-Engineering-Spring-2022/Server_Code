@@ -213,14 +213,14 @@ def regi():
 def plyr_scrn():
 	
 	#calls the Players class. it is a class method, which may need to be changed in the future
-	try:
+	# try:
 		
-		red_team = red
-		blue_team = blue
+	red_team = red
+	blue_team = blue
 		
-	except:
-		red_team = ["no players entered"] #in case one side isnt entered
-		blue_team = ["no players entered"]
+	# except:
+	# 	red_team = ["no players entered"] #in case one side isnt entered
+	# 	blue_team = ["no players entered"]
 
 	events = ["opus hit HOBBES", "missy hit calvin", "razor hit bill_the_cat"]	
 	print(red_team)
