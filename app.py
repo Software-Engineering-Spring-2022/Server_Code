@@ -47,6 +47,7 @@ class Players:
 		Players.curr_blue_plyrs = blue			
 	@classmethod
 	def _get_red(self):
+		print(Players.curr_red_plyrs[0:len(Players.curr_red_plyrs)])
 		return Players.curr_red_plyrs[0:len(Players.curr_red_plyrs)]
 	@classmethod
 	def _get_blue(self):
@@ -190,10 +191,10 @@ def plyr_scrn():
 			blue_team = Players._get_blue()
 			
 		except:
-		 	blue_team = ["no players entered"]
 
-		events = ["opus hit HOBBES", "missy hit calvin", "razor hit bill_the_cat"]	
+			blue_team = ["no players entered"]
 
+	events = ["opus hit HOBBES", "missy hit calvin", "razor hit bill_the_cat"]	
 
 	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = events)
 
