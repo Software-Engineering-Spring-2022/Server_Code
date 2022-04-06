@@ -68,11 +68,11 @@ class Players:
 	@classmethod
 	def _get_red(self):
 		print(Players.curr_red_plyrs)
-		return Players.curr_red_plyrs
+		return self.curr_red_plyrs
 	@classmethod
 	def _get_blue(self):
 		
-		return Players.curr_blue_plyrs[0:len(Players.curr_blue_plyrs)]
+		return self.curr_blue_plyrs
 	
 
 #Splash screen (default) route. Redirect to player entry screen after initializing components
@@ -185,8 +185,11 @@ def edit():
 				#we need to filter blank inputs so as to not fill the database with empty entries
 		except:
 			print("cant push red team data, check code")
-
-		Players(codename_r,codename_b) 
+		if(iD_r[1] == ''):
+			print(skip)
+		else:
+			Players(codename_r,codename_b)
+		 
 
 	return render_template("playerEntry2.html") #needs to be edited so that the user input persists
 
