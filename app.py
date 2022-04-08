@@ -265,7 +265,7 @@ def update_events():
 		else:
 			events = [""]
 			
-	pass
+	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = events)
 
 if __name__ == "__main__":
 	app.run(debug=True)
