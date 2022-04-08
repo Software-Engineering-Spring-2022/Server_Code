@@ -207,8 +207,9 @@ def regi():
 	#needs to be able to generate IDS and submit players 
 	pass
 
-@app.route("/actionScreen", methods = ["GET"]) #game action screen page
-def get_next_event():
+@app.route("/actionScreen", methods = ["GET"]) #game action screen page	
+def plyr_scrn():
+	#calls the Players class. it is a class method, which may need to be changed in the future
 	# Listen for incoming datagrams
 	bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
 	message = bytesAddressPair[0]
@@ -222,8 +223,6 @@ def get_next_event():
 	# Sending a reply to client
 	#UDPServerSocket.sendto(bytesToSend, address)
 	
-def plyr_scrn():
-	#calls the Players class. it is a class method, which may need to be changed in the future
 	try:
 		red_team = red
 		blue_team = blue
