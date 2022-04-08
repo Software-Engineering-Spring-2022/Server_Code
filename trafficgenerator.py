@@ -10,10 +10,10 @@ print('this program will generate some test traffic for 2 players on the red ')
 print('team as well as 2 players on the blue team')
 print('')
 
-red1 = input('Enter id of red player 1 ==> ')
-red2 = input('Enter id of red player 2 ==> ')
-blue1 = input('Enter id of blue player 1 ==> ')
-blue2 = input('Enter id of blue player 2 ==> ')
+red1 = input('Enter codename of red player 1 ==> ')
+red2 = input('Enter codename of red player 2 ==> ')
+blue1 = input('Enter codename of blue player 1 ==> ')
+blue2 = input('Enter codename of blue player 2 ==> ')
 
 print('')
 counter = input('How many events do you want ==> ')
@@ -35,9 +35,9 @@ while i < int(counter):
 		blueplayer = blue2	
 
 	if random.randint(1,2) == 1:
-		message = redplayer + ":" + blueplayer
+		message = redplayer + " hit " + blueplayer
 	else:
-		message = blueplayer + ":" + blueplayer
+		message = blueplayer + " hit " + blueplayer
 
 	print(message)
 	i+=1;
