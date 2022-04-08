@@ -213,8 +213,8 @@ def server():
 def plyr_scrn():
 	#calls the Players class. it is a class method, which may need to be changed in the future
 	try:
-		red_team = red
-		blue_team = blue
+		red_team = ["no players entered"]
+		blue_team = ["no players entered"]
 		"""
 		out_file = open("current_players.json", "w")
 
