@@ -196,6 +196,7 @@ def regi():
 	pass
 
 @app.route("/actionScreen", methods = ["GET"]) #game action screen page
+"""
 def server():
 	localIP     = "127.0.0.1"
 	localPort   = 7501
@@ -209,7 +210,7 @@ def server():
 
 	print("UDP server up and listening")
 	pass
-
+"""
 def plyr_scrn():
 	#calls the Players class. it is a class method, which may need to be changed in the future
 	try:
@@ -238,7 +239,7 @@ def plyr_scrn():
 		blue_team = ["no players entered"]
 		
 	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = events)
-
+"""
 def get_next_event():
 	# Listen for incoming datagrams
 	bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
@@ -252,7 +253,7 @@ def get_next_event():
 
 	# Sending a reply to client
 	UDPServerSocket.sendto(bytesToSend, address)
-
+"""
 if __name__ == "__main__":
 	app.run(debug=True)
 	
