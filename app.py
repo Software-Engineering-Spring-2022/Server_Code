@@ -81,16 +81,16 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 		
 # 		return self.curr_blue_plyrs
 	
-#@celery.task()
-#def listen_to_udp():
+@celery.task()
+def listen_to_udp():
 	# Create a datagram socket
-#	UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+	UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 	# Bind to address and ip
-#	UDPServerSocket.bind((localIP, localPort))
-#	while True:
-#		r = select.select([UDPServerSocket])
-#		for i in r:
-#			events.append(i.recvfrom(buffersize))
+	UDPServerSocket.bind((localIP, localPort))
+	while True:
+		r = select.select([UDPServerSocket])
+		for i in r:
+			events.append(i.recvfrom(buffersize))
 	
 #Splash screen (default) route. Redirect to player entry screen after initializing components
 @app.route("/")#allows for us to change something when a user uses one of our inputs
@@ -257,7 +257,7 @@ def plyr_scrn():
 		red_team = ["no players entered"] #in case one side isnt entered
 		blue_team = ["no players entered"]
 		
-	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = socket_queue.get())
+	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = events)
 
 if __name__ == "__main__":
 	app.run(debug=True)
