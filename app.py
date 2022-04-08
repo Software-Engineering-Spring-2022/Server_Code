@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template, request, flash, redirect, url_for
+from flask import Flask, render_template, request, flash, redirect, url_for, jsonify
 # from flask_sockets import Sockets
 
 import os
@@ -94,6 +94,7 @@ def listen_to_udp():
 		trafficEvents = UDPServerSocket.recvfrom(bufferSize)
 		msg="Message from Serv {}".format(trafficEvents[0])
 		print(msg)
+		events.append(msg)
 
 	# # Create a datagram socket
 	# UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
@@ -301,6 +302,9 @@ def plyr_scrn():
 		
 	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = events)
 
+@app.route("/_event_update", methods = ["GET"]) #game action screen page	
+def event_update():
+	return jsonify(events)
 
 if __name__ == "__main__":
 	app.run(debug=True)

@@ -109,6 +109,17 @@
 			}
 
 </style>
+<script type="text/javascript">
+var intervalID = setInterval(update_values, 1000);
+	function update_values() {
+		$.getJSON($SCRIPT_ROOT + '/_event_update',
+
+		function(data){
+			$('#events').text(data.result);
+			console.log(data);
+		});
+	};
+</script>
 </head>
 
 <body>
@@ -171,7 +182,7 @@
 			<tbody>
 			{% for item in events %}
 				<tr>
-					<td>{{item}}</td>
+					<td id="events">{{item}}</td>
 				</tr>
 			{% endfor %}
 			</tbody>
