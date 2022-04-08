@@ -263,7 +263,7 @@ def get_next_event(events):
 		
 	if(clientMsg != null):
 		events.append(clientMsg)
-	else if(clientMsg == "exit"):
+	elif(clientMsg == "exit"):
 		serverUp = False
 
 if __name__ == "__main__":
