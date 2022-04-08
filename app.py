@@ -84,16 +84,21 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 	
 @celery.task()
 def listen_to_udp():
-	# Create a datagram socket
 	UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-	# Bind to address and ip
 	UDPServerSocket.bind((localIP, localPort))
-	while True:
-		r = select.select([UDPServerSocket])
-		for i in r:
-			events.append(i.recvfrom(buffersize))
-			
-			
+	
+	while (True):
+		trafficEvents = UDPServerSocket.recvfrom(bufferSize)
+		print("Message from client: " + trafficEvents)
+
+	# # Create a datagram socket
+	# UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+	# # Bind to address and ip
+	# UDPServerSocket.bind((localIP, localPort))
+	# while True:
+		# r = select.select([UDPServerSocket])
+		# for i in r:
+			# events.append(i.recvfrom(buffersize))		
 			
 			
 @celery.task()
