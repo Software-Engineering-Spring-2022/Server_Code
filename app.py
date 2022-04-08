@@ -81,22 +81,21 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 		
 # 		return self.curr_blue_plyrs
 	
-@celery.task()
-def listen_to_udp():
+#@celery.task()
+#def listen_to_udp():
 	# Create a datagram socket
-	UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+#	UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 	# Bind to address and ip
-	UDPServerSocket.bind((localIP, localPort))
-	while True:
-		r = select.select([UDPServerSocket])
-		for i in r:
-			socket_queue.put((i, i.recvfrom(bufferSize))
+#	UDPServerSocket.bind((localIP, localPort))
+#	while True:
+#		r = select.select([UDPServerSocket])
+#		for i in r:
+#			socket_queue.put((i, i.recvfrom(bufferSize))
 	
 #Splash screen (default) route. Redirect to player entry screen after initializing components
 @app.route("/")#allows for us to change something when a user uses one of our inputs
 def splash():
-	
-	listen_to_udp.delay()
+#	listen_to_udp.delay()
 	print("UDP server up and listening")
 	
 	return render_template('splash.html'),{"Refresh": "3; url=./playerEntry2"}
