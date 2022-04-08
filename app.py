@@ -213,18 +213,18 @@ def regi():
 def plyr_scrn():
 	
 	#calls the Players class. it is a class method, which may need to be changed in the future
-	# try:
-		
-	red_team = red
-	blue_team = blue
-		
-	# except:
-	# 	red_team = ["no players entered"] #in case one side isnt entered
-	# 	blue_team = ["no players entered"]
+	try:
+	
+		red_team = red
+		blue_team = blue
+	
+	except:
+		red_team = ["no players entered"] #in case one side isnt entered
+		blue_team = ["no players entered"]
 
 	events = ["opus hit HOBBES", "missy hit calvin", "razor hit bill_the_cat"]	
-	print(red_team)
-	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = events)
+
+	return render_template("actionScreen.jinja2", red_team = red_team,blue_team = blue_team,events = events)
 
 
 if __name__ == "__main__":
