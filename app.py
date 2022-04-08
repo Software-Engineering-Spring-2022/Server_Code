@@ -10,7 +10,7 @@ import json
 import threading
 
 os.system("pip install psycopg2-binary")
-#os.system("pip install flask")
+os.system("pip install jquery") #used in the action screen html 
 os.system("pip install flask-celery")
 os.system("pip install redis")
 from celery import Celery
@@ -42,6 +42,7 @@ app = Flask(__name__)#makes a class for the app or program we wish to run
 app.config.update(CELERY_BROKER_URL='redis://localhost:6379', CELERY_RESULT_BACKEND='redis://localhost:6379')
 app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
 celery = make_celery(app)
+
 def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert players into the database table player
 	conn = None
 	try:
@@ -274,8 +275,8 @@ def edit():
 		except:
 			print("cant push red team data, check code")
 		#running list of players in current game	
-		red = codename_r
-		blue = codename_b		 
+		red == codename_r
+		blue == codename_b		 
 
 	return render_template("playerEntry2.html") #needs to be edited so that the user input persists
 
@@ -292,8 +293,7 @@ def plyr_scrn():
 	
 	try:
 		red_team = red
-		blue_team = blue
-		
+		blue_team = blue	
 		
 	except:
 		red_team = ["no players entered"] #in case one side isnt entered
