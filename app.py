@@ -217,8 +217,8 @@ def plyr_scrn():
 	clientMsg = "Message from Client:{}".format(message)
 	clientIP  = "Client IP Address:{}".format(address)
 
-	#print(clientMsg)
-	#print(clientIP)
+	print(clientMsg)
+	print(clientIP)
 
 	# Sending a reply to client
 	#UDPServerSocket.sendto(bytesToSend, address)
