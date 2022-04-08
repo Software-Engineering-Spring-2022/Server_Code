@@ -5,6 +5,8 @@ import os
 import time
 import socket
 import random
+import json
+
 os.system("pip install psycopg2-binary")
 import psycopg2
 # -- sample program from this video <https://youtu.be/6plVs_ytIH8>
@@ -217,14 +219,29 @@ def plyr_scrn():
 	
 		red_team = red
 		blue_team = blue
-	
+		
+		out_file = open("current_players.json", "w")
+		
+		dictA = {
+
+			"red_team" : [],
+			"blue_team" : []
+		}
+
+		dictA["red_team"] = red
+		dictA["blue_team"] = blue
+
+		json.dump(dictA,out_file)
+
+		out_file.close()
+		
 	except:
 		red_team = ["no players entered"] #in case one side isnt entered
 		blue_team = ["no players entered"]
 
 	events = ["opus hit HOBBES", "missy hit calvin", "razor hit bill_the_cat"]	
 
-	return render_template("actionScreen.jinja2", red_team = red_team,blue_team = blue_team,events = events)
+	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = events)
 
 
 if __name__ == "__main__":
