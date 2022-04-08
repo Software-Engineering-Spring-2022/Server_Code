@@ -119,22 +119,22 @@
 				<table class = "BLUE">
 					<thead>
 						<td><strong>CODENAME</strong></td>
-          </thead>
+          			</thead>
 
-          <tbody>
-					{% for item in blue_team %}
-						<tr>
-							<td>{{item | safe}}</td>
-						</tr>                 
-					{% endfor %}
-          </tbody>
-        </table>
+					<tbody>
+						{% for item in blue_team %}
+							<tr>
+								<td>{{item}}</td>
+							</tr>                 
+						{% endfor %}
+					</tbody>
+				</table>
 
 		<h1>
 			<!-- Header -->
 		</h1>
-				<div id="clockdiv">
-					
+			<div id="clockdiv">
+				
 				<div>
 					<span class="minutes"></span>
 					<div class="smalltext">Minutes</div>
@@ -143,39 +143,39 @@
 					<span class="seconds"></span>
 					<div class="smalltext">Seconds</div>
 				</div>
-				</div>
+			</div>
 
-				<table class = "RED">
-					<thead>
-						<td><strong>CODENAME</strong></td>
-					</thead>
+			<table class = "RED">
+				<thead>
+					<td><strong>CODENAME</strong></td>
+				</thead>
 
-          <tbody>
+				<tbody>
 					{% for item in red_team %}
 						<tr>
-							<td>{{item | safe}}</td>
+							<td>{{item}}</td>
 						</tr>
 					{% endfor %}
-          </tbody>
-				</table>
+				</tbody>
+			</table>
 			</div>
 		</div>
 
-    <table class = "EVENT">
-      <thead>
-        
-          <td><strong>EVENT</strong></td>
-        
-      </thead>
-      <br>
-      <tbody>
-      {% for item in events %}
-        <tr>
-          <td>{{item}}</td>
-        </tr>
-      {% endfor %}
-      </tbody>
-    </table> 
+		<table class = "EVENT">
+			<thead>
+				
+				<td><strong>EVENT</strong></td>
+				
+			</thead>
+			<br>
+			<tbody>
+			{% for item in events %}
+				<tr>
+					<td>{{item}}</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table> 
 	
 	<div id = "demo">
 		<h2>Change here</h2>
