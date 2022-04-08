@@ -224,15 +224,17 @@ def plyr_scrn():
 		
 		dictA = {
 
-			"red_team" : [],
-			"blue_team" : []
+			"red_team" : 0,
+			"blue_team" : 0
 		}
+
+		json.dump(dictA,out_file)
 
 		dictA["red_team"] = red
 		dictA["blue_team"] = blue
 
-		json.dump(dictA,out_file)
-
+		x = json.dump(dictA,out_file)
+		print(x)
 		out_file.close()
 		
 	except:
