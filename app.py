@@ -24,6 +24,8 @@ bufferSize  = 1024
 i = 0
 # List to store events
 events = [""]
+red = [""]
+blue = [""]
 
 def make_celery(app):
 	celery = Celery(app.import_name, backend=app.config['CELERY_RESULT_BACKEND'], broker=app.config['CELERY_BROKER_URL'])
@@ -171,8 +173,7 @@ def splash():
 def edit():
 	if request.method == "POST":
 
-		global red
-		global blue
+		
 
 		#this method routes to the template for player entry
 		#it will allow the user to input data in the text boxes provided 
@@ -220,10 +221,6 @@ def edit():
 		codename_r = data.getlist("player_codename_r")
 		first_name_r = data.getlist("player_first_r")
 		last_name_r = data.getlist("player_last_r")
-		
-
-		#running list of players in current game
-		
 		
 		#using try catch in case the program breaks
 		try:
@@ -276,16 +273,9 @@ def edit():
 				#we need to filter blank inputs so as to not fill the database with empty entries
 		except:
 			print("cant push red team data, check code")
-			
-		if(iD_r[0] == ''):
-			print("skip")
-			red = "error"
-			blue = "error"
-		else:
-			red = codename_r
-			blue = codename_b
-
-			 
+		#running list of players in current game	
+		red = codename_r
+		blue = codename_b		 
 
 	return render_template("playerEntry2.html") #needs to be edited so that the user input persists
 
@@ -304,22 +294,7 @@ def plyr_scrn():
 		red_team = red
 		blue_team = blue
 		
-		out_file = open("current_players.json", "w")
-
-		dictA = {
-
-			"red_team" : 0,
-			"blue_team" : 0
-		}
-
-		json.dump(dictA,out_file)
-
-		dictA["red_team"] = red
-		dictA["blue_team"] = blue
-
-		x = json.dump(dictA,out_file)
-		print(x)
-		out_file.close()
+		
 	except:
 		red_team = ["no players entered"] #in case one side isnt entered
 		blue_team = ["no players entered"]
