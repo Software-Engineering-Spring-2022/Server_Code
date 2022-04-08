@@ -211,9 +211,9 @@ def regi():
 def plyr_scrn():
 	#calls the Players class. it is a class method, which may need to be changed in the future
 	try:
-		red_team = ["no players entered"]
-		blue_team = ["no players entered"]
-		"""
+		red_team = red
+		blue_team = blue
+		
 		out_file = open("current_players.json", "w")
 
 		dictA = {
@@ -230,7 +230,6 @@ def plyr_scrn():
 		x = json.dump(dictA,out_file)
 		print(x)
 		out_file.close()
-		"""
 	except:
 		red_team = ["no players entered"] #in case one side isnt entered
 		blue_team = ["no players entered"]
