@@ -210,18 +210,19 @@ def regi():
 @app.route("/actionScreen", methods = ["GET"]) #game action screen page	
 def plyr_scrn():
 	#calls the Players class. it is a class method, which may need to be changed in the future
+	
+	### NOT WORKING ###
 	# Listen for incoming datagrams
-	bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
-	message = bytesAddressPair[0]
-	address = bytesAddressPair[1]
-	clientMsg = "Message from Client:{}".format(message)
-	clientIP  = "Client IP Address:{}".format(address)
+	#bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
+	#message = bytesAddressPair[0]
+	#address = bytesAddressPair[1]
+	#clientMsg = "Message from Client:{}".format(message)
+	#clientIP  = "Client IP Address:{}".format(address)
 
-	print(clientMsg)
-	print(clientIP)
-
-	# Sending a reply to client
-	#UDPServerSocket.sendto(bytesToSend, address)
+	#print(clientMsg)
+	#print(clientIP)
+	
+	###
 	
 	try:
 		red_team = red
