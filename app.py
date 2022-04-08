@@ -210,6 +210,37 @@ def server():
 	print("UDP server up and listening")
 	pass
 
+def plyr_scrn():
+	#calls the Players class. it is a class method, which may need to be changed in the future
+	try:
+
+		red_team = red
+		blue_team = blue
+
+		out_file = open("current_players.json", "w")
+
+		dictA = {
+
+			"red_team" : 0,
+			"blue_team" : 0
+		}
+
+		json.dump(dictA,out_file)
+
+		dictA["red_team"] = red
+		dictA["blue_team"] = blue
+
+		x = json.dump(dictA,out_file)
+		print(x)
+		out_file.close()
+	except:
+		red_team = ["no players entered"] #in case one side isnt entered
+		blue_team = ["no players entered"]
+		
+	events = [""]
+		
+	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = events)
+
 def update_events():
 	# Listen for incoming datagrams
 	while(True):
@@ -228,32 +259,6 @@ def update_events():
 
 		# Sending a reply to client
 		UDPServerSocket.sendto(bytesToSend, address)
-		#calls the Players class. it is a class method, which may need to be changed in the future
-		try:
-
-			red_team = red
-			blue_team = blue
-
-			out_file = open("current_players.json", "w")
-
-			dictA = {
-
-				"red_team" : 0,
-				"blue_team" : 0
-			}
-
-			json.dump(dictA,out_file)
-
-			dictA["red_team"] = red
-			dictA["blue_team"] = blue
-
-			x = json.dump(dictA,out_file)
-			print(x)
-			out_file.close()
-
-		except:
-			red_team = ["no players entered"] #in case one side isnt entered
-			blue_team = ["no players entered"]
 		
 		if(message != null):
 			events = [message]
@@ -261,9 +266,6 @@ def update_events():
 			events = [""]
 			
 	pass
-def plyr_scrn():
-	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = events)
-
 
 if __name__ == "__main__":
 	app.run(debug=True)
