@@ -9,13 +9,11 @@ import random
 import json
 
 os.system("pip install psycopg2-binary")
-os.system("pip install flask")
+#os.system("pip install flask")
 os.system("pip install flask-celery")
 os.system("pip install redis")
-os.system("pip install Queue")
 from celery import Celery
 import psycopg2
-import Queue
 # -- sample program from this video <https://youtu.be/6plVs_ytIH8>
 #  --specific code was created by Matt and james.
 
@@ -41,7 +39,6 @@ app = Flask(__name__)#makes a class for the app or program we wish to run
 app.config.update(CELERY_BROKER_URL='redis://localhost:6379', CELERY_RESULT_BACKEND='redis://localhost:6379')
 app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
 celery = make_celery(app)
-socket_queue = Queue.Queue()
 def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert players into the database table player
 	conn = None
 	try:
@@ -93,7 +90,7 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 #	while True:
 #		r = select.select([UDPServerSocket])
 #		for i in r:
-#			socket_queue.put((i, i.recvfrom(bufferSize))
+#			events.append(i.recvfrom(buffersize))
 	
 #Splash screen (default) route. Redirect to player entry screen after initializing components
 @app.route("/")#allows for us to change something when a user uses one of our inputs
