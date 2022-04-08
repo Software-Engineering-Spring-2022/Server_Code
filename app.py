@@ -1,9 +1,10 @@
 
 from flask import Flask, render_template, request, flash, redirect, url_for
+from celery import Celery
 
 import os
 import time
-import socket
+import socket, select, Queue
 import random
 import json
 
@@ -12,18 +13,42 @@ import psycopg2
 # -- sample program from this video <https://youtu.be/6plVs_ytIH8>
 #  --specific code was created by Matt and james.
 
-app = Flask(__name__)#makes a class for the app or program we wish to run
-app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
-i = 0
 localIP     = "127.0.0.1"
 localPort   = 7501
 bufferSize  = 1024
-msgFromServer       = "Hello UDP Client"
-bytesToSend         = str.encode(msgFromServer)
-# Create a datagram socket
-UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+i = 0
 # List to store events
 events = [""]
+
+def make_celery(app):
+	celery = Celery(app.import_name, backend=app.config['CELERY_RESULT_BACKEND'], broker=app.config['CELERY_BROKER_URL'])
+	celery.conf.update(app.config)
+	
+	class ContextTask(celery.Task):
+		def __call__(self, *args, **kwargs):
+			with app.app_context():
+				return self.run(*args, **kwargs)
+	celery.Task = ContextTask
+	return celery
+
+app = Flask(__name__)#makes a class for the app or program we wish to run
+app.config.update(CELERY_BROKER_URL='redis://localhost:6379', CELERY_RESULT_BACKEND='redis://localhost:6379')
+app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
+celery = make_celery(app)
+socket_queue = Queue.Queue()
+
+@celery.task()
+def listen_to_udp():
+	# Create a datagram socket
+	UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+	# Bind to address and ip
+	UDPServerSocket.bind((localIP, localPort))
+	while True:
+		r = select.select([UDPServerSocket])
+		for i in r:
+			socket_queue.put((i, i.recvfrom(bufferSize))
+	
+
 
 def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert players into the database table player
 	conn = None
@@ -71,9 +96,8 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 #Splash screen (default) route. Redirect to player entry screen after initializing components
 @app.route("/")#allows for us to change something when a user uses one of our inputs
 def splash():
-	# Bind to address and ip
-	UDPServerSocket.bind((localIP, localPort))
-
+	
+	listen_to_udp.delay()
 	print("UDP server up and listening")
 	
 	return render_template('splash.html'),{"Refresh": "3; url=./playerEntry2"}
@@ -211,19 +235,6 @@ def regi():
 def plyr_scrn():
 	#calls the Players class. it is a class method, which may need to be changed in the future
 	
-	### NOT WORKING ###
-	# Listen for incoming datagrams
-	#bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
-	#message = bytesAddressPair[0]
-	#address = bytesAddressPair[1]
-	#clientMsg = "Message from Client:{}".format(message)
-	#clientIP  = "Client IP Address:{}".format(address)
-
-	#print(clientMsg)
-	#print(clientIP)
-	
-	###
-	
 	try:
 		red_team = red
 		blue_team = blue
@@ -248,7 +259,7 @@ def plyr_scrn():
 		red_team = ["no players entered"] #in case one side isnt entered
 		blue_team = ["no players entered"]
 		
-	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = events)
+	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = socket_queue.get())
 
 if __name__ == "__main__":
 	app.run(debug=True)
