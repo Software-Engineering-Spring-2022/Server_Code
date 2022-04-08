@@ -196,7 +196,7 @@ def regi():
 	pass
 
 @app.route("/actionScreen", methods = ["GET"]) #game action screen page
-def server():
+def plyr_scrn():
 	localIP     = "127.0.0.1"
 	localPort   = 7501
 	bufferSize  = 1024
@@ -208,8 +208,6 @@ def server():
 	UDPServerSocket.bind((localIP, localPort))
 
 	print("UDP server up and listening")
-	pass
-def plyr_scrn():
 	#calls the Players class. it is a class method, which may need to be changed in the future
 	try:
 		red_team = red
