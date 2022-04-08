@@ -1,5 +1,6 @@
 
 from flask import Flask, render_template, request, flash, redirect, url_for
+from threading import Thread
 
 import os
 import time
@@ -15,6 +16,8 @@ import psycopg2
 app = Flask(__name__)#makes a class for the app or program we wish to run
 app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
 i = 0
+# List to store events
+events = [""]
 
 def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert players into the database table player
 	conn = None
@@ -237,11 +240,9 @@ def plyr_scrn():
 		red_team = ["no players entered"] #in case one side isnt entered
 		blue_team = ["no players entered"]
 		
-	events = [""]
-		
 	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = events)
 
-def update_events():
+def get_next_event(events):
 	# Listen for incoming datagrams
 	while(True):
 
@@ -261,12 +262,14 @@ def update_events():
 		UDPServerSocket.sendto(bytesToSend, address)
 		
 		if(message != null):
-			events = [message]
+			events.append(message)
 		else:
-			events = [""]
-			
-	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = events)
 
 if __name__ == "__main__":
+	p = Thread(target=get_next_event, args=(events))
+	p.start()
 	app.run(debug=True)
+	p.join()
+	
+	
  
