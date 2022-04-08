@@ -11,7 +11,7 @@ import json
 os.system("pip install psycopg2-binary")
 os.system("pip install flask")
 os.system("pip install flask-celery")
-os.system("pip install redis")'
+os.system("pip install redis")
 from celery import Celery
 import psycopg2
 # -- sample program from this video <https://youtu.be/6plVs_ytIH8>
