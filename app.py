@@ -272,6 +272,7 @@ if __name__ == "__main__":
 	while(serverUp):
 		p.start()
 		p.join()
+		serverUp = False
 	
 	
 	
