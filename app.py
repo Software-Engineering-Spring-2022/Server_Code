@@ -19,6 +19,8 @@ i = 0
 # List to store events
 events = [""]
 
+serverUp = True
+
 def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert players into the database table player
 	conn = None
 	try:
@@ -246,12 +248,12 @@ def get_next_event(events):
 	# Listen for incoming datagrams
 	bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
 	message = bytesAddressPair[0]
-	# This message will be something like Opus hit Jelly.
 		
 	address = bytesAddressPair[1]
 		
-	#clientMsg = "Message from Client:{}".format(message)
-	#clientIP  = "Client IP Address:{}".format(address)
+	clientMsg = "Message from Client:{}".format(message)
+	# This message will be something like Opus hit Jelly.
+	clientIP  = "Client IP Address:{}".format(address)
 
 	#print(clientMsg)
 	#print(clientIP)
@@ -259,13 +261,15 @@ def get_next_event(events):
 	# Sending a reply to client
 	UDPServerSocket.sendto(bytesToSend, address)
 		
-	if(message != null):
-		events.append(message)
+	if(clientMsg != null):
+		events.append(clientMsg)
+	else if(clientMsg == "exit"):
+		serverUp = False
 
 if __name__ == "__main__":
+	p = Thread(target=get_next_event, args=(events))
 	app.run(debug=True)
-	while(True):
-		p = Thread(target=get_next_event, args=(events))
+	while(serverUp):
 		p.start()
 		p.join()
 	
