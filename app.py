@@ -89,12 +89,8 @@ def listen_to_udp():
 	
 	while (True):
 		trafficEvents = UDPServerSocket.recvfrom(bufferSize)
-		trafficString = ""
-		for item in trafficEvents:
-			print("MESSAGE: ")
-			print(item);
-			print("EOM")
-#		print("Message from client: " + trafficString)
+		msg="Message from Serv {}".format(trafficEvents[0])
+		print(msg)
 
 	# # Create a datagram socket
 	# UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
