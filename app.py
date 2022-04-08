@@ -211,23 +211,22 @@ def plyr_scrn():
 	print("UDP server up and listening")
 
 	# Listen for incoming datagrams
-
 	while(True):
 
-	    bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
-	    message = bytesAddressPair[0]
+		bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
+		message = bytesAddressPair[0]
 		# This message will be something like Opus hit Jelly.
 		
-	    address = bytesAddressPair[1]
+		address = bytesAddressPair[1]
 		
-	    #clientMsg = "Message from Client:{}".format(message)
-	    #clientIP  = "Client IP Address:{}".format(address)
+		#clientMsg = "Message from Client:{}".format(message)
+		#clientIP  = "Client IP Address:{}".format(address)
 
-	    #print(clientMsg)
-	    #print(clientIP)
+		#print(clientMsg)
+		#print(clientIP)
 
-	    # Sending a reply to client
-	    UDPServerSocket.sendto(bytesToSend, address)
+		# Sending a reply to client
+		UDPServerSocket.sendto(bytesToSend, address)
 		#calls the Players class. it is a class method, which may need to be changed in the future
 		try:
 
