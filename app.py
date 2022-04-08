@@ -244,32 +244,31 @@ def plyr_scrn():
 
 def get_next_event(events):
 	# Listen for incoming datagrams
-	while(True):
-
-		bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
-		message = bytesAddressPair[0]
-		# This message will be something like Opus hit Jelly.
+	bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
+	message = bytesAddressPair[0]
+	# This message will be something like Opus hit Jelly.
 		
-		address = bytesAddressPair[1]
+	address = bytesAddressPair[1]
 		
-		#clientMsg = "Message from Client:{}".format(message)
-		#clientIP  = "Client IP Address:{}".format(address)
+	#clientMsg = "Message from Client:{}".format(message)
+	#clientIP  = "Client IP Address:{}".format(address)
 
-		#print(clientMsg)
-		#print(clientIP)
+	#print(clientMsg)
+	#print(clientIP)
 
-		# Sending a reply to client
-		UDPServerSocket.sendto(bytesToSend, address)
+	# Sending a reply to client
+	UDPServerSocket.sendto(bytesToSend, address)
 		
-		if(message != null):
-			events.append(message)
-		else:
+	if(message != null):
+		events.append(message)
 
 if __name__ == "__main__":
-	p = Thread(target=get_next_event, args=(events))
-	p.start()
 	app.run(debug=True)
-	p.join()
+	while(True):
+		p = Thread(target=get_next_event, args=(events))
+		p.start()
+		p.join()
+	
 	
 	
  
