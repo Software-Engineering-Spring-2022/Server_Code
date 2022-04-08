@@ -36,20 +36,6 @@ app.config.update(CELERY_BROKER_URL='redis://localhost:6379', CELERY_RESULT_BACK
 app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
 celery = make_celery(app)
 socket_queue = Queue.Queue()
-
-@celery.task()
-def listen_to_udp():
-	# Create a datagram socket
-	UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-	# Bind to address and ip
-	UDPServerSocket.bind((localIP, localPort))
-	while True:
-		r = select.select([UDPServerSocket])
-		for i in r:
-			socket_queue.put((i, i.recvfrom(bufferSize))
-	
-
-
 def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert players into the database table player
 	conn = None
 	try:
@@ -92,7 +78,17 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 		
 # 		return self.curr_blue_plyrs
 	
-
+@celery.task()
+def listen_to_udp():
+	# Create a datagram socket
+	UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+	# Bind to address and ip
+	UDPServerSocket.bind((localIP, localPort))
+	while True:
+		r = select.select([UDPServerSocket])
+		for i in r:
+			socket_queue.put((i, i.recvfrom(bufferSize))
+	
 #Splash screen (default) route. Redirect to player entry screen after initializing components
 @app.route("/")#allows for us to change something when a user uses one of our inputs
 def splash():
