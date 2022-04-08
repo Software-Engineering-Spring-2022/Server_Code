@@ -124,7 +124,7 @@
           <tbody>
 					{% for item in blue_team %}
 						<tr>
-							<td>{{item}}</td>
+							<td>{{item | safe}}</td>
 						</tr>                 
 					{% endfor %}
           </tbody>
@@ -153,7 +153,7 @@
           <tbody>
 					{% for item in red_team %}
 						<tr>
-							<td>{{item}}</td>
+							<td>{{item | safe}}</td>
 						</tr>
 					{% endfor %}
           </tbody>
