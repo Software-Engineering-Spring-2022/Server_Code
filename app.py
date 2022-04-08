@@ -196,18 +196,18 @@ def regi():
 	pass
 
 @app.route("/actionScreen", methods = ["GET"]) #game action screen page
-#def server():
-#	localPort   = 7501
-#	bufferSize  = 1024
-#	msgFromServer       = "Hello UDP Client"
-#	bytesToSend         = str.encode(msgFromServer)
-#	# Create a datagram socket
-#	UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-#	# Bind to address and ip
-#	UDPServerSocket.bind((localIP, localPort))
-#
-#	print("UDP server up and listening")
-#	pass
+def server():
+	localPort   = 7501
+	bufferSize  = 1024
+	msgFromServer       = "Hello UDP Client"
+	bytesToSend         = str.encode(msgFromServer)
+	# Create a datagram socket
+	UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+	# Bind to address and ip
+	UDPServerSocket.bind((localIP, localPort))
+
+	print("UDP server up and listening")
+	pass
 def plyr_scrn():
 	#calls the Players class. it is a class method, which may need to be changed in the future
 	try:
