@@ -65,7 +65,7 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 
 #Splash screen (default) route. Redirect to player entry screen after initializing components
 @app.route("/")#allows for us to change something when a user uses one of our inputs
-def splash(UDPServerSocket):
+def splash():
 	localIP     = "127.0.0.1"
 	localPort   = 7501
 	bufferSize  = 1024
@@ -209,7 +209,7 @@ def regi():
 	pass
 
 @app.route("/actionScreen", methods = ["GET"]) #game action screen page	
-def plyr_scrn(UDPServerSocket):
+def plyr_scrn():
 	#calls the Players class. it is a class method, which may need to be changed in the future
 	# Listen for incoming datagrams
 	bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
