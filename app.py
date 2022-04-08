@@ -15,7 +15,8 @@ import psycopg2
 app = Flask(__name__)#makes a class for the app or program we wish to run
 app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
 i = 0
-
+# Create a datagram socket
+UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 # List to store events
 events = [""]
 
@@ -64,14 +65,13 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 
 #Splash screen (default) route. Redirect to player entry screen after initializing components
 @app.route("/")#allows for us to change something when a user uses one of our inputs
-def splash():
+def splash(UDPServerSocket):
 	localIP     = "127.0.0.1"
 	localPort   = 7501
 	bufferSize  = 1024
 	msgFromServer       = "Hello UDP Client"
 	bytesToSend         = str.encode(msgFromServer)
-	# Create a datagram socket
-	UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+	
 	# Bind to address and ip
 	UDPServerSocket.bind((localIP, localPort))
 
@@ -209,7 +209,7 @@ def regi():
 	pass
 
 @app.route("/actionScreen", methods = ["GET"]) #game action screen page	
-def plyr_scrn():
+def plyr_scrn(UDPServerSocket):
 	#calls the Players class. it is a class method, which may need to be changed in the future
 	# Listen for incoming datagrams
 	bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
