@@ -1,6 +1,6 @@
 
 from flask import Flask, render_template, request, flash, redirect, url_for
-from threading import Thread
+from flask_socketio import SocketIO, send, emit
 
 import os
 import time
@@ -15,11 +15,10 @@ import psycopg2
 
 app = Flask(__name__)#makes a class for the app or program we wish to run
 app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
+socketio = SocketIO(app)
 i = 0
 # List to store events
 events = [""]
-
-serverUp = True
 
 def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert players into the database table player
 	conn = None
@@ -199,22 +198,6 @@ def regi():
 	pass
 
 @app.route("/actionScreen", methods = ["GET"]) #game action screen page
-def server():
-	localIP     = "127.0.0.1"
-	localPort   = 7501
-	bufferSize  = 1024
-	msgFromServer       = "Hello UDP Client"
-	bytesToSend         = str.encode(msgFromServer)
-
-	# Create a datagram socket
-	UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-
-	# Bind to address and ip
-	UDPServerSocket.bind((localIP, localPort))
-
-	print("UDP server up and listening")
-	pass
-
 def plyr_scrn():
 	#calls the Players class. it is a class method, which may need to be changed in the future
 	try:
@@ -244,35 +227,17 @@ def plyr_scrn():
 		
 	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = events)
 
-def get_next_event(events):
-	# Listen for incoming datagrams
-	bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
-	message = bytesAddressPair[0]
-		
-	address = bytesAddressPair[1]
-		
-	clientMsg = "Message from Client:{}".format(message)
-	# This message will be something like Opus hit Jelly.
-	clientIP  = "Client IP Address:{}".format(address)
-
-	#print(clientMsg)
-	#print(clientIP)
-
+@socketio.on('message')
+def get_next_event(message):
 	# Sending a reply to client
-	UDPServerSocket.sendto(bytesToSend, address)
-		
-	if(clientMsg != null):
-		events.append(clientMsg)
-	elif(clientMsg == "exit"):
-		serverUp = False
+	send("Hello UDP Client")
+	
+	# Updating events
+	events.append(message)
 
 if __name__ == "__main__":
-	p = Thread(target=get_next_event, args=(events))
-	app.run(debug=True)
-	while(serverUp):
-		p.start()
-		p.join()
-		serverUp = False
+	#app.run(debug=True)
+	socketio.run(app)
 	
 	
 	
