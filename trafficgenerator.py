@@ -37,7 +37,7 @@ while i < int(counter):
 	if random.randint(1,2) == 1:
 		message = redplayer + " hit " + blueplayer
 	else:
-		message = blueplayer + " hit " + blueplayer
+		message = blueplayer + " hit " + redplayer
 
 	print(message)
 	i+=1;
