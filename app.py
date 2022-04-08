@@ -75,7 +75,8 @@ def splash():
 	# Bind to address and ip
 	UDPServerSocket.bind((localIP, localPort))
 
-print("UDP server up and listening")
+	print("UDP server up and listening")
+	
 	return render_template('splash.html'),{"Refresh": "3; url=./playerEntry2"}
 
 @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
