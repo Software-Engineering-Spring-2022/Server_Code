@@ -194,8 +194,7 @@ def regi():
 	pass
 
 @app.route("/actionScreen", methods = ["GET"]) #game action screen page
-def plyr_scrn():
-	
+def server():
 	localIP     = "127.0.0.1"
 	localPort   = 7501
 	bufferSize  = 1024
@@ -209,7 +208,9 @@ def plyr_scrn():
 	UDPServerSocket.bind((localIP, localPort))
 
 	print("UDP server up and listening")
+	pass
 
+def update_events():
 	# Listen for incoming datagrams
 	while(True):
 
@@ -258,7 +259,9 @@ def plyr_scrn():
 			events = [message]
 		else:
 			events = [""]
-		
+			
+	pass
+def plyr_scrn():
 	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = events)
 
 
