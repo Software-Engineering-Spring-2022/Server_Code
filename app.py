@@ -1,6 +1,5 @@
 
 from flask import Flask, render_template, request, flash, redirect, url_for
-from flask_socketio import SocketIO, send, emit
 
 import os
 import time
@@ -15,7 +14,6 @@ import psycopg2
 
 app = Flask(__name__)#makes a class for the app or program we wish to run
 app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
-socketio = SocketIO(app)
 i = 0
 # List to store events
 events = [""]
@@ -227,17 +225,10 @@ def plyr_scrn():
 		
 	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = events)
 
-@socketio.on('message')
-def get_next_event(message):
-	# Sending a reply to client
-	send("Hello UDP Client")
-	
-	# Updating events
-	events.append(message)
 
 if __name__ == "__main__":
-	#app.run(debug=True)
-	socketio.run(app)
+	app.run(debug=True)
+	
 	
 	
 	
