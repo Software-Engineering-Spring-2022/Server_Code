@@ -234,19 +234,19 @@ def plyr_scrn():
 		blue_team = ["no players entered"]
 		
 	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = events)
-#def get_next_event():
+def get_next_event():
 	# Listen for incoming datagrams
-#	bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
-#	message = bytesAddressPair[0]
-#	address = bytesAddressPair[1]
-#	clientMsg = "Message from Client:{}".format(message)
-#	clientIP  = "Client IP Address:{}".format(address)
+	bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
+	message = bytesAddressPair[0]
+	address = bytesAddressPair[1]
+	clientMsg = "Message from Client:{}".format(message)
+	clientIP  = "Client IP Address:{}".format(address)
 
-#	print(clientMsg)
-#	print(clientIP)
-#
+	print(clientMsg)
+	print(clientIP)
+
 	# Sending a reply to client
-#	UDPServerSocket.sendto(bytesToSend, address)
+	UDPServerSocket.sendto(bytesToSend, address)
 
 if __name__ == "__main__":
 	app.run(debug=True)
