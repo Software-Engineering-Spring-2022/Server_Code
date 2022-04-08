@@ -96,7 +96,7 @@ def listen_to_udp():
 #Splash screen (default) route. Redirect to player entry screen after initializing components
 @app.route("/")#allows for us to change something when a user uses one of our inputs
 def splash():
-	_thread.start_new_thread(listen_to_udp,NULL); 
+	_thread.start_new_thread(listen_to_udp,NULL) 
 #	listen_to_udp.delay()
 	print("UDP server up and listening")
 	
