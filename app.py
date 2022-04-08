@@ -154,7 +154,7 @@ def traffic_generator():
 def splash():
 	t1 = threading.Thread(target = listen_to_udp)
 	t1.start()
-	t2 = threading.Thread(target = listen_to_udp)
+	t2 = threading.Thread(target = traffic_generator)
 	t2.start()
 #	listen_to_udp.delay()
 	print("UDP server up and listening")
