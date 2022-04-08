@@ -16,24 +16,6 @@ app = Flask(__name__)#makes a class for the app or program we wish to run
 app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
 i = 0
 
-"""
-msgFromClient       = "Hello UDP Server"
-bytesToSend         = str.encode(msgFromClient)
-serverAddressPort   = ("127.0.0.1", 20001)
-bufferSize          = 1024
-
-# Create a UDP socket at client side
-UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-
-# Send to server using created UDP socket
-UDPClientSocket.sendto(bytesToSend, serverAddressPort)
-
-msgFromServer = UDPClientSocket.recvfrom(bufferSize)
-msg = "Message from Server {}".format(msgFromServer[0])
-
-print(msg)
-"""
-
 def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert players into the database table player
 	conn = None
 	try:
@@ -214,36 +196,71 @@ def regi():
 @app.route("/actionScreen", methods = ["GET"]) #game action screen page
 def plyr_scrn():
 	
-	#calls the Players class. it is a class method, which may need to be changed in the future
-	try:
-	
-		red_team = red
-		blue_team = blue
+	localIP     = "127.0.0.1"
+	localPort   = 7501
+	bufferSize  = 1024
+	msgFromServer       = "Hello UDP Client"
+	bytesToSend         = str.encode(msgFromServer)
+
+	# Create a datagram socket
+	UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+
+	# Bind to address and ip
+	UDPServerSocket.bind((localIP, localPort))
+
+	print("UDP server up and listening")
+
+	# Listen for incoming datagrams
+
+	while(True):
+
+	    bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
+	    message = bytesAddressPair[0]
+		# This message will be something like Opus hit Jelly.
 		
-		out_file = open("current_players.json", "w")
+	    address = bytesAddressPair[1]
 		
-		dictA = {
+	    #clientMsg = "Message from Client:{}".format(message)
+	    #clientIP  = "Client IP Address:{}".format(address)
 
-			"red_team" : 0,
-			"blue_team" : 0
-		}
+	    #print(clientMsg)
+	    #print(clientIP)
 
-		json.dump(dictA,out_file)
+	    # Sending a reply to client
+	    UDPServerSocket.sendto(bytesToSend, address)
+		#calls the Players class. it is a class method, which may need to be changed in the future
+		try:
 
-		dictA["red_team"] = red
-		dictA["blue_team"] = blue
+			red_team = red
+			blue_team = blue
 
-		x = json.dump(dictA,out_file)
-		print(x)
-		out_file.close()
+			out_file = open("current_players.json", "w")
+
+			dictA = {
+
+				"red_team" : 0,
+				"blue_team" : 0
+			}
+
+			json.dump(dictA,out_file)
+
+			dictA["red_team"] = red
+			dictA["blue_team"] = blue
+
+			x = json.dump(dictA,out_file)
+			print(x)
+			out_file.close()
+
+		except:
+			red_team = ["no players entered"] #in case one side isnt entered
+			blue_team = ["no players entered"]
 		
-	except:
-		red_team = ["no players entered"] #in case one side isnt entered
-		blue_team = ["no players entered"]
-
-	events = ["opus hit HOBBES", "missy hit calvin", "razor hit bill_the_cat"]	
-
-	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = events)
+		if(message != null):
+			events = [message]
+		else:
+			events = [""]
+			
+		return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = events)
 
 
 if __name__ == "__main__":
