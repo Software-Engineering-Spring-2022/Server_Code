@@ -7,7 +7,7 @@ import time
 import socket, select
 import random
 import json
-import _thread
+import threading
 
 os.system("pip install psycopg2-binary")
 #os.system("pip install flask")
@@ -96,7 +96,8 @@ def listen_to_udp():
 #Splash screen (default) route. Redirect to player entry screen after initializing components
 @app.route("/")#allows for us to change something when a user uses one of our inputs
 def splash():
-	_thread.start_new_thread(listen_to_udp,NULL) 
+	t1 = threading.Thread(target = listen_to_udp)
+	t1.start()
 #	listen_to_udp.delay()
 	print("UDP server up and listening")
 	
