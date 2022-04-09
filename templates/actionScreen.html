@@ -176,16 +176,6 @@ var intervalID = setInterval(update_values, 1000);
 		const clock = document.getElementById(id);
 		const minutesSpan = clock.querySelector('.minutes');
 		const secondsSpan = clock.querySelector('.seconds');
-		function countdown() {
-			  if (timeLeft == -1) {
-				clearTimeout(timerId);
-				const deadline = new Date(Date.parse(new Date()) +  6 * 60 * 1000);
-				initializeClock('clockdiv', deadline);
-			  } else {
-				elem.innerHTML = timeLeft + ' seconds remaining';
-				timeLeft--;
-			  }
-			}
 
 		function updateClock() {
 			const t = getTimeRemaining(endtime);
@@ -240,6 +230,16 @@ var intervalID = setInterval(update_values, 1000);
 			var timerId = setInterval(countdown, 1000);
 			const deadline = new Date(Date.parse(new Date()) +  0.5 * 60 * 1000);
 			initializeClock('clockdiv', deadline);
+			function countdown() {
+			  if (timeLeft == -1) {
+				clearTimeout(timerId);
+				const deadline = new Date(Date.parse(new Date()) +  6 * 60 * 1000);
+				initializeClock('clockdiv', deadline);
+			  } else {
+				elem.innerHTML = timeLeft + ' seconds remaining';
+				timeLeft--;
+			  }
+			}
 			<!-- time.sleep(30) -->
 
 
