@@ -129,38 +129,26 @@ var intervalID = setInterval(update_values, 1000);
 	<form action="{{url_for("plyr_scrn")}}" method="get" style="text-align:center">
     <div class = "TOP">   
 			<div class = "BOTTOM">               
-				<table class = "BLUE">
-					<thead>
-						<td><strong>CODENAME</strong></td>
-          			</thead>
+				{% include "blue_team.html" %}
 
-					<tbody>
-						{% for item in blue_team %}
-							<tr>
-								<td>{{item}}</td>
-							</tr>                 
-						{% endfor %}
-					</tbody>
-				</table>
-
-		<h1>
-			<!-- Header -->
-		</h1>
-			<div id="clockdiv">
-				
-				<div>
-					<span class="minutes"></span>
-					<div class="smalltext">Minutes</div>
+			<h1>
+				<!-- Header -->
+			</h1>
+				<div id="clockdiv">
+					
+					<div>
+						<span class="minutes"></span>
+						<div class="smalltext">Minutes</div>
+					</div>
+					<div>
+						<span class="seconds"></span>
+						<div class="smalltext">Seconds</div>
+					</div>
 				</div>
-				<div>
-					<span class="seconds"></span>
-					<div class="smalltext">Seconds</div>
-				</div>
-			</div>
 
-{% include "red_team.html" %}
+				{% include "red_team.html" %}
 
-{% include "events.html" %}
+				{% include "events.html" %}
 
 	<div id = "demo">
 		<h2>Change here</h2>

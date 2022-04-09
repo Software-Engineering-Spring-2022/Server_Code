@@ -210,7 +210,6 @@ def edit():
 	codename_r = data.getlist("player_codename_r")
 	first_name_r = data.getlist("player_first_r")
 	last_name_r = data.getlist("player_last_r")
-	
 		
 
 	#using try catch in case the program breaks
@@ -266,16 +265,10 @@ def edit():
 		print("cant push red team data, check code")
 	#running list of players in current game
 	turbo.push(turbo.replace(render_template("red_team.html", red_team = codename_r),'RED'))		 
-	red = codename_r
-	blue = codename_b
+	turbo.push(turbo.replace(render_template("blue_team.html", blue_team = codename_b),'BLUE'))
+
 	return render_template("playerEntry2.html") #needs to be edited so that the user input persists
 
-@app.route("/playerReg", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
-def regi():
-	#need a method for player registration for later sprint
-	#need html as well
-	#needs to be able to generate IDS and submit players 
-	pass
 
 @app.route("/actionScreen", methods = ["GET"]) #game action screen page	
 def plyr_scrn():
