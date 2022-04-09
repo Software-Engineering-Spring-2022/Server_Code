@@ -70,20 +70,7 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 	finally:
 		if conn is not None:
 			conn.close()
-#this class will allows other methods to access the current game players
-# class Players:
-# 	@classmethod
-# 	def __init__(self,red,blue):
-# 		Players.curr_red_plyrs = red
-# 		Players.curr_blue_plyrs = blue			
-# 	@classmethod
-# 	def _get_red(self):
-# 		print(Players.curr_red_plyrs)
-# 		return self.curr_red_plyrs
-# 	@classmethod
-# 	def _get_blue(self):
-		
-# 		return self.curr_blue_plyrs
+
 	
 @celery.task()
 def listen_to_udp():
@@ -94,9 +81,6 @@ def listen_to_udp():
 		trafficEvents = UDPServerSocket.recvfrom(bufferSize)
 		msg="Message from Serv {}".format(trafficEvents[0])
 		print(msg)
-		if len(events > 5):
-			events.pop()
-		events.append(msg)
 
 	# # Create a datagram socket
 	# UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
@@ -175,112 +159,111 @@ def splash():
 
 @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
 def edit():
-	if request.method == "POST":
+	global red
+	global blue
+	#this method routes to the template for player entry
+	#it will allow the user to input data in the text boxes provided 
+	#when the user presses submit it will send the data to app.py
+	#the data will then be entered in a for loop sequentially view the 
+	#DB teams insert_player method
 
+	#data lists instantiated
+	#New Players
+	iD_new = []
+	codename_new=[]
+	first_name_new=[]
+	last_name_new=[]
+
+	#Blue Team
+	iD_b = []
+	codename_b=[]
+	first_name_b=[]
+	last_name_b=[]
+
+	#Red Team
+	iD_r = []
+	codename_r=[]
+	first_name_r=[]
+	last_name_r=[]
+
+	#request data from the 'edit' form (check <form action="{{ url_for("edit")}}" ... in the html)
+	data = request.form
+	#New Players
+	iD_new = data.getlist("player_id_new")#the .getlist("name") method is from the flask module. changes the dict to an indexable list
+	codename_new = data.getlist("player_codename_new")
+	first_name_new = data.getlist("player_first_new")
+	last_name_new = data.getlist("player_last_new")
+
+	#Blue Team
+	iD_b = data.getlist("player_id_b")#the .getlist("name") method is from the flask module. changes the dict to an indexable list
+	codename_b = data.getlist("player_codename_b")
+	first_name_b = data.getlist("player_first_b")
+	last_name_b = data.getlist("player_last_b")
+
+	
+
+	#Red Team
+	iD_r = data.getlist("player_id_r")#the .getlist("name") method is from the flask module. changes the dict to an indexable list
+	codename_r = data.getlist("player_codename_r")
+	first_name_r = data.getlist("player_first_r")
+	last_name_r = data.getlist("player_last_r")
+	
 		
 
-		#this method routes to the template for player entry
-		#it will allow the user to input data in the text boxes provided 
-		#when the user presses submit it will send the data to app.py
-		#the data will then be entered in a for loop sequentially view the 
-		#DB teams insert_player method
-
-		#data lists instantiated
-		#New Players
-		iD_new = []
-		codename_new=[]
-		first_name_new=[]
-		last_name_new=[]
-
-		#Blue Team
-		iD_b = []
-		codename_b=[]
-		first_name_b=[]
-		last_name_b=[]
-
-		#Red Team
-		iD_r = []
-		codename_r=[]
-		first_name_r=[]
-		last_name_r=[]
-
-		#request data from the 'edit' form (check <form action="{{ url_for("edit")}}" ... in the html)
-		data = request.form
-		#New Players
-		iD_new = data.getlist("player_id_new")#the .getlist("name") method is from the flask module. changes the dict to an indexable list
-		codename_new = data.getlist("player_codename_new")
-		first_name_new = data.getlist("player_first_new")
-		last_name_new = data.getlist("player_last_new")
-
-		#Blue Team
-		iD_b = data.getlist("player_id_b")#the .getlist("name") method is from the flask module. changes the dict to an indexable list
-		codename_b = data.getlist("player_codename_b")
-		first_name_b = data.getlist("player_first_b")
-		last_name_b = data.getlist("player_last_b")
-
+	#using try catch in case the program breaks
+	try:
 		
-
-		#Red Team
-		iD_r = data.getlist("player_id_r")#the .getlist("name") method is from the flask module. changes the dict to an indexable list
-		codename_r = data.getlist("player_codename_r")
-		first_name_r = data.getlist("player_first_r")
-		last_name_r = data.getlist("player_last_r")
+		for x in range(len(iD_new)): #there always be as many ID's as players				
+			if(iD_new[x] == ''):
+				print("Skipping this line because the entire line was not filled out.")
+			elif(first_name_new[x] == ''):
+				print("Skipping this line because the entire line was not filled out.")
+			elif(last_name_new[x] == ''):
+				print("Skipping this line because the entire line was not filled out.")
+			elif(codename_new[x] == ''):
+				print("Skipping this line because the entire line was not filled out.")
+			else:
+				insert_player(iD_new[x],first_name_new[x],last_name_new[x],codename_new[x])
+			#we need to filter blank inputs so as to not fill the database with empty entries
+	except:
+		print("cant push new player data, check code")
 		
-		#using try catch in case the program breaks
-		try:
-			
-			for x in range(len(iD_new)): #there always be as many ID's as players				
-				if(iD_new[x] == ''):
-					print("Skipping this line because the entire line was not filled out.")
-				elif(first_name_new[x] == ''):
-					print("Skipping this line because the entire line was not filled out.")
-				elif(last_name_new[x] == ''):
-					print("Skipping this line because the entire line was not filled out.")
-				elif(codename_new[x] == ''):
-					print("Skipping this line because the entire line was not filled out.")
-				else:
-					insert_player(iD_new[x],first_name_new[x],last_name_new[x],codename_new[x])
-				#we need to filter blank inputs so as to not fill the database with empty entries
-		except:
-			print("cant push new player data, check code")
-			
-		try:
-			
-			for x in range(len(iD_b)): #there always be as many ID's as players				
-				if(iD_b[x] == ''):
-					print("Skipping this line because the entire line was not filled out.")
-				elif(first_name_b[x] == ''):
-					print("Skipping this line because the entire line was not filled out.")
-				elif(last_name_b[x] == ''):
-					print("Skipping this line because the entire line was not filled out.")
-				elif(codename_b[x] == ''):
-					print("Skipping this line because the entire line was not filled out.")
-				else:
-					insert_player(iD_b[x],first_name_b[x],last_name_b[x],codename_b[x])
-				#we need to filter blank inputs so as to not fill the database with empty entries
-		except:
-			print("cant push blue team data, check code")
-			
-		try:
-			
-			for x in range(len(iD_r)): #there always be as many ID's as players				
-				if(iD_r[x] == ''):
-					print("Skipping this line because the entire line was not filled out.")
-				elif(first_name_r[x] == ''):
-					print("Skipping this line because the entire line was not filled out.")
-				elif(last_name_r[x] == ''):
-					print("Skipping this line because the entire line was not filled out.")
-				elif(codename_r[x] == ''):
-					print("Skipping this line because the entire line was not filled out.")
-				else:
-					insert_player(iD_r[x],first_name_r[x],last_name_r[x],codename_r[x])
-				#we need to filter blank inputs so as to not fill the database with empty entries
-		except:
-			print("cant push red team data, check code")
-		#running list of players in current game	
-		red == codename_r
-		blue == codename_b		 
-
+	try:
+		
+		for x in range(len(iD_b)): #there always be as many ID's as players				
+			if(iD_b[x] == ''):
+				print("Skipping this line because the entire line was not filled out.")
+			elif(first_name_b[x] == ''):
+				print("Skipping this line because the entire line was not filled out.")
+			elif(last_name_b[x] == ''):
+				print("Skipping this line because the entire line was not filled out.")
+			elif(codename_b[x] == ''):
+				print("Skipping this line because the entire line was not filled out.")
+			else:
+				insert_player(iD_b[x],first_name_b[x],last_name_b[x],codename_b[x])
+			#we need to filter blank inputs so as to not fill the database with empty entries
+	except:
+		print("cant push blue team data, check code")
+		
+	try:
+		
+		for x in range(len(iD_r)): #there always be as many ID's as players				
+			if(iD_r[x] == ''):
+				print("Skipping this line because the entire line was not filled out.")
+			elif(first_name_r[x] == ''):
+				print("Skipping this line because the entire line was not filled out.")
+			elif(last_name_r[x] == ''):
+				print("Skipping this line because the entire line was not filled out.")
+			elif(codename_r[x] == ''):
+				print("Skipping this line because the entire line was not filled out.")
+			else:
+				insert_player(iD_r[x],first_name_r[x],last_name_r[x],codename_r[x])
+			#we need to filter blank inputs so as to not fill the database with empty entries
+	except:
+		print("cant push red team data, check code")
+	#running list of players in current game		 
+	red = codename_r
+	blue = codename_b
 	return render_template("playerEntry2.html") #needs to be edited so that the user input persists
 
 @app.route("/playerReg", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
@@ -292,8 +275,9 @@ def regi():
 
 @app.route("/actionScreen", methods = ["GET"]) #game action screen page	
 def plyr_scrn():
-	#calls the Players class. it is a class method, which may need to be changed in the future
-	
+	global red
+	global blue
+
 	try:
 		red_team = red
 		blue_team = blue	
@@ -302,11 +286,12 @@ def plyr_scrn():
 		red_team = ["no players entered"] #in case one side isnt entered
 		blue_team = ["no players entered"]
 		
-	return render_template("actionScreen.html", red_team = red_team,blue_team = blue_team,events = events)
+	return render_template("actionScreen.html", red_team = red_team, blue_team = blue_team,events = events)
 
 @app.route("/_event_update", methods = ["GET"]) #game action screen page	
 def event_update():
 	return jsonify(events)
+
 
 if __name__ == "__main__":
 	app.run(debug=True)
