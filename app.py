@@ -1,6 +1,7 @@
 
 from flask import Flask, render_template, request, flash, redirect, url_for, jsonify
 # from flask_sockets import Sockets
+from turbo_flask import Turbo#Used to keep the action screen dynamic
 
 import os
 import time
@@ -42,6 +43,7 @@ app = Flask(__name__)#makes a class for the app or program we wish to run
 app.config.update(CELERY_BROKER_URL='redis://localhost:6379', CELERY_RESULT_BACKEND='redis://localhost:6379')
 app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
 celery = make_celery(app)
+turbo = Turbo(app)#Dynamic Page Updates
 
 def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert players into the database table player
 	conn = None
@@ -85,6 +87,7 @@ def listen_to_udp():
 		events[2]=events[1]
 		events[1]=events[0]
 		events[0]=msg
+		turbo.push(turbo.replace(render_template('events.html',events = events), 'EVENT'))
 
 	# # Create a datagram socket
 	# UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)

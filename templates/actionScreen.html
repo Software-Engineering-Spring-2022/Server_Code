@@ -122,6 +122,7 @@ var intervalID = setInterval(update_values, 1000);
 
 	
 </script>
+{{ turbo() }}
 </head>
 
 <body>
@@ -174,22 +175,8 @@ var intervalID = setInterval(update_values, 1000);
 			</div>
 		</div>
 
-		<table class = "EVENT">
-			<thead>
-				
-				<td><strong>EVENT</strong></td>
-				
-			</thead>
-			<br>
-			<tbody>
-			{% for item in events %}
-				<tr>
-					<td id="events">{{item}}</td>
-				</tr>
-			{% endfor %}
-			</tbody>
-		</table> 
-	
+{% include "events.html" %}
+
 	<div id = "demo">
 		<h2>Change here</h2>
 		<button type="button" onclick="loadDoc()">Change Content</button>
