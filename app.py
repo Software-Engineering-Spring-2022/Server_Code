@@ -264,7 +264,8 @@ def edit():
 			#we need to filter blank inputs so as to not fill the database with empty entries
 	except:
 		print("cant push red team data, check code")
-	#running list of players in current game		 
+	#running list of players in current game
+	turbo.push(turbo.replace(render_template("actionScreen.html", red_team = codename_r, blue_team = codename_b)))		 
 	red = codename_r
 	blue = codename_b
 	return render_template("playerEntry2.html") #needs to be edited so that the user input persists
@@ -292,15 +293,8 @@ def plyr_scrn():
 	print("UDP server up and listening")
 #End of UDP code
 
-	try:
-		red_team = red
-		blue_team = blue	
-		turbo.push(turbo.replace(render_template("actionScreen.html", red_team = red_team, blue_team = blue_team)))
-	except:
-		red_team = ["no players entered"] #in case one side isnt entered
-		blue_team = ["no players entered"]
 		
-	return render_template("actionScreen.html", red_team = red_team, blue_team = blue_team,events = events)
+	return render_template("actionScreen.html", red_team = red, blue_team = blue,events = events)
 
 @app.route("/_event_update", methods = ["GET"]) #game action screen page	
 def event_update():
