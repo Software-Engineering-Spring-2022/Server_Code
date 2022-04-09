@@ -24,8 +24,8 @@ bufferSize  = 1024
 i = 0
 # List to store events
 events = [""]
-red = []
-blue = []
+red = 0
+blue = 0
 
 def make_celery(app):
 	celery = Celery(app.import_name, backend=app.config['CELERY_RESULT_BACKEND'], broker=app.config['CELERY_BROKER_URL'])
@@ -162,8 +162,8 @@ def edit():
 	global red
 	global blue
 
-	red = []
-	blue = []
+	red = 0
+	blue = 0
 	#this method routes to the template for player entry
 	#it will allow the user to input data in the text boxes provided 
 	#when the user presses submit it will send the data to app.py
