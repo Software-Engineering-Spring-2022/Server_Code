@@ -1,4 +1,4 @@
-# LazerTag
+# LazerTag Team 1
 A laser tag system for fun and family
 
 HOW TO INSTALL:
