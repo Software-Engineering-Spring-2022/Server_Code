@@ -295,7 +295,7 @@ def plyr_scrn():
 	try:
 		red_team = red
 		blue_team = blue	
-		
+		turbo.push(turbo.replace(render_template("actionScreen.html", red_team = red_team, blue_team = blue_team)))
 	except:
 		red_team = ["no players entered"] #in case one side isnt entered
 		blue_team = ["no players entered"]
