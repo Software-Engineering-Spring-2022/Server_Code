@@ -161,6 +161,9 @@ def splash():
 def edit():
 	global red
 	global blue
+
+	red = []
+	blue = []
 	#this method routes to the template for player entry
 	#it will allow the user to input data in the text boxes provided 
 	#when the user presses submit it will send the data to app.py
