@@ -71,7 +71,6 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 		if conn is not None:
 			conn.close()
 
-	
 @celery.task()
 def listen_to_udp():
 	UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
@@ -148,13 +147,6 @@ def traffic_generator():
 #Splash screen (default) route. Redirect to player entry screen after initializing components
 @app.route("/")#allows for us to change something when a user uses one of our inputs
 def splash():
-	t1 = threading.Thread(target = listen_to_udp)
-	t1.start()
-	t2 = threading.Thread(target = traffic_generator)
-	t2.start()
-#	listen_to_udp.delay()
-	print("UDP server up and listening")
-	
 	return render_template('splash.html'),{"Refresh": "3; url=./playerEntry2"}
 
 @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
@@ -280,6 +272,17 @@ def regi():
 def plyr_scrn():
 	global red
 	global blue
+
+#This is the code which starts the UDP server and traffic generator
+#It should be with the code that executes during the game
+#If that code moves somewhere, please move this too
+	t1 = threading.Thread(target = listen_to_udp)
+	t1.start()
+	t2 = threading.Thread(target = traffic_generator)
+	t2.start()
+#	listen_to_udp.delay()
+	print("UDP server up and listening")
+#End of UDP code
 
 	try:
 		red_team = red
