@@ -94,7 +94,7 @@ def listen_to_udp():
 		trafficEvents = UDPServerSocket.recvfrom(bufferSize)
 		msg="Message from Serv {}".format(trafficEvents[0])
 		print(msg)
-		if len(events > 10):
+		if len(events > 5):
 			events.pop()
 		events.append(msg)
 
