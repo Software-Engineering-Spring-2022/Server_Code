@@ -224,11 +224,12 @@ var intervalID = setInterval(update_values, 1000);
 		const timeinterval = setInterval(updateClock, 1000);
 		}
 
-		const deadline = new Date(Date.parse(new Date()) +  0.5 * 60 * 1000);
+		const countdown = new Date(Date.parse(new Date()) +  0.5 * 60 * 1000);
+		initializeClock('clockdiv', countdown);
+
+		time.sleep(30)
+		const deadline = new Date(Date.parse(new Date()) +  6 * 60 * 1000);
 		initializeClock('clockdiv', deadline);
-		
-		<!-- const deadline = new Date(Date.parse(new Date()) +  6 * 60 * 1000); -->
-		<!-- initializeClock('clockdiv', deadline); -->
 
 
 
