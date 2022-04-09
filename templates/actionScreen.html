@@ -134,10 +134,9 @@ var intervalID = setInterval(update_values, 1000);
 			<h1>
 				<!-- Header -->
 			</h1>
-				<div id="timer"></div>
 				<div id="clockdiv">
 				
-					
+					<div id="timer"></div>
 					<div>
 						<span class="minutes"></span>
 						<div class="smalltext">Minutes</div>
@@ -228,31 +227,21 @@ var intervalID = setInterval(update_values, 1000);
 
 		
 			var elem = document.getElementById('timer');
-			<!-- document.getElementById("timer").element.setAttribute("style", "color: red;"); -->
 			elem.style.color = "Red";
 			elem.style.fontSize = "xx-large";
-<!-- .style.color = "red"; -->
 			var timeLeft = 30;
 			var timerId = setInterval(countdown, 1000);
-			<!-- const countd = new Date(Date.parse(new Date()) +  0.05 * 60 * 1000); -->
-			<!-- initializeClock('clockdiv', timerId); -->
 			const deadline = new Date(Date.parse(new Date()) +  6 * 60 * 1000);
 			function countdown() {
 			  if (timeLeft == -1) {
-				<!-- clearTimeout(timeinterval); -->
-				<!-- clearInterval(timeinterval); -->
 				elem.innerHTML = ' GO! '
 				document.getElementById('clockdiv');
 				initializeClock('clockdiv', deadline);
 			  } else {
-				elem.innerHTML ='Game Starts in: <br/> '+ timeLeft;
+				elem.innerHTML = timeLeft;
 				timeLeft--;
 			  }
 			}
-			<!-- time.sleep(30) -->
-
-
-
 		// attempt to use AJAX to update the page from the server? maybew?
 			
 
