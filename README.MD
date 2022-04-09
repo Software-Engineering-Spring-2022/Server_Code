@@ -2,7 +2,9 @@
 A laser tag system for fun and family
 
 HOW TO INSTALL:
-	This does not need to be installed locally, it is set up and deployed on Heroku. Simply access there.
+	This does not need to be installed locally, it is set up and deployed on Heroku per class requirements.
+	Simply access via this URL:
+	https://laser-software.herokuapp.com/
 
 Made to be deployed on Heroku AWS interface
  - Python, Flask, PostgreSQL
