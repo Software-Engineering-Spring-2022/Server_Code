@@ -265,7 +265,7 @@ def edit():
 	except:
 		print("cant push red team data, check code")
 	#running list of players in current game
-	turbo.push(turbo.replace(render_template("actionScreen.html", red_team = codename_r, blue_team = codename_b)))		 
+	turbo.push(turbo.replace(render_template("red_team.html", red_team = codename_r),'RED'))		 
 	red = codename_r
 	blue = codename_b
 	return render_template("playerEntry2.html") #needs to be edited so that the user input persists
