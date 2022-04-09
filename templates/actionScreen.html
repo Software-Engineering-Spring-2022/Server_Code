@@ -227,14 +227,14 @@ var intervalID = setInterval(update_values, 1000);
 		}
 
 		
-			var elem = document.getElementById('clockdiv');
+			var elem = document.getElementById('timer');
 			var timeLeft = 30;
 			<!-- var timerId = setInterval(countdown, 1000); -->
 			const countd = new Date(Date.parse(new Date()) +  0.5 * 60 * 1000);
 			initializeClock('timer', countd);
 			function countdown() {
 			  if (timeLeft == -1) {
-				<!-- clearTimeout(timerId); -->
+				clearTimeout(countd);
 				const deadline = new Date(Date.parse(new Date()) +  6 * 60 * 1000);
 				initializeClock('clockdiv', deadline);
 			  } else {
