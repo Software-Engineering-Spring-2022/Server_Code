@@ -89,14 +89,6 @@ def listen_to_udp():
 		events[0]=msg
 		turbo.push(turbo.replace(render_template('events.html',events = events), 'EVENT'))
 
-	# # Create a datagram socket
-	# UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-	# # Bind to address and ip
-	# UDPServerSocket.bind((localIP, localPort))
-	# while True:
-		# r = select.select([UDPServerSocket])
-		# for i in r:
-			# events.append(i.recvfrom(buffersize))		
 			
 			
 @celery.task()
@@ -282,7 +274,6 @@ def plyr_scrn():
 	t1.start()
 	t2 = threading.Thread(target = traffic_generator)
 	t2.start()
-#	listen_to_udp.delay()
 	print("UDP server up and listening")
 #End of UDP code
 
