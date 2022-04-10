@@ -51,7 +51,7 @@ def make_celery(app):
 
 #Setup of various packages
 app = Flask(__name__)#makes a class for the app or program we wish to run
-app.config.update(CELERY_BROKER_URL='redis://localhost:6379', CELERY_RESULT_BACKEND='redis://localhost:6379')
+# app.config.update(CELERY_BROKER_URL='redis://localhost:6379', CELERY_RESULT_BACKEND='redis://localhost:6379')
 app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
 # celery = make_celery(app)
 turbo = Turbo(app)#Dynamic Page Updates
@@ -98,7 +98,6 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 			conn.close()
 
 #UDP Server
-@celery.task()
 def listen_to_udp():
 	UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 	UDPServerSocket.bind((localIP, localPort))
@@ -120,7 +119,6 @@ def listen_to_udp():
 
 #Traffic generator provided by Mr. Strother
 # It is embedded within the app.py to ease testing
-@celery.task()
 def traffic_generator():
 	
 	bufferSize  = 1024
