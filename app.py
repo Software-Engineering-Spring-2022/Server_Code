@@ -121,14 +121,14 @@ def traffic_generator():
 	# blue1 = input('Enter codename of blue player 1 ==> ')
 	# blue2 = input('Enter codename of blue player 2 ==> ')
 	
-	red1 = "John"
-	red2 = "James"
-	blue1 = "Matthew"
-	blue2 = "Ryan"
-	#red1 = session.get('red_team',str)
-	#red2 = session.get('red_team',str)
-	#blue1 = session.get('blue_team',str)
-	#blue2 = session.get('blue_team',str)
+	#red1 = "John"
+	#red2 = "James"
+	#blue1 = "Matthew"
+	#blue2 = "Ryan"
+	red1 = session['red_team']
+	red2 = session['red_team']
+	blue1 = session['blue_team']
+	blue2 = session['blue_team']
 
 	print('')
 	# counter = input('How many events do you want ==> ')
