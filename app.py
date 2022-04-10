@@ -133,8 +133,11 @@ def traffic_generator():
 
 		if random.randint(1,2) == 1:
 			message = redplayer + " hit " + blueplayer
+			turbo.push(turbo.replace(render_template('red_team.html', red_team = redplayer), 'RED'))
 		else:
 			message = blueplayer + " hit " + redplayer
+			turbo.push(turbo.replace(render_template('blue_team.html', blue_team = blueplayer), 'BLUE'))
+
 
 		print(message)
 		i+=1;
