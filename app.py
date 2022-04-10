@@ -48,9 +48,10 @@ app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
 celery = make_celery(app)
 turbo = Turbo(app)#Dynamic Page Updates
 
-#Add a player to the database
+#Add a player to the database. This function does not appear to execute at all
 def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert players into the database table player
 	conn = None
+	print("Running insert_player")
 	try:
 		conn = psycopg2.connect( # connects to database
 			user="lezbitgtjkbfrs",
@@ -71,6 +72,11 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 		conn.commit() # commit the changes to the database
 		
 		cur.close() # close communication with the database
+		
+		print(ID)
+		print(FIRST_NAME)
+		print(LAST_NAME)
+		print(CODENAME)
 	except (Exception, psycopg2.DatabaseError) as error:
 		print(error)
 	finally:
@@ -157,6 +163,9 @@ def splash():
 #Current version of player entry screen
 @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
 def edit():
+	#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	#This thing isn't executing!!!!!!!!!!!!!!!
+	#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	if request.method == 'POST':
 		
 		#this method routes to the template for player entry
@@ -188,14 +197,17 @@ def edit():
 		first_name_b = data.getlist("player_first_b")
 		last_name_b = data.getlist("player_last_b")
 
-		
-
 		#Red Team
 		iD_r = data.getlist("player_id_r")#the .getlist("name") method is from the flask module. changes the dict to an indexable list
 		codename_r = data.getlist("player_codename_r")
 		first_name_r = data.getlist("player_first_r")
 		last_name_r = data.getlist("player_last_r")
-			
+
+		#Testing that data was gotten
+		iD_b[0] = 1
+		print(iD_b[0])
+		print(iD_r[0])
+		print("I'm working James")
 
 		#using try catch in case the program breaks
 			
