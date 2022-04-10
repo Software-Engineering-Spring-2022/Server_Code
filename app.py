@@ -105,6 +105,7 @@ def listen_to_udp():
 		turbo.push(turbo.replace(render_template('blue_team.html',blue_team = ["a","b","c"]), 'BLUE'))
 
 #Traffic generator provided by Mr. Strother
+# It is embedded within the app.py to ease testing
 @celery.task()
 def traffic_generator():
 	bufferSize  = 1024
@@ -120,10 +121,14 @@ def traffic_generator():
 	# blue1 = input('Enter codename of blue player 1 ==> ')
 	# blue2 = input('Enter codename of blue player 2 ==> ')
 	
-	red1 = "John"
-	red2 = "James"
-	blue1 = "Matthew"
-	blue2 = "Ryan"
+	#red1 = "John"
+	#red2 = "James"
+	#blue1 = "Matthew"
+	#blue2 = "Ryan"
+	red1 = codename_r[0]
+	red2 = codename_r[1]
+	blue1 = codename_b[0]
+	blue2 = codename_b[1]
 
 	print('')
 	# counter = input('How many events do you want ==> ')
