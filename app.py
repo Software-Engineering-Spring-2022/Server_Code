@@ -115,7 +115,7 @@ def listen_to_udp():
 		turbo.push(turbo.replace(render_template('events.html',events = events), 'EVENT'))
 		# turbo.push(turbo.replace(render_template('red_team.html',red_team = session.get('red_team',list)), 'RED'))
 		# turbo.push(turbo.replace(render_template('blue_team.html',blue_team = session.get('blue_team',list)), 'BLUE'))
-	socket.close()
+
 
 #Traffic generator provided by Mr. Strother
 # It is embedded within the app.py to ease testing
@@ -178,7 +178,6 @@ def traffic_generator():
 		time.sleep(random.randint(1,3))
 		
 	print("program complete")
-	socket.close()
 
 #Splash screen (default) route. Redirect to player entry screen after initializing components
 @app.route("/")#allows for us to change something when a user uses one of our inputs
