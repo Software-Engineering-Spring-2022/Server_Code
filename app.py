@@ -305,9 +305,7 @@ def plyr_scrn():
 		red_team_test = "no players"
 		blue_team_test = "no players"
 	
-	if len(red_team_test) = 0:
-		red_team_test = "no players"
-		blue_team_test = "no players"
+	
 	
 	
 	print(red_team_test)
