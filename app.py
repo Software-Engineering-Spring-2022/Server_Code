@@ -101,6 +101,7 @@ def listen_to_udp():
 		turbo.push(turbo.replace(render_template('events.html',events = events), 'EVENT'))
 
 #Traffic generator provided by Mr. Strother
+# It is embedded within the app.py to ease testing
 @celery.task()
 def traffic_generator():
 	bufferSize  = 1024
