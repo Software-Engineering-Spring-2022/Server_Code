@@ -21,6 +21,7 @@ import psycopg2
 # -- sample program from this video <https://youtu.be/6plVs_ytIH8>
 #  --specific code was created by Matt and james.
 
+#Global Variables
 localIP     = "127.0.0.1"
 localPort   = 7501
 bufferSize  = 1024
@@ -28,7 +29,7 @@ i = 0
 # List to store events
 events = ["Start","","","",""]
 
-
+#Threading utility. I believe this is superfluous in the current implementation
 def make_celery(app):
 	celery = Celery(app.import_name, backend=app.config['CELERY_RESULT_BACKEND'], broker=app.config['CELERY_BROKER_URL'])
 	celery.conf.update(app.config)
@@ -40,12 +41,14 @@ def make_celery(app):
 	celery.Task = ContextTask
 	return celery
 
+#Setup of various packages
 app = Flask(__name__)#makes a class for the app or program we wish to run
 app.config.update(CELERY_BROKER_URL='redis://localhost:6379', CELERY_RESULT_BACKEND='redis://localhost:6379')
 app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
 celery = make_celery(app)
 turbo = Turbo(app)#Dynamic Page Updates
 
+#Add a player to the database
 def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert players into the database table player
 	conn = None
 	try:
@@ -74,6 +77,7 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 		if conn is not None:
 			conn.close()
 
+#UDP Server
 @celery.task()
 def listen_to_udp():
 	UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
@@ -90,8 +94,7 @@ def listen_to_udp():
 		events[0]=msg
 		turbo.push(turbo.replace(render_template('events.html',events = events), 'EVENT'))
 
-			
-			
+#Traffic generator provided by Mr. Strother
 @celery.task()
 def traffic_generator():
 	bufferSize  = 1024
@@ -146,13 +149,12 @@ def traffic_generator():
 		
 	print("program complete")
 
-
-	
 #Splash screen (default) route. Redirect to player entry screen after initializing components
 @app.route("/")#allows for us to change something when a user uses one of our inputs
 def splash():
 	return render_template('splash.html'),{"Refresh": "3; url=./playerEntry2"}
 
+#Current version of player entry screen
 @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
 def edit():
 	if request.method == 'POST':
@@ -238,7 +240,7 @@ def edit():
 		
 	return render_template("playerEntry2.html") #needs to be edited so that the user input persists
 
-
+#Action screen
 @app.route("/actionScreen", methods = ["GET"]) #game action screen page	
 def plyr_scrn():
 	
@@ -266,15 +268,13 @@ def plyr_scrn():
 	
 	return render_template("actionScreen.html", red_team = red_team_test, blue_team = blue_team_test)
 
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#Please comment the purpose of this function !!!!!!!!!!!!!!!!
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 @app.route("/_event_update", methods = ["GET"]) #game action screen page	
 def event_update():
 	return jsonify(events)
 
-
+#Run the application
 if __name__ == "__main__":
 	app.run(debug=True)
-	
-	
-	
-	
- 
