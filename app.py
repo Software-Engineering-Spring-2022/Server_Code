@@ -283,6 +283,7 @@ def plyr_scrn():
 #This is the code which starts the UDP server and traffic generator
 #It should be with the code that executes during the game
 #If that code moves somewhere, please move this too
+	with app.app_context():
 	t1 = threading.Thread(target = listen_to_udp)
 	t1.start()
 	t2 = threading.Thread(target = traffic_generator)
