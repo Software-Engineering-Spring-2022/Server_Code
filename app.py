@@ -124,14 +124,16 @@ def traffic_generator():
 	# blue2 = input('Enter codename of blue player 2 ==> ')
 
 
-	red1 = "jack"
-	red2 = "diane"
-	blue1 = "Matthew"
-	blue2 = "Ryan"
-	#red1 = session.get('red_team',str)
-	#red2 = session.get('red_team',str)
-	#blue1 = session.get('blue_team',str)
-	#blue2 = session.get('blue_team',str)
+
+
+	# red1 = "jack"
+	# red2 = "diane"
+	# blue1 = "Matthew"
+	# blue2 = "Ryan"
+	red = session.get('red_team',list)
+
+	blue = session.get('blue_team',list)
+	
 
 	print('')
 	# counter = input('How many events do you want ==> ')
@@ -143,21 +145,21 @@ def traffic_generator():
 	i = 1
 	while i < int(counter):
 		if random.randint(1,2) == 1:
-			redplayer = red1
+			redplayer = red[0]
 		else:
-			redplayer = red2
+			redplayer = red[1]
 
 		if random.randint(1,2) == 1:
-			blueplayer = blue1
+			blueplayer = blue[0]
 		else: 
-			blueplayer = blue2	
+			blueplayer = blue[1]	
 
 		if random.randint(1,2) == 1:
 			message = redplayer + " hit " + blueplayer
-			#turbo.push(turbo.replace(render_template('red_team.html', red_team = redplayer), 'RED'))
+			
 		else:
 			message = blueplayer + " hit " + redplayer
-			#turbo.push(turbo.replace(render_template('blue_team.html', blue_team = blueplayer), 'BLUE'))
+			
 
 
 		print(message)
