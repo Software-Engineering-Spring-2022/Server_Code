@@ -102,7 +102,7 @@ def listen_to_udp():
 	UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 	UDPServerSocket.bind((localIP, localPort))
 	
-	time.sleep(30)
+	# time.sleep(30)
 	while (True):
 		trafficEvents = UDPServerSocket.recvfrom(bufferSize)
 		msg="{}".format(trafficEvents[0])
