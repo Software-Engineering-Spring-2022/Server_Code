@@ -121,8 +121,7 @@ def traffic_generator():
 	# red2 = input('Enter codename of red player 2 ==> ')
 	# blue1 = input('Enter codename of blue player 1 ==> ')
 	# blue2 = input('Enter codename of blue player 2 ==> ')
-	red = session.get('red_team',list)
-	blue = session.get('blue_team',list)
+	
 
 
 	red1 = "jack"
