@@ -26,8 +26,8 @@ bufferSize  = 1024
 i = 0
 # List to store events
 events = ["Start","","","",""]
-red = ["",""]
-blue = ["",""]
+red = []
+blue = []
 
 def make_celery(app):
 	celery = Celery(app.import_name, backend=app.config['CELERY_RESULT_BACKEND'], broker=app.config['CELERY_BROKER_URL'])
@@ -155,8 +155,8 @@ def edit():
 	global red
 	global blue
 
-	red = ["",""]
-	blue = ["",""]
+	red = []
+	blue = []
 	#this method routes to the template for player entry
 	#it will allow the user to input data in the text boxes provided 
 	#when the user presses submit it will send the data to app.py
@@ -242,7 +242,7 @@ def edit():
 def plyr_scrn():
 	global red
 	global blue
-	print(red)
+	
 #This is the code which starts the UDP server and traffic generator
 #It should be with the code that executes during the game
 #If that code moves somewhere, please move this too
