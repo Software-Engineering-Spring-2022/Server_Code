@@ -101,8 +101,8 @@ def listen_to_udp():
 		events[1]=events[0]
 		events[0]=msg
 		turbo.push(turbo.replace(render_template('events.html',events = events), 'EVENT'))
-		turbo.push(turbo.replace(render_template('red_team.html',red_team = ["a","b","c"]), 'RED'))
-		turbo.push(turbo.replace(render_template('blue_team.html',blue_team = ["a","b","c"]), 'BLUE'))
+		turbo.push(turbo.replace(render_template('red_team.html',red_team = session.get('red_team',list)), 'RED'))
+		turbo.push(turbo.replace(render_template('blue_team.html',blue_team = session.get('blue_team',list)), 'BLUE'))
 
 #Traffic generator provided by Mr. Strother
 # It is embedded within the app.py to ease testing
@@ -120,16 +120,18 @@ def traffic_generator():
 	# red2 = input('Enter codename of red player 2 ==> ')
 	# blue1 = input('Enter codename of blue player 1 ==> ')
 	# blue2 = input('Enter codename of blue player 2 ==> ')
-	red_tmp = session.get('red_team',list)
-	blue_tmp = session.get('blue_team',list)
-	red1 = "John"
-	red2 = "James"
+	red = session.get('red_team',list)
+	blue = session.get('blue_team',list)
+
+
+	red1 = red[0]
+	red2 = red[1]
 	blue1 = "Matthew"
 	blue2 = "Ryan"
-	#red1 = red_tmp[0]
-	#red2 = red_tmp[1]
-	#blue1 = blue_tmp[0]
-	#blue2 = blue_tmp[1]
+	#red1 = session.get('red_team',str)
+	#red2 = session.get('red_team',str)
+	#blue1 = session.get('blue_team',str)
+	#blue2 = session.get('blue_team',str)
 
 	print('')
 	# counter = input('How many events do you want ==> ')
@@ -152,10 +154,10 @@ def traffic_generator():
 
 		if random.randint(1,2) == 1:
 			message = redplayer + " hit " + blueplayer
-			turbo.push(turbo.replace(render_template('red_team.html', red_team = redplayer), 'RED'))
+			#turbo.push(turbo.replace(render_template('red_team.html', red_team = redplayer), 'RED'))
 		else:
 			message = blueplayer + " hit " + redplayer
-			turbo.push(turbo.replace(render_template('blue_team.html', blue_team = blueplayer), 'BLUE'))
+			#turbo.push(turbo.replace(render_template('blue_team.html', blue_team = blueplayer), 'BLUE'))
 
 
 		print(message)
@@ -250,16 +252,19 @@ def edit():
 			print("cant push red team data, check code")
 		#running list of players in current game
 		
-
-		session['blue_team'] = codename_b
+		#	THIS IS WHERE THE VARIBALES ARE BEING SET FOR THE REST OF THE APP, THESE ARE THE CODENAMES 
+		#	HERE IS THE DOCUMENTATION:
+		#	https://stackoverflow.com/questions/27611216/how-to-pass-a-variable-between-flask-pages
+		#	https://tedboy.github.io/flask/quickstart/quickstart10.html?highlight=session
+		#
+		session['blue_team'] = codename_b 
 		session['red_team'] = codename_r
 		
 	return render_template("playerEntry2.html") #needs to be edited so that the user input persists
 
 #Action screen
 @app.route("/actionScreen", methods = ["GET"]) #game action screen page	
-def plyr_scrn():
-	
+def plyr_scrn():	
 	
 #This is the code which starts the UDP server and traffic generator
 #It should be with the code that executes during the game
@@ -270,23 +275,18 @@ def plyr_scrn():
 	t2.start()
 	print("UDP server up and listening")
 #End of UDP code
-	red_team_test = [""]
-	blue_team_test = [""]
 	
-	red_team_test.append(session.get('red_team',str))
-	blue_team_test.append(session.get('blue_team',str))
 	
-	red_team_test.append("")
-	blue_team_test.append("")
+	red_team_test = session.get('red_team',list)
+	blue_team_test = session.get('blue_team',list)
 	
-	red_team = ["a","b","c","d"]
 	
 	print(red_team_test)
 	print(blue_team_test)
 	
 	#turboRed.push(turboRed.replace(render_template('red_team.html',red_team = red_team), 'RED'))
 	
-	return render_template("actionScreen.html", blue_team = blue_team_test)
+	return render_template("actionScreen.html", blue_team = blue_team_test, red_team = red_team_test)
 
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #Please comment the purpose of this function !!!!!!!!!!!!!!!!
