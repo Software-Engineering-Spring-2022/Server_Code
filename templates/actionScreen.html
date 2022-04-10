@@ -1,55 +1,63 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
 	<title>Action Screen</title>
-<style>
-
-
-    table{
+	<style>
+		table {
 			table-layout: fixed;
 			border-collapse: collapse;
 		}
-		.BLUE{
-	  position: relative;
-      width:33vw;
-      height:500px;
-			background-color:rgb(11, 37, 124);
+
+		.BLUE {
+			position: relative;
+			width: 33vw;
+			height: 500px;
+			background-color: rgb(11, 37, 124);
 			border: 5px solid rgb(40, 23, 196);
+			color: rgb(255, 255, 255);
 		}
-		.RED{
-	  position: relative;
-      width:33vw;
-      height:500px;
-			background-color:rgb(90, 12, 12);
+
+		.RED {
+			position: relative;
+			width: 33vw;
+			height: 500px;
+			background-color: rgb(90, 12, 12);
 			border: 5px solid rgb(196, 23, 23);
+			color: rgb(255, 255, 255);
 		}
-		.EVENT{
-      position: relative;
+
+		.EVENT {
+			position: relative;
 			display: flex;
 			justify-content: center;
-      width:1000px;
-      height:200px;           
-			background-color:rgb(34, 34, 34);
+			width: 1000px;
+			height: 200px;
+			background-color: rgb(34, 34, 34);
 			border: 5px solid rgb(53, 52, 52);
-      color: rgb(255, 255, 255);
+			color: rgb(255, 255, 255);
 		}
-		th, td {
+
+		th,
+		td {
 			padding: 10px;
 		}
-    .TOP{
+
+		.TOP {
 			position: relative;
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			text-align: center;
-  		min-height: 50vh;
+			min-height: 50vh;
 			font-weight: bold;
 		}
-		.BOTTOM{
+
+		.BOTTOM {
 			color: rgb(255, 255, 255);
 			width: 1000px;
-			height:700px;
+			height: 700px;
 			font-family: Arial;
 			display: flex;
 			justify-content: center;
@@ -58,7 +66,7 @@
 		}
 
 
-		body{
+		body {
 
 			background-color: rgb(53, 53, 53);
 			font-family: sans-serif;
@@ -73,178 +81,178 @@
 			background: #455b8d;
 			font-family: sans-serif;
 			font-weight: 100; */
-			}
+		}
 
-			h1{
+		h1 {
 			color: rgba(255, 81, 0, 0.589);
 			font-weight: 100;
 			font-size: 40px;
 			margin: 40px 0px 20px;
-			}
+		}
 
-			#clockdiv{
-				font-family: sans-serif;
-				color: rgb(19, 224, 0);
-				display: inline-block;
-				font-weight: 100;
-				text-align: center;
-				font-size: 30px;
-			}
+		#clockdiv {
+			font-family: sans-serif;
+			color: rgb(19, 224, 0);
+			display: inline-block;
+			font-weight: 100;
+			text-align: center;
+			font-size: 30px;
+		}
 
-			#clockdiv > div{
-				padding: 10px;
-				border-radius: 3px;
-				background: rgba(139, 139, 139, 0.589);
-				display: inline-block;
-			}
+		#clockdiv>div {
+			padding: 10px;
+			border-radius: 3px;
+			background: rgba(139, 139, 139, 0.589);
+			display: inline-block;
+		}
 
-			#clockdiv div > span{
-				padding: 15px;
-				border-radius: 3px;
-				background: rgba(16, 56, 18, 0.589);
-				display: inline-block;
-			}
+		#clockdiv div>span {
+			padding: 15px;
+			border-radius: 3px;
+			background: rgba(16, 56, 18, 0.589);
+			display: inline-block;
+		}
 
-			.smalltext{
-				padding-top: 5px;
-				font-size: 16px;
-			}
+		.smalltext {
+			padding-top: 5px;
+			font-size: 16px;
+		}
+	</style>
+	<script type="text/javascript">
+		var intervalID = setInterval(update_values, 1000);
+		function update_values() {
+			$.getJSON($SCRIPT_ROOT + '/_event_update',
 
-</style>
-<script type="text/javascript">
-var intervalID = setInterval(update_values, 1000);
-	function update_values() {
-		$.getJSON($SCRIPT_ROOT + '/_event_update',
+				function (data) {
+					$('#events').text(data.result);
+					console.log(data);
+				});
+		};
 
-		function(data){
-			$('#events').text(data.result);
-			console.log(data);
-		});
-	};
-	
-</script>
-{{ turbo() }}
+	</script>
+	{{ turbo() }}
 </head>
 
 <body>
 
-	<form action="{{url_for("plyr_scrn")}}" method="get" style="text-align:center">
-    <div class = "TOP">   
-			<div class = "BOTTOM">               
+	<form action="{{url_for(" plyr_scrn")}}" method="get" style="text-align:center">
+		<div class="TOP">
+			<div class="BOTTOM">
 				{% include "blue_team.html" %}
 
-			<h1>
-				<!-- Header -->
-			</h1>
-			<div id="clockdiv">
-			
-				<div id="timer">
-				</div>
-				<div>
-					<span class="minutes"></span>
-					<div class="smalltext">Minutes</div>
-				</div>
-				<div>
-					<span class="seconds"></span>
-					<div class="smalltext">Seconds</div>
-				</div>
-			</div>
-				
-			{% include "red_team.html" %}
+				<h1>
+					<!-- Header -->
+				</h1>
+				<div id="clockdiv">
 
-			{% include "events.html" %}
+					<div id="timer">
+					</div>
+					<div>
+						<span class="minutes"></span>
+						<div class="smalltext">Minutes</div>
+					</div>
+					<div>
+						<span class="seconds"></span>
+						<div class="smalltext">Seconds</div>
+					</div>
+				</div>
+
+				{% include "red_team.html" %}
+
+				{% include "events.html" %}
+			</div>
 		</div>
-	</div>
 
 	</form>
-	
+
 	<script type="text/javascript">
 
 		function getTimeRemaining(endtime) {
-		const total = Date.parse(endtime) - Date.parse(new Date());
-		const seconds = Math.floor((total / 1000) % 60);
-		const minutes = Math.floor((total / 1000 / 60) % 60);
-		
-		return {
-			total,
-			minutes,
-			seconds
-		};
+			const total = Date.parse(endtime) - Date.parse(new Date());
+			const seconds = Math.floor((total / 1000) % 60);
+			const minutes = Math.floor((total / 1000 / 60) % 60);
+
+			return {
+				total,
+				minutes,
+				seconds
+			};
 		}
 
 		function initializeClock(id, endtime) {
-		const clock = document.getElementById(id);
-		const minutesSpan = clock.querySelector('.minutes');
-		const secondsSpan = clock.querySelector('.seconds');
+			const clock = document.getElementById(id);
+			const minutesSpan = clock.querySelector('.minutes');
+			const secondsSpan = clock.querySelector('.seconds');
 
-		function updateClock() {
-			const t = getTimeRemaining(endtime);
+			function updateClock() {
+				const t = getTimeRemaining(endtime);
 
-			minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-			secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+				minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+				secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
 
-			if(t.total <= 30000){
-				document.getElementById("clockdiv").style.color = "yellow";
-			}			
-			
-			if(t.total <= 10000 & t.total > 3000){
-				document.getElementById("clockdiv").style.color = "orange";
+				if (t.total <= 30000) {
+					document.getElementById("clockdiv").style.color = "yellow";
+				}
+
+				if (t.total <= 10000 & t.total > 3000) {
+					document.getElementById("clockdiv").style.color = "orange";
+				}
+
+				if (t.total <= 3000 & t.total > 2500) {
+					document.getElementById("clockdiv").style.color = "red";
+				}
+				if (t.total <= 2500 & t.total > 2250) {
+					document.getElementById("clockdiv").style.color = "black";
+				}
+				if (t.total <= 2250 & t.total > 2000) {
+					document.getElementById("clockdiv").style.color = "white";
+				}
+
+				if (t.total <= 2000 & t.total > 1500) {
+					document.getElementById("clockdiv").style.color = "orange";
+				}
+				if (t.total <= 1500 & t.total > 1250) {
+					document.getElementById("clockdiv").style.color = "black";
+				}
+				if (t.total <= 1250 & t.total > 1000) {
+					document.getElementById("clockdiv").style.color = "white";
+				}
+
+				if (t.total <= 1000 & t.total > 0) {
+					document.getElementById("clockdiv").style.color = "red";
+				}
+				if (t.total <= 0) {
+					document.getElementById("clockdiv").style.color = "black";
+					clearInterval(timeinterval);
+				}
 			}
 
-			if(t.total <= 3000 & t.total > 2500){
-				document.getElementById("clockdiv").style.color = "red";
-			}
-			if(t.total <= 2500 & t.total > 2250){
-				document.getElementById("clockdiv").style.color = "black";
-			}
-			if(t.total <= 2250 & t.total > 2000){
-				document.getElementById("clockdiv").style.color = "white";
-			}
-
-			if(t.total <= 2000 & t.total > 1500){
-				document.getElementById("clockdiv").style.color = "orange";
-			}
-			if(t.total <= 1500 & t.total > 1250){
-				document.getElementById("clockdiv").style.color = "black";
-			}
-			if(t.total <= 1250 & t.total > 1000){
-				document.getElementById("clockdiv").style.color = "white";
-			}
-
-			if(t.total <= 1000 & t.total > 0){
-				document.getElementById("clockdiv").style.color = "red";
-			}
-			if (t.total <= 0) {
-				document.getElementById("clockdiv").style.color = "black";
-			clearInterval(timeinterval);
-			}
+			updateClock();
+			const timeinterval = setInterval(updateClock, 1000);
 		}
 
-		updateClock();
-		const timeinterval = setInterval(updateClock, 1000);
-		}
 
-		
-			var elem = document.getElementById('timer');
-			elem.style.color = "Red";
-			elem.style.fontSize = "x-large";
-			var timeLeft = 3;
-			var timerId = setInterval(countdown, 1000);
-			
-			function countdown() {
-			  if (timeLeft == 0) {
+		var elem = document.getElementById('timer');
+		elem.style.color = "Red";
+		elem.style.fontSize = "x-large";
+		var timeLeft = 3;
+		var timerId = setInterval(countdown, 1000);
+
+		function countdown() {
+			if (timeLeft == 0) {
 				elem.innerHTML = ' GO! '
 				document.getElementById('clockdiv');
-				const deadline = new Date(Date.parse(new Date()) +  0.05 * 60 * 1000);
+				const deadline = new Date(Date.parse(new Date()) + 0.05 * 60 * 1000);
 				initializeClock('clockdiv', deadline);
-			  } else {
+			} else {
 				elem.innerHTML = timeLeft;
 				timeLeft--;
-			  }
 			}
+		}
 		// attempt to use AJAX to update the page from the server? maybew?
-			
 
-        </script>
+
+	</script>
 </body>
+
 </html>
