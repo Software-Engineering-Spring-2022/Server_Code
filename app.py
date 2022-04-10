@@ -179,8 +179,7 @@ def edit():
 	#This thing isn't executing!!!!!!!!!!!!!!!
 	#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	if request.method == 'POST':
-		session.pop('blue_team') #this will reset the variables so that it will not carry over names it is not supposed to 
-		session.pop('red_team') 
+		
 
 		
 		#this method routes to the template for player entry
@@ -260,6 +259,7 @@ def edit():
 		#	https://stackoverflow.com/questions/27611216/how-to-pass-a-variable-between-flask-pages
 		#	https://tedboy.github.io/flask/quickstart/quickstart10.html?highlight=session
 		#
+
 		if len(codename_b) == 0: #checks to see if there is nothing in codename_b
 			session['blue_team'] = "no players" 
 			session['red_team'] = "no players"
@@ -288,13 +288,11 @@ def plyr_scrn():
 		blue_team_test = session.get('blue_team',list)
 	except:
 		red_team_test = "no players"
-		blue_team_test = "no players"	
+		blue_team_test = "no players"
 	
 	
 	print(red_team_test)
 	print(blue_team_test)
-	
-	#turboRed.push(turboRed.replace(render_template('red_team.html',red_team = red_team), 'RED'))
 	
 	return render_template("actionScreen.html", blue_team = blue_team_test, red_team = red_team_test)
 
