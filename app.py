@@ -47,6 +47,8 @@ app.config.update(CELERY_BROKER_URL='redis://localhost:6379', CELERY_RESULT_BACK
 app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
 celery = make_celery(app)
 turbo = Turbo(app)#Dynamic Page Updates
+#turboRed = Turbo(app)
+#turboBlue = Turbo(app)
 
 #Add a player to the database. This function does not appear to execute at all
 def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert players into the database table player
@@ -99,8 +101,11 @@ def listen_to_udp():
 		events[1]=events[0]
 		events[0]=msg
 		turbo.push(turbo.replace(render_template('events.html',events = events), 'EVENT'))
+		turbo.push(turbo.replace(render_template('red_team.html',red_team = ["a","b","c"]), 'RED'))
+		turbo.push(turbo.replace(render_template('blue_team.html',blue_team = ["a","b","c"]), 'BLUE'))
 
 #Traffic generator provided by Mr. Strother
+# It is embedded within the app.py to ease testing
 @celery.task()
 def traffic_generator():
 	bufferSize  = 1024
@@ -116,10 +121,14 @@ def traffic_generator():
 	# blue1 = input('Enter codename of blue player 1 ==> ')
 	# blue2 = input('Enter codename of blue player 2 ==> ')
 	
-	red1 = "John"
-	red2 = "James"
-	blue1 = "Matthew"
-	blue2 = "Ryan"
+	#red1 = "John"
+	#red2 = "James"
+	#blue1 = "Matthew"
+	#blue2 = "Ryan"
+	red1 = codename_r[0]
+	red2 = codename_r[1]
+	blue1 = codename_b[0]
+	blue2 = codename_b[1]
 
 	print('')
 	# counter = input('How many events do you want ==> ')
@@ -203,12 +212,6 @@ def edit():
 		first_name_r = data.getlist("player_first_r")
 		last_name_r = data.getlist("player_last_r")
 
-		#Testing that data was gotten
-		iD_b[0] = 1
-		print(iD_b[0])
-		print(iD_r[0])
-		print("I'm working James")
-
 		#using try catch in case the program breaks
 			
 		try:
@@ -275,10 +278,14 @@ def plyr_scrn():
 	red_team_test.append("")
 	blue_team_test.append("")
 	
+	red_team = ["a","b","c","d"]
+	
 	print(red_team_test)
 	print(blue_team_test)
 	
-	return render_template("actionScreen.html", red_team = red_team_test, blue_team = blue_team_test)
+	#turboRed.push(turboRed.replace(render_template('red_team.html',red_team = red_team), 'RED'))
+	
+	return render_template("actionScreen.html", blue_team = blue_team_test)
 
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #Please comment the purpose of this function !!!!!!!!!!!!!!!!
