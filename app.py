@@ -133,7 +133,7 @@ def traffic_generator():
 	red = session.get('red_team',list)
 
 	blue = session.get('blue_team',list)
-	
+	print(red)	
 
 	print('')
 	# counter = input('How many events do you want ==> ')
