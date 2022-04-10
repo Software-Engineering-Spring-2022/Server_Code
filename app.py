@@ -11,6 +11,7 @@ import json
 import threading
 
 os.system("pip install psycopg2-binary")
+os.system("pip install Flask-Session")
 os.system("pip install jquery") #used in the action screen html 
 os.system("pip install flask-celery")
 os.system("pip install redis")
@@ -237,6 +238,9 @@ def edit():
 			# turbo.push(turbo.replace(render_template("blue_team.html", blue_team = codename_b),'BLUE'))
 			red = codename_r
 			blue = codename_b
+
+
+		session['red_team'] = codename_r
 		print(red)
 	return render_template("playerEntry2.html") #needs to be edited so that the user input persists
 
@@ -254,8 +258,9 @@ def plyr_scrn():
 	t2 = threading.Thread(target = traffic_generator)
 	t2.start()
 	print("UDP server up and listening")
-#End of UDP code		
-	return render_template("actionScreen.html", red_team = red, blue_team = blue)
+#End of UDP code
+	red_team_test = session.get('red_team',None)		
+	return render_template("actionScreen.html", red_team = red_team_test, blue_team = blue)
 
 @app.route("/_event_update", methods = ["GET"]) #game action screen page	
 def event_update():
