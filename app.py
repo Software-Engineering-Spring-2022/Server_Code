@@ -1,3 +1,11 @@
+import os
+
+os.system("pip install psycopg2-binary")
+os.system("pip install Flask-Session")
+os.system("pip install jquery") #used in the action screen html 
+os.system("pip install flask-celery")
+os.system("pip install redis")
+
 
 from multiprocessing import Condition
 from flask import Flask, render_template, request, flash, redirect, url_for, jsonify, session
@@ -5,18 +13,14 @@ from flask import Flask, render_template, request, flash, redirect, url_for, jso
 from turbo_flask import Turbo#Used to keep the action screen dynamic
 from flask_session import Session
 
-import os
+
 import time
 import socket, select
 import random
 import json
 import threading
 
-os.system("pip install psycopg2-binary")
-os.system("pip install Flask-Session")
-os.system("pip install jquery") #used in the action screen html 
-os.system("pip install flask-celery")
-os.system("pip install redis")
+
 from celery import Celery
 import psycopg2
 
