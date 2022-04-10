@@ -130,9 +130,9 @@ def traffic_generator():
 	# red2 = "diane"
 	# blue1 = "Matthew"
 	# blue2 = "Ryan"
-	red = session.get('red_team',list)
+	red = session.get('red_team',str)
 
-	blue = session.get('blue_team',list)
+	blue = session.get('blue_team',str)
 	print(red)	
 
 	print('')
@@ -261,7 +261,8 @@ def edit():
 		#	https://stackoverflow.com/questions/27611216/how-to-pass-a-variable-between-flask-pages
 		#	https://tedboy.github.io/flask/quickstart/quickstart10.html?highlight=session
 		#
-
+		session.pop('blue_team')
+		session.pop('red_team')
 		if len(codename_b) == 0: #checks to see if there is nothing in codename_b
 			session['blue_team'] = "no players" 
 			session['red_team'] = "no players"
