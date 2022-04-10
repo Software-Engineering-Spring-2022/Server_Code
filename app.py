@@ -95,8 +95,8 @@ def listen_to_udp():
 		trafficEvents = UDPServerSocket.recvfrom(bufferSize)
 		msg="{}".format(trafficEvents[0])
 		print(msg)
-		#events[4]=events[3]
-		#events[3]=events[2]
+		events[4]=events[3]
+		events[3]=events[2]
 		events[2]=events[1]
 		events[1]=events[0]
 		events[0]=msg
@@ -125,8 +125,8 @@ def traffic_generator():
 	blue = session.get('blue_team',list)
 
 
-	red1 = red[0]
-	red2 = red[1]
+	red1 = "jack"
+	red2 = "diane"
 	blue1 = "Matthew"
 	blue2 = "Ryan"
 	#red1 = session.get('red_team',str)
