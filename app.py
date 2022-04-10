@@ -252,7 +252,7 @@ def plyr_scrn():
 	t2.start()
 	print("UDP server up and listening")
 #End of UDP code		
-	return render_template("actionScreen.html", red_team = red, blue_team = blue,events = events)
+	return render_template("actionScreen.html")
 
 @app.route("/_event_update", methods = ["GET"]) #game action screen page	
 def event_update():
