@@ -27,8 +27,7 @@ bufferSize  = 1024
 i = 0
 # List to store events
 events = ["Start","","","",""]
-red = None
-blue = None
+
 
 def make_celery(app):
 	celery = Celery(app.import_name, backend=app.config['CELERY_RESULT_BACKEND'], broker=app.config['CELERY_BROKER_URL'])
@@ -154,11 +153,7 @@ def splash():
 @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
 def edit():
 	if request.method == 'POST':
-		global red
-		global blue
-
-		red = None #used to reset the variables in case they have a hold over
-		blue = None
+		
 		#this method routes to the template for player entry
 		#it will allow the user to input data in the text boxes provided 
 		#when the user presses submit it will send the data to app.py
@@ -233,22 +228,17 @@ def edit():
 		except:
 			print("cant push red team data, check code")
 		#running list of players in current game
-		if(codename_r[0] != ""):
-			# turbo.push(turbo.replace(render_template("red_team.html", red_team = codename_r),'RED'))		 
-			# turbo.push(turbo.replace(render_template("blue_team.html", blue_team = codename_b),'BLUE'))
-			red = codename_r
-			blue = codename_b
+		
 
 		session['blue_team'] = codename_b
 		session['red_team'] = codename_r
-		print(red)
+		
 	return render_template("playerEntry2.html") #needs to be edited so that the user input persists
 
 
 @app.route("/actionScreen", methods = ["GET"]) #game action screen page	
 def plyr_scrn():
-	global red
-	global blue
+	
 	
 #This is the code which starts the UDP server and traffic generator
 #It should be with the code that executes during the game
@@ -261,7 +251,7 @@ def plyr_scrn():
 #End of UDP code
 	red_team_test = session.get('red_team',str)	
 	blue_team_test = session.get('blue_team',str)	
-	print(blue_team_test)		
+			
 	return render_template("actionScreen.html", red_team = red_team_test, blue_team = blue_team_test)
 
 @app.route("/_event_update", methods = ["GET"]) #game action screen page	
