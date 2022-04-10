@@ -95,10 +95,11 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 
 #UDP Server
 def listen_to_udp():
+
+	time.sleep(30);
 	UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 	UDPServerSocket.bind((localIP, localPort))
 	
-	time.sleep(30);
 	
 	while (True):
 		trafficEvents = UDPServerSocket.recvfrom(bufferSize)
@@ -116,6 +117,7 @@ def listen_to_udp():
 # It is embedded within the app.py to ease testing
 def traffic_generator():
 	
+	time.sleep(30);
 	bufferSize  = 1024
 	serverAddressPort   = ("127.0.0.1", 7501)
 
@@ -145,7 +147,7 @@ def traffic_generator():
 	counter = 10
 	# Create datagram socket
 	UDPClientSocketTransmit = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-	time.sleep(30);
+	
 	# counter number of events, random player and order
 	i = 1
 	while i < int(counter):
