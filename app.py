@@ -99,7 +99,6 @@ def listen_to_udp():
 	UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 	UDPServerSocket.bind((localIP, localPort))
 	
-	time.sleep(30)
 	while (True):
 		trafficEvents = UDPServerSocket.recvfrom(bufferSize)
 		msg="{}".format(trafficEvents[0])
@@ -146,7 +145,6 @@ def traffic_generator():
 	counter = 10
 	# Create datagram socket
 	UDPClientSocketTransmit = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-	time.sleep(30)
 	# counter number of events, random player and order
 	i = 1
 	while i < int(counter):
@@ -285,8 +283,8 @@ def plyr_scrn():
 #It should be with the code that executes during the game
 #If that code moves somewhere, please move this too
 	t1 = threading.Thread(target = listen_to_udp)
-	t1.start()
 	t2 = threading.Thread(target = traffic_generator)
+	t1.start()
 	t2.start()
 	print("UDP server up and listening")
 #End of UDP code
