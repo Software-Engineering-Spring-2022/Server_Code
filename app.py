@@ -152,96 +152,99 @@ def splash():
 
 @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
 def edit():
-	global red
-	global blue
+	if request.method = "POST":
+		global red
+		global blue
 
-	red = []
-	blue = []
-	#this method routes to the template for player entry
-	#it will allow the user to input data in the text boxes provided 
-	#when the user presses submit it will send the data to app.py
-	#the data will then be entered in a for loop sequentially view the 
-	#DB teams insert_player method
+		red = []
+		blue = []
+		#this method routes to the template for player entry
+		#it will allow the user to input data in the text boxes provided 
+		#when the user presses submit it will send the data to app.py
+		#the data will then be entered in a for loop sequentially view the 
+		#DB teams insert_player method
 
-	#data lists instantiated
+		#data lists instantiated
 
-	#Blue Team
-	iD_b = []
-	codename_b=[]
-	first_name_b=[]
-	last_name_b=[]
+		#Blue Team
+		iD_b = []
+		codename_b=[]
+		first_name_b=[]
+		last_name_b=[]
 
-	#Red Team
-	iD_r = []
-	codename_r=[]
-	first_name_r=[]
-	last_name_r=[]
+		#Red Team
+		iD_r = []
+		codename_r=[]
+		first_name_r=[]
+		last_name_r=[]
 
-	#request data from the 'edit' form (check <form action="{{ url_for("edit")}}" ... in the html)
-	data = request.form
+		#request data from the 'edit' form (check <form action="{{ url_for("edit")}}" ... in the html)
+		data = request.form
 
-	#Blue Team
-	iD_b = data.getlist("player_id_b")#the .getlist("name") method is from the flask module. changes the dict to an indexable list
-	codename_b = data.getlist("player_codename_b")
-	first_name_b = data.getlist("player_first_b")
-	last_name_b = data.getlist("player_last_b")
+		#Blue Team
+		iD_b = data.getlist("player_id_b")#the .getlist("name") method is from the flask module. changes the dict to an indexable list
+		codename_b = data.getlist("player_codename_b")
+		first_name_b = data.getlist("player_first_b")
+		last_name_b = data.getlist("player_last_b")
 
-	
-
-	#Red Team
-	iD_r = data.getlist("player_id_r")#the .getlist("name") method is from the flask module. changes the dict to an indexable list
-	codename_r = data.getlist("player_codename_r")
-	first_name_r = data.getlist("player_first_r")
-	last_name_r = data.getlist("player_last_r")
 		
 
-	#using try catch in case the program breaks
-		
-	try:
-		
-		for x in range(len(iD_b)): #there always be as many ID's as players				
-			if(iD_b[x] == ''):
-				print("Skipping this line because the entire line was not filled out.")
-			elif(first_name_b[x] == ''):
-				print("Skipping this line because the entire line was not filled out.")
-			elif(last_name_b[x] == ''):
-				print("Skipping this line because the entire line was not filled out.")
-			elif(codename_b[x] == ''):
-				print("Skipping this line because the entire line was not filled out.")
-			else:
-				insert_player(iD_b[x],first_name_b[x],last_name_b[x],codename_b[x])
-			#we need to filter blank inputs so as to not fill the database with empty entries
-	except:
-		print("cant push blue team data, check code")
-		
-	try:
-		
-		for x in range(len(iD_r)): #there always be as many ID's as players				
-			if(iD_r[x] == ''):
-				print("Skipping this line because the entire line was not filled out.")
-			elif(first_name_r[x] == ''):
-				print("Skipping this line because the entire line was not filled out.")
-			elif(last_name_r[x] == ''):
-				print("Skipping this line because the entire line was not filled out.")
-			elif(codename_r[x] == ''):
-				print("Skipping this line because the entire line was not filled out.")
-			else:
-				insert_player(iD_r[x],first_name_r[x],last_name_r[x],codename_r[x])
-			#we need to filter blank inputs so as to not fill the database with empty entries
-	except:
-		print("cant push red team data, check code")
-	#running list of players in current game
-	print(codename_r)
-	turbo.push(turbo.replace(render_template("red_team.html", red_team = codename_r),'RED'))		 
-	turbo.push(turbo.replace(render_template("blue_team.html", blue_team = codename_b),'BLUE'))
-	
+		#Red Team
+		iD_r = data.getlist("player_id_r")#the .getlist("name") method is from the flask module. changes the dict to an indexable list
+		codename_r = data.getlist("player_codename_r")
+		first_name_r = data.getlist("player_first_r")
+		last_name_r = data.getlist("player_last_r")
+			
+
+		#using try catch in case the program breaks
+			
+		try:
+			
+			for x in range(len(iD_b)): #there always be as many ID's as players				
+				if(iD_b[x] == ''):
+					print("Skipping this line because the entire line was not filled out.")
+				elif(first_name_b[x] == ''):
+					print("Skipping this line because the entire line was not filled out.")
+				elif(last_name_b[x] == ''):
+					print("Skipping this line because the entire line was not filled out.")
+				elif(codename_b[x] == ''):
+					print("Skipping this line because the entire line was not filled out.")
+				else:
+					insert_player(iD_b[x],first_name_b[x],last_name_b[x],codename_b[x])
+				#we need to filter blank inputs so as to not fill the database with empty entries
+		except:
+			print("cant push blue team data, check code")
+			
+		try:
+			
+			for x in range(len(iD_r)): #there always be as many ID's as players				
+				if(iD_r[x] == ''):
+					print("Skipping this line because the entire line was not filled out.")
+				elif(first_name_r[x] == ''):
+					print("Skipping this line because the entire line was not filled out.")
+				elif(last_name_r[x] == ''):
+					print("Skipping this line because the entire line was not filled out.")
+				elif(codename_r[x] == ''):
+					print("Skipping this line because the entire line was not filled out.")
+				else:
+					insert_player(iD_r[x],first_name_r[x],last_name_r[x],codename_r[x])
+				#we need to filter blank inputs so as to not fill the database with empty entries
+		except:
+			print("cant push red team data, check code")
+		#running list of players in current game
+		if(codename_r[0] != ""):
+			turbo.push(turbo.replace(render_template("red_team.html", red_team = codename_r),'RED'))		 
+			turbo.push(turbo.replace(render_template("blue_team.html", blue_team = codename_b),'BLUE'))
+			red = codename_r
+			blue = codename_b
+		print(red)
 	return render_template("playerEntry2.html") #needs to be edited so that the user input persists
 
 
 @app.route("/actionScreen", methods = ["GET"]) #game action screen page	
 def plyr_scrn():
-	# global red
-	# global blue
+	global red
+	global blue
 	
 #This is the code which starts the UDP server and traffic generator
 #It should be with the code that executes during the game
@@ -252,7 +255,7 @@ def plyr_scrn():
 	t2.start()
 	print("UDP server up and listening")
 #End of UDP code		
-	return render_template("actionScreen.html")
+	return render_template("actionScreen.html", red_team = red, blue_team = blue)
 
 @app.route("/_event_update", methods = ["GET"]) #game action screen page	
 def event_update():
