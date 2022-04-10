@@ -55,9 +55,9 @@ app.config.update(CELERY_BROKER_URL='redis://localhost:6379', CELERY_RESULT_BACK
 app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
 celery = make_celery(app)
 turbo = Turbo(app)#Dynamic Page Updates
-
 Session(app)
 app.config["SESSION_PERMANENT"] = False
+app.config['SESSION_TYPE'] = 'filesystem'
 #turboRed = Turbo(app)
 #turboBlue = Turbo(app)
 
