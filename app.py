@@ -26,8 +26,8 @@ bufferSize  = 1024
 i = 0
 # List to store events
 events = ["Start","","","",""]
-red = []
-blue = []
+red = None
+blue = None
 
 def make_celery(app):
 	celery = Celery(app.import_name, backend=app.config['CELERY_RESULT_BACKEND'], broker=app.config['CELERY_BROKER_URL'])
@@ -156,8 +156,8 @@ def edit():
 		global red
 		global blue
 
-		red = [] #used to reset the variables in case they have a hold over
-		blue = []
+		red = None #used to reset the variables in case they have a hold over
+		blue = None
 		#this method routes to the template for player entry
 		#it will allow the user to input data in the text boxes provided 
 		#when the user presses submit it will send the data to app.py
