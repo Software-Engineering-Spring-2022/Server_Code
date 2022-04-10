@@ -51,9 +51,7 @@ def make_celery(app):
 
 #Setup of various packages
 app = Flask(__name__)#makes a class for the app or program we wish to run
-# app.config.update(CELERY_BROKER_URL='redis://localhost:6379', CELERY_RESULT_BACKEND='redis://localhost:6379')
 app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
-# celery = make_celery(app)
 turbo = Turbo(app)#Dynamic Page Updates
 
 
@@ -107,14 +105,12 @@ def listen_to_udp():
 		trafficEvents = UDPServerSocket.recvfrom(bufferSize)
 		msg="{}".format(trafficEvents[0])
 		print(msg)
-		# events[4]=events[3]
-		# events[3]=events[2]
 		events[2]=events[1]
 		events[1]=events[0]
 		events[0]=msg
 		turbo.push(turbo.replace(render_template('events.html',events = events), 'EVENT'))
-		turbo.push(turbo.replace(render_template('red_team.html',red_team = session.get('red_team',list)), 'RED'))
-		turbo.push(turbo.replace(render_template('blue_team.html',blue_team = session.get('blue_team',list)), 'BLUE'))
+		# turbo.push(turbo.replace(render_template('red_team.html',red_team = session.get('red_team',list)), 'RED'))
+		# turbo.push(turbo.replace(render_template('blue_team.html',blue_team = session.get('blue_team',list)), 'BLUE'))
 
 
 #Traffic generator provided by Mr. Strother
