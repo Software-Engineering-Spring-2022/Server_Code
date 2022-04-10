@@ -239,7 +239,7 @@ def edit():
 			red = codename_r
 			blue = codename_b
 
-
+		session['blue_team'] = codename_b
 		session['red_team'] = codename_r
 		print(red)
 	return render_template("playerEntry2.html") #needs to be edited so that the user input persists
@@ -259,8 +259,10 @@ def plyr_scrn():
 	t2.start()
 	print("UDP server up and listening")
 #End of UDP code
-	red_team_test = session.get('red_team',None)		
-	return render_template("actionScreen.html", red_team = red_team_test, blue_team = blue)
+	red_team_test = session.get('red_team',str)	
+	blue_team_test = session.get('blue_team',str)	
+	print(blue_team_test)		
+	return render_template("actionScreen.html", red_team = red_team_test, blue_team = blue_team_test)
 
 @app.route("/_event_update", methods = ["GET"]) #game action screen page	
 def event_update():
