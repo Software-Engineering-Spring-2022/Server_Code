@@ -37,7 +37,7 @@ i = 0
 
 events = ["Start","",""]
 
-#Threading utility. I believe this is superfluous in the current implementation
+# Threading utility. I believe this is superfluous in the current implementation
 def make_celery(app):
 	celery = Celery(app.import_name, backend=app.config['CELERY_RESULT_BACKEND'], broker=app.config['CELERY_BROKER_URL'])
 	celery.conf.update(app.config)
@@ -53,7 +53,7 @@ def make_celery(app):
 app = Flask(__name__)#makes a class for the app or program we wish to run
 app.config.update(CELERY_BROKER_URL='redis://localhost:6379', CELERY_RESULT_BACKEND='redis://localhost:6379')
 app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
-celery = make_celery(app)
+# celery = make_celery(app)
 turbo = Turbo(app)#Dynamic Page Updates
 
 
