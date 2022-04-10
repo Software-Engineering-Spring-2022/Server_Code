@@ -105,6 +105,7 @@ def listen_to_udp():
 	UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 	UDPServerSocket.bind((localIP, localPort))
 	
+	time.sleep(30)
 	while (True):
 		trafficEvents = UDPServerSocket.recvfrom(bufferSize)
 		msg="{}".format(trafficEvents[0])
@@ -122,10 +123,10 @@ def listen_to_udp():
 # It is embedded within the app.py to ease testing
 @celery.task()
 def traffic_generator():
-	time.sleep(30)
+	
 	bufferSize  = 1024
 	serverAddressPort   = ("127.0.0.1", 7501)
-
+	time.sleep(30)
 
 	print('this program will generate some test traffic for 2 players on the red ')
 	print('team as well as 2 players on the blue team')
