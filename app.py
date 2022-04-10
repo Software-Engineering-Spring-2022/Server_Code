@@ -26,7 +26,7 @@ bufferSize  = 1024
 i = 0
 # List to store events
 events = ["Start","","","",""]
-red = [0,0]
+red = []
 blue = []
 
 def make_celery(app):
@@ -156,7 +156,7 @@ def edit():
 		global red
 		global blue
 
-		red = []
+		red = [] #used to reset the variables in case they have a hold over
 		blue = []
 		#this method routes to the template for player entry
 		#it will allow the user to input data in the text boxes provided 
