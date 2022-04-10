@@ -231,6 +231,7 @@ def edit():
 	except:
 		print("cant push red team data, check code")
 	#running list of players in current game
+	print(codename_r)
 	turbo.push(turbo.replace(render_template("red_team.html", red_team = codename_r),'RED'))		 
 	turbo.push(turbo.replace(render_template("blue_team.html", blue_team = codename_b),'BLUE'))
 	
@@ -239,8 +240,8 @@ def edit():
 
 @app.route("/actionScreen", methods = ["GET"]) #game action screen page	
 def plyr_scrn():
-	global red
-	global blue
+	# global red
+	# global blue
 	
 #This is the code which starts the UDP server and traffic generator
 #It should be with the code that executes during the game
