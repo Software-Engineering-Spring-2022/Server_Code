@@ -249,9 +249,18 @@ def plyr_scrn():
 	t2.start()
 	print("UDP server up and listening")
 #End of UDP code
-	red_team_test = session.get('red_team',str)	
-	blue_team_test = session.get('blue_team',str)	
-			
+	red_team_test = [""]
+	blue_team_test = [""]
+	
+	red_team_test.append(session.get('red_team',str))
+	blue_team_test.append(session.get('blue_team',str))
+	
+	red_team_test.append("")
+	blue_team_test.append("")
+	
+	print(red_team_test)
+	print(blue_team_test)
+	
 	return render_template("actionScreen.html", red_team = red_team_test, blue_team = blue_team_test)
 
 @app.route("/_event_update", methods = ["GET"]) #game action screen page	
