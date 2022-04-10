@@ -55,10 +55,8 @@ app.config.update(CELERY_BROKER_URL='redis://localhost:6379', CELERY_RESULT_BACK
 app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
 celery = make_celery(app)
 turbo = Turbo(app)#Dynamic Page Updates
-SECRECT_KEY = app.secret_key
-Session(app)
-app.config["SESSION_PERMANENT"] = False
-app.config['SESSION_TYPE'] = 'filesystem'
+
+
 
 
 #turboRed = Turbo(app)
@@ -139,13 +137,13 @@ def traffic_generator():
 
 
 
-	# red1 = "jack"
-	# red2 = "diane"
-	# blue1 = "Matthew"
-	# blue2 = "Ryan"
-	red = session.get('red_team',list)
-	blue = session.get('blue_team',list)
-	print(red)	
+	red1 = "jack"
+	red2 = "diane"
+	blue1 = "Matthew"
+	blue2 = "Ryan"
+	# red = session.get('red_team',list)
+	# blue = session.get('blue_team',list)
+	# print(red)	
 
 	print('')
 	# counter = input('How many events do you want ==> ')
@@ -157,14 +155,14 @@ def traffic_generator():
 	i = 1
 	while i < int(counter):
 		if random.randint(1,2) == 1:
-			redplayer = red[0]
+			redplayer = red1
 		else:
-			redplayer = red[1]
+			redplayer = red2
 
 		if random.randint(1,2) == 1:
-			blueplayer = blue[0]
+			blueplayer = blue1
 		else: 
-			blueplayer = blue[1]	
+			blueplayer = blue2	
 
 		if random.randint(1,2) == 1:
 			message = redplayer + " hit " + blueplayer
@@ -273,8 +271,7 @@ def edit():
 		#	https://stackoverflow.com/questions/27611216/how-to-pass-a-variable-between-flask-pages
 		#	https://tedboy.github.io/flask/quickstart/quickstart10.html?highlight=session
 		#
-		session.pop('blue_team')
-		session.pop('red_team')
+		
 		if len(codename_b) == 0: #checks to see if there is nothing in codename_b
 			session['blue_team'] = "no players" 
 			session['red_team'] = "no players"
