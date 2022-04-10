@@ -26,7 +26,7 @@ bufferSize  = 1024
 i = 0
 # List to store events
 events = ["Start","","","",""]
-red = []
+red = [0,0]
 blue = []
 
 def make_celery(app):
@@ -231,8 +231,8 @@ def edit():
 	except:
 		print("cant push red team data, check code")
 	#running list of players in current game
-	turbo.push(turbo.replace(render_template("red_team.html", red_team = codename_r),"RED"))		 
-	turbo.push(turbo.replace(render_template("blue_team.html", blue_team = codename_b),"BLUE"))
+	turbo.push(turbo.replace(render_template("red_team.html", red_team = codename_r),'RED'))		 
+	turbo.push(turbo.replace(render_template("blue_team.html", blue_team = codename_b),'BLUE'))
 	red = codename_r #need this so that the players load correctly?
 	blue = codename_b
 	return render_template("playerEntry2.html") #needs to be edited so that the user input persists
