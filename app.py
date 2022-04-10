@@ -179,6 +179,9 @@ def edit():
 	#This thing isn't executing!!!!!!!!!!!!!!!
 	#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	if request.method == 'POST':
+		session.pop('blue_team') #this will reset the variables so that it will not carry over names it is not supposed to 
+		session.pop('red_team') 
+
 		
 		#this method routes to the template for player entry
 		#it will allow the user to input data in the text boxes provided 
@@ -257,7 +260,7 @@ def edit():
 		#	https://stackoverflow.com/questions/27611216/how-to-pass-a-variable-between-flask-pages
 		#	https://tedboy.github.io/flask/quickstart/quickstart10.html?highlight=session
 		#
-		if len(codename_b) == 0:
+		if len(codename_b) == 0: #checks to see if there is nothing in codename_b
 			session['blue_team'] = "no players" 
 			session['red_team'] = "no players"
 		else:
