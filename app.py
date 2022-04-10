@@ -283,9 +283,12 @@ def plyr_scrn():
 	print("UDP server up and listening")
 #End of UDP code
 	
-	
-	red_team_test = session.get('red_team',list)
-	blue_team_test = session.get('blue_team',list)
+	try:
+		red_team_test = session.get('red_team',list)
+		blue_team_test = session.get('blue_team',list)
+	except:
+		red_team_test = "no players"
+		blue_team_test = "no players"	
 	
 	
 	print(red_team_test)
