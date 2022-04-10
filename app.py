@@ -108,6 +108,7 @@ def listen_to_udp():
 # It is embedded within the app.py to ease testing
 @celery.task()
 def traffic_generator():
+	time.sleep(30)
 	bufferSize  = 1024
 	serverAddressPort   = ("127.0.0.1", 7501)
 
