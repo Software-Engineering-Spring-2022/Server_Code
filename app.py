@@ -102,7 +102,7 @@ def listen_to_udp():
 	UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 	UDPServerSocket.bind((localIP, localPort))
 	
-	# time.sleep(30)
+	time.sleep(30)
 	while (True):
 		trafficEvents = UDPServerSocket.recvfrom(bufferSize)
 		msg="{}".format(trafficEvents[0])
@@ -113,8 +113,8 @@ def listen_to_udp():
 		events[1]=events[0]
 		events[0]=msg
 		turbo.push(turbo.replace(render_template('events.html',events = events), 'EVENT'))
-		# turbo.push(turbo.replace(render_template('red_team.html',red_team = session.get('red_team',list)), 'RED'))
-		# turbo.push(turbo.replace(render_template('blue_team.html',blue_team = session.get('blue_team',list)), 'BLUE'))
+		turbo.push(turbo.replace(render_template('red_team.html',red_team = session.get('red_team',list)), 'RED'))
+		turbo.push(turbo.replace(render_template('blue_team.html',blue_team = session.get('blue_team',list)), 'BLUE'))
 
 
 #Traffic generator provided by Mr. Strother
