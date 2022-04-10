@@ -152,7 +152,7 @@ def splash():
 
 @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
 def edit():
-	if request.method = "POST":
+	if request.method == 'POST':
 		global red
 		global blue
 
