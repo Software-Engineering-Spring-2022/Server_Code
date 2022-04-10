@@ -3,7 +3,7 @@ from multiprocessing import Condition
 from flask import Flask, render_template, request, flash, redirect, url_for, jsonify, session
 # from flask_sockets import Sockets
 from turbo_flask import Turbo#Used to keep the action screen dynamic
-from Flask_Session import Session
+from flask_session import Session
 
 import os
 import time
@@ -30,7 +30,7 @@ bufferSize  = 1024
 i = 0
 
 # List to store events
-Session(app)
+
 events = ["Start","",""]
 
 #Threading utility. I believe this is superfluous in the current implementation
