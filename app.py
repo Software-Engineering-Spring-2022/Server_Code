@@ -27,7 +27,7 @@ localPort   = 7501
 bufferSize  = 1024
 i = 0
 # List to store events
-events = ["Start","","","",""]
+events = ["Start","",""]
 
 #Threading utility. I believe this is superfluous in the current implementation
 def make_celery(app):
@@ -87,8 +87,8 @@ def listen_to_udp():
 		trafficEvents = UDPServerSocket.recvfrom(bufferSize)
 		msg="{}".format(trafficEvents[0])
 		print(msg)
-		events[4]=events[3]
-		events[3]=events[2]
+		#events[4]=events[3]
+		#events[3]=events[2]
 		events[2]=events[1]
 		events[1]=events[0]
 		events[0]=msg
