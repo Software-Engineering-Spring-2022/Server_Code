@@ -1,4 +1,5 @@
 
+from multiprocessing import Condition
 from flask import Flask, render_template, request, flash, redirect, url_for, jsonify, session
 # from flask_sockets import Sockets
 from turbo_flask import Turbo#Used to keep the action screen dynamic
@@ -256,8 +257,12 @@ def edit():
 		#	https://stackoverflow.com/questions/27611216/how-to-pass-a-variable-between-flask-pages
 		#	https://tedboy.github.io/flask/quickstart/quickstart10.html?highlight=session
 		#
-		session['blue_team'] = codename_b 
-		session['red_team'] = codename_r
+		if len(codename_b) == 0:
+			session['blue_team'] = "no players" 
+			session['red_team'] = "no players"
+		else:
+			session['blue_team'] = codename_b 
+			session['red_team'] = codename_r
 		
 	return render_template("playerEntry2.html") #needs to be edited so that the user input persists
 
