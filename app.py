@@ -118,7 +118,7 @@ def traffic_generator():
 	
 	bufferSize  = 1024
 	serverAddressPort   = ("127.0.0.1", 7501)
-	time.sleep(30)
+
 
 	print('this program will generate some test traffic for 2 players on the red ')
 	print('team as well as 2 players on the blue team')
@@ -145,7 +145,7 @@ def traffic_generator():
 	counter = 10
 	# Create datagram socket
 	UDPClientSocketTransmit = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
-
+	time.sleep(30)
 	# counter number of events, random player and order
 	i = 1
 	while i < int(counter):
