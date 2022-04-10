@@ -9,7 +9,7 @@ os.system("pip install redis")
 
 from multiprocessing import Condition
 from flask import Flask, render_template, request, flash, redirect, url_for, jsonify, session
-# from flask_sockets import Sockets
+from flask_sockets import Sockets
 from turbo_flask import Turbo#Used to keep the action screen dynamic
 from flask_session import Session
 
@@ -99,6 +99,8 @@ def listen_to_udp():
 	UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 	UDPServerSocket.bind((localIP, localPort))
 	
+	time.sleep(30);
+	
 	while (True):
 		trafficEvents = UDPServerSocket.recvfrom(bufferSize)
 		msg="{}".format(trafficEvents[0])
@@ -144,6 +146,7 @@ def traffic_generator():
 	counter = 10
 	# Create datagram socket
 	UDPClientSocketTransmit = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+	time.sleep(30);
 	# counter number of events, random player and order
 	i = 1
 	while i < int(counter):
