@@ -60,7 +60,7 @@
 
 		body{
 
-			background-color: rgb(153, 139, 139);
+			background-color: rgb(53, 53, 53);
 			font-family: sans-serif;
 			display: grid;
 			grid-template-rows: 1fr 1fr 1fr;
@@ -136,26 +136,28 @@ var intervalID = setInterval(update_values, 1000);
 			<h1>
 				<!-- Header -->
 			</h1>
-				<div id="clockdiv">
-				
-					<div id="timer">
-					</div>
-					<div>
-						<span class="minutes"></span>
-						<div class="smalltext">Minutes</div>
-					</div>
-					<div>
-						<span class="seconds"></span>
-						<div class="smalltext">Seconds</div>
-					</div>
+			<div id="clockdiv">
+			
+				<div id="timer">
 				</div>
+				<div>
+					<span class="minutes"></span>
+					<div class="smalltext">Minutes</div>
+				</div>
+				<div>
+					<span class="seconds"></span>
+					<div class="smalltext">Seconds</div>
+				</div>
+			</div>
 				
-				{% include "red_team.html" %}
+			{% include "red_team.html" %}
 
-				{% include "events.html" %}
-	
+			{% include "events.html" %}
+		</div>
+	</div>
+
 	</form>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	
 	<script type="text/javascript">
 
 		function getTimeRemaining(endtime) {
@@ -232,7 +234,7 @@ var intervalID = setInterval(update_values, 1000);
 			function countdown() {
 			  if (timeLeft == 0) {
 				elem.innerHTML = ' GO! '
-				//document.getElementById('clockdiv');
+				document.getElementById('clockdiv');
 				const deadline = new Date(Date.parse(new Date()) +  0.05 * 60 * 1000);
 				initializeClock('clockdiv', deadline);
 			  } else {

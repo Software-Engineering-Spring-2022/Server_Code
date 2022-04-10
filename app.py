@@ -16,6 +16,7 @@ os.system("pip install flask-celery")
 os.system("pip install redis")
 from celery import Celery
 import psycopg2
+
 # -- sample program from this video <https://youtu.be/6plVs_ytIH8>
 #  --specific code was created by Matt and james.
 
@@ -232,7 +233,8 @@ def edit():
 	#running list of players in current game
 	turbo.push(turbo.replace(render_template("red_team.html", red_team = codename_r),'RED'))		 
 	turbo.push(turbo.replace(render_template("blue_team.html", blue_team = codename_b),'BLUE'))
-
+	red = codename_r
+	blue = codename_b
 	return render_template("playerEntry2.html") #needs to be edited so that the user input persists
 
 
