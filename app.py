@@ -125,10 +125,10 @@ def traffic_generator():
 	#red2 = "James"
 	#blue1 = "Matthew"
 	#blue2 = "Ryan"
-	red1 = session['red_team']
-	red2 = session['red_team']
-	blue1 = session['blue_team']
-	blue2 = session['blue_team']
+	red1.append(session.get('red_team',str))
+	red2.append(session.get('red_team',str))
+	blue1.append(session.get('blue_team',str))
+	blue2.append(session.get('blue_team',str))
 
 	print('')
 	# counter = input('How many events do you want ==> ')
