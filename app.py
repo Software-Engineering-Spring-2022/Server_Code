@@ -3,6 +3,7 @@ from multiprocessing import Condition
 from flask import Flask, render_template, request, flash, redirect, url_for, jsonify, session
 # from flask_sockets import Sockets
 from turbo_flask import Turbo#Used to keep the action screen dynamic
+from flask_session import Session
 
 import os
 import time
@@ -27,7 +28,9 @@ localIP     = "127.0.0.1"
 localPort   = 7501
 bufferSize  = 1024
 i = 0
+
 # List to store events
+Session(app)
 events = ["Start","",""]
 
 #Threading utility. I believe this is superfluous in the current implementation
@@ -48,6 +51,8 @@ app.config.update(CELERY_BROKER_URL='redis://localhost:6379', CELERY_RESULT_BACK
 app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
 celery = make_celery(app)
 turbo = Turbo(app)#Dynamic Page Updates
+Session(app)
+app.config["SESSION_PERMANENT"] = False
 #turboRed = Turbo(app)
 #turboBlue = Turbo(app)
 
