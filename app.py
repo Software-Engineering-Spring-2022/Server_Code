@@ -233,8 +233,8 @@ def edit():
 			print("cant push red team data, check code")
 		#running list of players in current game
 		if(codename_r[0] != ""):
-			turbo.push(turbo.replace(render_template("red_team.html", red_team = codename_r),'RED'))		 
-			turbo.push(turbo.replace(render_template("blue_team.html", blue_team = codename_b),'BLUE'))
+			# turbo.push(turbo.replace(render_template("red_team.html", red_team = codename_r),'RED'))		 
+			# turbo.push(turbo.replace(render_template("blue_team.html", blue_team = codename_b),'BLUE'))
 			red = codename_r
 			blue = codename_b
 		print(red)
