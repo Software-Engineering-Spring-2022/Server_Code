@@ -44,16 +44,22 @@
 			padding: 10px;
 		}
 
+		/*
 		.TOP {
 			position: relative;
 			display: flex;
+			
 			justify-content: center;
+			
 			align-items: center;
+			
 			text-align: center;
 			min-height: 50vh;
 			font-weight: bold;
 		}
+		*/
 
+		
 		.BOTTOM {
 			color: rgb(255, 255, 255);
 			width: 1000px;
@@ -64,6 +70,7 @@
 			align-items: center;
 			text-align: center;
 		}
+		
 
 
 		body {
@@ -138,7 +145,7 @@
 <body>
 
 	<form action="{{url_for("plyr_scrn")}}" method="get" style="text-align:center">
-		<div class="TOP">
+		
 			<div class="BOTTOM">
 				{% include "blue_team.html" %}
 
@@ -163,9 +170,9 @@
 				<h1>
 					<!-- Header -->
 				</h1>
-				{% include "events.html" %}
+				
 			</div>
-		</div>
+			{% include "events.html" %}
 
 	</form>
 
