@@ -21,7 +21,6 @@ import json
 import threading
 
 
-from celery import Celery
 import psycopg2
 
 # -- sample program from this video <https://youtu.be/6plVs_ytIH8>
