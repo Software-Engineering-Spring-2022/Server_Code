@@ -131,7 +131,6 @@ def traffic_generator():
 	# blue1 = "Matthew"
 	# blue2 = "Ryan"
 	red = session.get('red_team',str)
-
 	blue = session.get('blue_team',str)
 	print(red)	
 
@@ -287,8 +286,8 @@ def plyr_scrn():
 #End of UDP code
 	
 	try:
-		red_team_test = session.get('red_team',list)
-		blue_team_test = session.get('blue_team',list)
+		red_team_test = session.get('red_team',str)
+		blue_team_test = session.get('blue_team',str)
 	except:
 		red_team_test = "no players"
 		blue_team_test = "no players"
