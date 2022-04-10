@@ -256,18 +256,14 @@
 				initializeClock('clockdiv', deadline);
 				timeLeft = -1;
 			} 
-			<!-- else if (timeLeft > 0) { -->
-				<!-- elem.innerHTML = timeLeft; -->
-				<!-- timeLeft--; -->
-			<!-- } -->
-			else {
+			else if (timeLeft > 0) {
 				elem.innerHTML = timeLeft;
 				timeLeft--;
 			}
-			<!-- else { -->
-				<!-- <!-- minutesSpan.innerHTML = '0'; --> -->
-				<!-- <!-- secondsSpan.innerHTML = '0'; --> -->
-			<!-- } -->
+			else {
+				minutesSpan.innerHTML = '0';
+				secondsSpan.innerHTML = '0';
+			}
 		}
 		// attempt to use AJAX to update the page from the server? maybew?
 	</script>
