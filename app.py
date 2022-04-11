@@ -168,6 +168,7 @@ def traffic_generator():
 			message = blueplayer + " hit " + redplayer
 			
 
+		message = random.randint(1,2) + ":"+random.randint(1,2)
 
 		print(message)
 		i+=1;
