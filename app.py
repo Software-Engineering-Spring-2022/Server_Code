@@ -44,6 +44,12 @@ class Player:
 		return self.Codename
 	def getTeam(self):
 		return self.team
+	def getScore(self):
+		return self.Score
+	def getID(self):
+		return self.ID
+	def score(self):
+		self.Score = self.Score+1
 
 #An array of player objects
 Players = []
@@ -131,19 +137,21 @@ def listen_to_udp():
 		events[1]=events[0]
 		events[0]=msg
 		
-		PlayerNames = []
+		BluePlayerNames = []
+		RedPlayerNames = []
 		
-		print(numPlayers)
-		print(Players)
-		
+		#Create arrays containing the info to print for all players
 		for item in Players:
-			playerInfo = item.getCode() + str(item.getTeam())
-			PlayerNames.append(playerInfo)
+			playerInfo = item.getCode() + " - " + str(item.getScore())
+			if(item.getTeam() == 1):
+				BluePlayerNames.append(playerInfo)
+			else:
+				RedPlayerNames.append(playerInfo)
 		
 		#Push updates to the action screen html
 		turbo.push(turbo.replace(render_template('events.html',events = events), 'EVENT'))
-		turbo.push(turbo.replace(render_template('red_team.html',red_team = PlayerNames), 'RED'))
-		turbo.push(turbo.replace(render_template('blue_team.html',blue_team = ["a","b","c"]), 'BLUE'))
+		turbo.push(turbo.replace(render_template('red_team.html',red_team = RedPlayerNames), 'RED'))
+		turbo.push(turbo.replace(render_template('blue_team.html',blue_team = BluePlayerNames), 'BLUE'))
 
 #Traffic generator provided by Mr. Strother
 @celery.task()
@@ -193,7 +201,15 @@ def traffic_generator():
 		else:
 			message = blueplayer + " hit " + redplayer
 			turbo.push(turbo.replace(render_template('blue_team.html', blue_team = blueplayer), 'BLUE'))
+		
+		if random.randint(1,2)==1:
+			integer1=str(random.randint(1,2))
+			integer2=str(random.randint(3,4))
+		else:
+			integer1=str(random.randint(3,4))
+			integer2=str(random.randint(1,2))
 
+		message = integer1+":"+integer2
 
 		print(message)
 		i+=1;
