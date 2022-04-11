@@ -161,6 +161,8 @@ def listen_to_udp():
 		BluePlayerNames.insert(0, ("Team Score - " + str(BlueTeamScore)))
 		RedPlayerNames.insert(0, ("Team Score - " + str(RedTeamScore)))
 		
+		print(numPlayers)
+		
 		#Push updates to the action screen html
 		turbo.push(turbo.replace(render_template('events.html',events = events), 'EVENT'))
 		turbo.push(turbo.replace(render_template('red_team.html',red_team = RedPlayerNames), 'RED'))
@@ -208,19 +210,22 @@ def traffic_generator():
 		else: 
 			blueplayer = blue2	
 
-		if random.randint(1,2) == 1:
-			message = redplayer + " hit " + blueplayer
-		else:
-			message = blueplayer + " hit " + redplayer
+		# if random.randint(1,2) == 1:
+			# message = redplayer + " hit " + blueplayer
+		# else:
+			# message = blueplayer + " hit " + redplayer
 		
-		if random.randint(1,2)==1:
-			integer1=str(random.randint(1,2))
-			integer2=str(random.randint(3,4))
-		else:
-			integer1=str(random.randint(3,4))
-			integer2=str(random.randint(1,2))
+		# if random.randint(1,2)==1:
+			# integer1=str(random.randint(1,2))
+			# integer2=str(random.randint(3,4))
+		# else:
+			# integer1=str(random.randint(3,4))
+			# integer2=str(random.randint(1,2))
+		
+		integer1 = 0
+		integer2 = 1
 
-		message = integer1+":"+integer2
+		message = Players[integer1].getID()+":"+Players[integer2].getID()
 
 		print(message)
 		i+=1;
