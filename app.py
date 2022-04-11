@@ -28,6 +28,17 @@ bufferSize  = 1024
 i = 0
 # List to store events
 events = ["Start","","","",""]
+# Player Object
+class Player:
+	ID = 0
+	Codename = ""
+	FirstName = ""
+	LastName = ""
+	def __init__(self, IDno, Code, First, Last):
+		ID = IDno
+		Codename = Code
+		FirstName = First
+		LastName = Last
 
 #Threading utility. I believe this is superfluous in the current implementation
 def make_celery(app):
@@ -103,7 +114,7 @@ def listen_to_udp():
 		events[1]=events[0]
 		events[0]=msg
 		
-		
+		#Push updates to the action screen html
 		turbo.push(turbo.replace(render_template('events.html',events = events), 'EVENT'))
 		turbo.push(turbo.replace(render_template('red_team.html',red_team = ["a","b","c"]), 'RED'))
 		turbo.push(turbo.replace(render_template('blue_team.html',blue_team = ["a","b","c"]), 'BLUE'))
@@ -171,9 +182,6 @@ def splash():
 #Current version of player entry screen
 @app.route("/playerEntry2", methods = ["POST", "GET"]) #player entry route to the player entry form in the html
 def edit():
-	#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	#This thing isn't executing!!!!!!!!!!!!!!!
-	#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	if request.method == 'POST':
 		
 		#this method routes to the template for player entry
