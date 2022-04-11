@@ -167,8 +167,12 @@ def traffic_generator():
 		else:
 			message = blueplayer + " hit " + redplayer
 			
-		integer1 = str(random.randint(1,2))
-		integer2 = str(random.randint(1,2))
+		if random.randint(1,2) == 1:
+			integer1 = str(random.randint(1,2))
+			integer2 = str(random.randint(3,4))
+		else:
+			integer1 = str(random.randint(3,4))
+			integer2 = str(random.randint(1,2))
 		
 		message = integer1 + ":" + integer2
 		
