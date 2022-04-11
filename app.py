@@ -89,15 +89,21 @@ def listen_to_udp():
 	UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 	UDPServerSocket.bind((localIP, localPort))
 	
+	#UDP receiver
 	while (True):
 		trafficEvents = UDPServerSocket.recvfrom(bufferSize)
+		#creates a message from the packet
 		msg="{}".format(trafficEvents[0])
 		print(msg)
+		
+		#Update the array of events with the new event
 		events[4]=events[3]
 		events[3]=events[2]
 		events[2]=events[1]
 		events[1]=events[0]
 		events[0]=msg
+		
+		
 		turbo.push(turbo.replace(render_template('events.html',events = events), 'EVENT'))
 		turbo.push(turbo.replace(render_template('red_team.html',red_team = ["a","b","c"]), 'RED'))
 		turbo.push(turbo.replace(render_template('blue_team.html',blue_team = ["a","b","c"]), 'BLUE'))

@@ -238,19 +238,26 @@
 
 		var elem = document.getElementById('timer');
 		elem.style.color = "Red";
-		elem.style.fontSize = "x-large";
-		var timeLeft = 3;
+		elem.style.fontSize = "xx-large";
+		var timeLeft = 30;
 		var timerId = setInterval(countdown, 1000);
 
 		function countdown() {
 			if (timeLeft == 0) {
+				elem.style.color = "green"
 				elem.innerHTML = ' GO! '
 				document.getElementById('clockdiv');
-				const deadline = new Date(Date.parse(new Date()) + 0.05 * 60 * 1000);
+				const deadline = new Date(Date.parse(new Date()) + 6 * 60 * 1000);
 				initializeClock('clockdiv', deadline);
-			} else {
+				timeLeft--;
+			else if(time>0)
+			{
 				elem.innerHTML = timeLeft;
 				timeLeft--;
+			}else{
+				minutesSpan.innerHTML = '0';
+				secondsSpan.innerHTML = '0';
+				elem.innerHTML = 'Go!'
 			}
 		}
 		// attempt to use AJAX to update the page from the server? maybew?
