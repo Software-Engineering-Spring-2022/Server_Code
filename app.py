@@ -175,7 +175,7 @@ def listen_to_udp():
 						RedPlayerNames.append("")
 				else:
 					RedPlayerNames.append(playerInfo)
-			flash = not flash
+			flash = !flash
 		
 		#Update the array of events with the new event
 		events[4]=events[3]
