@@ -167,9 +167,11 @@ def traffic_generator():
 		else:
 			message = blueplayer + " hit " + redplayer
 			
-
-		message = (str)random.randint(1,2) + ":"+(str)random.randint(1,2)
-
+		integer1 = str(random.randint(1,2))
+		integer2 = str(random.randint(1,2))
+		
+		message = integer1 + ":" + integer2
+		
 		print(message)
 		i+=1;
 		UDPClientSocketTransmit.sendto(str.encode(str(message)), serverAddressPort)
