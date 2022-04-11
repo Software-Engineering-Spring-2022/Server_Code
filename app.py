@@ -32,16 +32,18 @@ events = ["Start","","","",""]
 numPlayers = 0
 # Player Object
 class Player:
-	def __init__(self, IDno, Code, First, Last):
+	def __init__(self, IDno, Code, First, Last, teamName):
 		self.ID = IDno
 		self.Codename = Code
 		self.FirstName = First
 		self.LastName = Last
+		self.team = teamName
 		self.Score = 0
 		print("Player Created")
 	def getCode(self):
-		print("getting codename")
 		return self.Codename
+	def getTeam(self):
+		return self.team
 
 #An array of player objects
 Players = []
@@ -66,7 +68,7 @@ celery = make_celery(app)
 turbo = Turbo(app)#Dynamic Page Updates
 
 #Add a player to the database.
-def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert players into the database table player
+def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME, team):	# Call this to insert players into the database table player
 	conn = None
 	try:
 		conn = psycopg2.connect( # connects to database
@@ -97,7 +99,7 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 		#Insert a player object into the player array
 		global Players
 		global numPlayers
-		Players.append(Player(ID, FIRST_NAME, LAST_NAME, CODENAME))
+		Players.append(Player(ID, FIRST_NAME, LAST_NAME, CODENAME, team))
 		numPlayers = numPlayers+1
 	except (Exception, psycopg2.DatabaseError) as error:
 		print(error)
@@ -105,9 +107,10 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 		if conn is not None:
 			conn.close()
 
-#UDP Server
+#UDP Listener and action screen updater
 @celery.task()
 def listen_to_udp():
+	time.sleep(30)
 	UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 	UDPServerSocket.bind((localIP, localPort))
 	
@@ -134,7 +137,8 @@ def listen_to_udp():
 		print(Players)
 		
 		for item in Players:
-			PlayerNames.append(item.getCode())
+			playerInfo = item.getCode() + str(item.getTeam())
+			PlayerNames.append(playerInfo)
 		
 		#Push updates to the action screen html
 		turbo.push(turbo.replace(render_template('events.html',events = events), 'EVENT'))
@@ -144,6 +148,8 @@ def listen_to_udp():
 #Traffic generator provided by Mr. Strother
 @celery.task()
 def traffic_generator():
+	time.sleep(30)
+	
 	bufferSize  = 1024
 	serverAddressPort   = ("127.0.0.1", 7501)
 
@@ -164,7 +170,7 @@ def traffic_generator():
 
 	print('')
 	# counter = input('How many events do you want ==> ')
-	counter = 10
+	counter = 1000
 	# Create datagram socket
 	UDPClientSocketTransmit = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 
@@ -242,10 +248,6 @@ def edit():
 		last_name_r = data.getlist("player_last_r")
 
 		#Testing that data was gotten
-		iD_b[0] = 1
-		print(iD_b[0])
-		print(iD_r[0])
-		print("I'm working James")
 
 		#using try catch in case the program breaks
 			
@@ -261,7 +263,7 @@ def edit():
 				elif(codename_b[x] == ''):
 					print("Skipping this line because the entire line was not filled out.")
 				else:
-					insert_player(iD_b[x],first_name_b[x],last_name_b[x],codename_b[x])
+					insert_player(iD_b[x],first_name_b[x],last_name_b[x],codename_b[x],1)
 				#we need to filter blank inputs so as to not fill the database with empty entries
 		except:
 			print("cant push blue team data, check code")
@@ -278,7 +280,7 @@ def edit():
 				elif(codename_r[x] == ''):
 					print("Skipping this line because the entire line was not filled out.")
 				else:
-					insert_player(iD_r[x],first_name_r[x],last_name_r[x],codename_r[x])
+					insert_player(iD_r[x],first_name_r[x],last_name_r[x],codename_r[x],2)
 				#we need to filter blank inputs so as to not fill the database with empty entries
 		except:
 			print("cant push red team data, check code")
