@@ -28,8 +28,10 @@ bufferSize  = 1024
 i = 0
 # List to store events
 events = ["Start","","","",""]
-
 numPlayers = 0
+RedTeamScore = 0
+BlueTeamScore = 0
+
 # Player Object
 class Player:
 	def __init__(self, IDno, Code, First, Last, teamName):
@@ -142,13 +144,22 @@ def listen_to_udp():
 		
 		#Create arrays containing the info to print for all players
 		for item in Players:
+			teamPlus = 0
 			if(item.getID() == msg[2]):
 				item.score()
+				teamPlus = 1
 			playerInfo = item.getCode() + " - " + str(item.getScore())
 			if(item.getTeam() == 1):
 				BluePlayerNames.append(playerInfo)
+				global BlueTeamScore
+				BlueTeamScore = BlueTeamScore + teamPlus
 			else:
 				RedPlayerNames.append(playerInfo)
+				global RedTeamScore
+				RedTeamScore = RedTeamScore + teamPlus
+		
+		BluePlayerNames.insert(0, ("Team Score - " + str(BlueTeamScore)))
+		RedPlayerNames.insert(0, ("Team Score - " + str(RedTeamScore)))
 		
 		#Push updates to the action screen html
 		turbo.push(turbo.replace(render_template('events.html',events = events), 'EVENT'))
