@@ -105,7 +105,7 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME, team):	# Call this to ins
 		#Insert a player object into the player array
 		global Players
 		global numPlayers
-		Players.append(Player(ID, FIRST_NAME, LAST_NAME, CODENAME, team))
+		Players.append(Player(ID, CODENAME, FIRST_NAME, LAST_NAME, team))
 		numPlayers = numPlayers+1
 	except (Exception, psycopg2.DatabaseError) as error:
 		print(error)
