@@ -28,22 +28,23 @@ bufferSize  = 1024
 i = 0
 # List to store events
 events = ["Start","","","",""]
+
+numPlayers = 0
 # Player Object
 class Player:
-	ID = 0
-	Codename = ""
-	FirstName = ""
-	LastName = ""
-	Score = 0
 	def __init__(self, IDno, Code, First, Last):
-		ID = IDno
-		Codename = Code
-		FirstName = First
-		LastName = Last
+		self.ID = IDno
+		self.Codename = Code
+		self.FirstName = First
+		self.LastName = Last
+		self.Score = 0
+		print("Player Created")
+	def getCode(self):
+		print("getting codename")
+		return self.Codename
 
-#An array of player objects and a variable to keep track of the player index
+#An array of player objects
 Players = []
-numPlayers = 0
 
 #Threading utility. I believe this is superfluous in the current implementation
 def make_celery(app):
@@ -64,10 +65,9 @@ app.secret_key = "manbearpig_MUDMAN888" #required for flask to operate
 celery = make_celery(app)
 turbo = Turbo(app)#Dynamic Page Updates
 
-#Add a player to the database. This function does not appear to execute at all
+#Add a player to the database.
 def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert players into the database table player
 	conn = None
-	print("Running insert_player")
 	try:
 		conn = psycopg2.connect( # connects to database
 			user="lezbitgtjkbfrs",
@@ -95,7 +95,9 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 		print(CODENAME)
 		
 		#Insert a player object into the player array
-		Players[numPlayers] = Player(ID, FIRST_NAME, LAST_NAME, CODENAME)
+		global Players
+		global numPlayers
+		Players.append(Player(ID, FIRST_NAME, LAST_NAME, CODENAME))
 		numPlayers = numPlayers+1
 	except (Exception, psycopg2.DatabaseError) as error:
 		print(error)
@@ -108,6 +110,9 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 def listen_to_udp():
 	UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 	UDPServerSocket.bind((localIP, localPort))
+	
+	global Players
+	global numPlayers
 	
 	#UDP receiver
 	while (True):
@@ -123,9 +128,17 @@ def listen_to_udp():
 		events[1]=events[0]
 		events[0]=msg
 		
+		PlayerNames = []
+		
+		print(numPlayers)
+		print(Players)
+		
+		for item in Players:
+			PlayerNames.append(item.getCode())
+		
 		#Push updates to the action screen html
 		turbo.push(turbo.replace(render_template('events.html',events = events), 'EVENT'))
-		turbo.push(turbo.replace(render_template('red_team.html',red_team = ["a","b","c"]), 'RED'))
+		turbo.push(turbo.replace(render_template('red_team.html',red_team = PlayerNames), 'RED'))
 		turbo.push(turbo.replace(render_template('blue_team.html',blue_team = ["a","b","c"]), 'BLUE'))
 
 #Traffic generator provided by Mr. Strother
