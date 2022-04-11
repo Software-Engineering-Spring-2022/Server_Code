@@ -142,6 +142,8 @@ def listen_to_udp():
 		
 		#Create arrays containing the info to print for all players
 		for item in Players:
+			if(item.getID() == msg[2]):
+				item.score()
 			playerInfo = item.getCode() + " - " + str(item.getScore())
 			if(item.getTeam() == 1):
 				BluePlayerNames.append(playerInfo)
@@ -197,10 +199,8 @@ def traffic_generator():
 
 		if random.randint(1,2) == 1:
 			message = redplayer + " hit " + blueplayer
-			turbo.push(turbo.replace(render_template('red_team.html', red_team = redplayer), 'RED'))
 		else:
 			message = blueplayer + " hit " + redplayer
-			turbo.push(turbo.replace(render_template('blue_team.html', blue_team = blueplayer), 'BLUE'))
 		
 		if random.randint(1,2)==1:
 			integer1=str(random.randint(1,2))
