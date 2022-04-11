@@ -34,11 +34,16 @@ class Player:
 	Codename = ""
 	FirstName = ""
 	LastName = ""
+	Score = 0
 	def __init__(self, IDno, Code, First, Last):
 		ID = IDno
 		Codename = Code
 		FirstName = First
 		LastName = Last
+
+#An array of player objects and a variable to keep track of the player index
+Players = []
+numPlayers = 0
 
 #Threading utility. I believe this is superfluous in the current implementation
 def make_celery(app):
@@ -88,6 +93,10 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert pl
 		print(FIRST_NAME)
 		print(LAST_NAME)
 		print(CODENAME)
+		
+		#Insert a player object into the player array
+		Players[numPlayers] = Player(ID, FIRST_NAME, LAST_NAME, CODENAME)
+		numPlayers = numPlayers+1
 	except (Exception, psycopg2.DatabaseError) as error:
 		print(error)
 	finally:
