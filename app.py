@@ -198,7 +198,7 @@ def traffic_generator():
 
 	print('')
 	# counter = input('How many events do you want ==> ')
-	counter = 1000
+	counter = 150
 	# Create datagram socket
 	UDPClientSocketTransmit = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 
