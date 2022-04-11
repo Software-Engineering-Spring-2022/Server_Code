@@ -170,7 +170,6 @@
 	</form>
 
 	<script type="text/javascript">
-
 		function getTimeRemaining(endtime) {
 			const total = Date.parse(endtime) - Date.parse(new Date());
 			const seconds = Math.floor((total / 1000) % 60);
@@ -227,10 +226,9 @@
 				}
 				if (t.total <= 0) {
 					document.getElementById("clockdiv").style.color = "black";
-					clearInterval(timeinterval);
+					clearInterval(timeinterval);				
 				}
 			}
-
 			updateClock();
 			const timeinterval = setInterval(updateClock, 1000);
 		}
@@ -241,28 +239,27 @@
 		elem.style.fontSize = "xx-large";
 		var timeLeft = 30;
 		var timerId = setInterval(countdown, 1000);
-
+		
+		
 		function countdown() {
 			if (timeLeft == 0) {
-				elem.style.color = "green"
+				elem.style.color = "green";
 				elem.innerHTML = ' GO! '
-				document.getElementById('clockdiv');
 				const deadline = new Date(Date.parse(new Date()) + 6 * 60 * 1000);
 				initializeClock('clockdiv', deadline);
-				timeLeft--;
-			else if(time>0)
-			{
+				timeLeft = -1;
+			} 
+			else if (timeLeft > 0) {
 				elem.innerHTML = timeLeft;
 				timeLeft--;
-			}else{
+			}
+			else {
 				minutesSpan.innerHTML = '0';
 				secondsSpan.innerHTML = '0';
-				elem.innerHTML = 'Go!'
+				elem.innerHTML = ' GO! '
 			}
 		}
 		// attempt to use AJAX to update the page from the server? maybew?
-
-
 	</script>
 </body>
 
