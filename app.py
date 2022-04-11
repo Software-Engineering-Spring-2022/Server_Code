@@ -31,6 +31,9 @@ events = ["Start","","","",""]
 numPlayers = 0
 RedTeamScore = 0
 BlueTeamScore = 0
+RedTeamHighScore = 0
+BlueTeamHighScore = 0
+flash = true
 
 # Player Object
 class Player:
@@ -150,13 +153,29 @@ def listen_to_udp():
 				hit = item.getCode()
 			playerInfo = item.getCode() + " - " + str(item.getScore())
 			if(item.getTeam() == 1):
-				BluePlayerNames.append(playerInfo)
 				global BlueTeamScore
 				BlueTeamScore = BlueTeamScore + teamPlus
+				if(item.getScore()>=BlueTeamHighScore):
+					BlueTeamHighScore = item.getScore()
+					if(flash):
+						BluePlayerNames.append(playerInfo)
+					else:
+						BluePlayerNames.append("")
+				else:
+					BluePlayerNames.append(playerInfo)
 			else:
-				RedPlayerNames.append(playerInfo)
 				global RedTeamScore
 				RedTeamScore = RedTeamScore + teamPlus
+				global RedTeamHighScore
+				if(item.getScore()>=RedTeamHighScore):
+					RedTeamHighScore = item.getScore()
+					if(flash):
+						RedPlayerNames.append(playerInfo)
+					else:
+						RedPlayerNames.append("")
+				else:
+					RedPlayerNames.append(playerInfo)
+			flash = !flash
 		
 		#Update the array of events with the new event
 		events[4]=events[3]
