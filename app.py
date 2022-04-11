@@ -99,6 +99,7 @@ def listen_to_udp():
 		events[1]=events[0]
 		events[0]=msg
 		turbo.push(turbo.replace(render_template('events.html',events = events), 'EVENT'))
+		turbo.push(turbo.replace(render_template('red_team.html',red_team = ["a","b","c"]), 'CODENAME'))
 
 #Traffic generator provided by Mr. Strother
 @celery.task()
