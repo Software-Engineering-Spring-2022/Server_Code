@@ -99,7 +99,8 @@ def listen_to_udp():
 		events[1]=events[0]
 		events[0]=msg
 		turbo.push(turbo.replace(render_template('events.html',events = events), 'EVENT'))
-		turbo.push(turbo.replace(render_template('red_team.html',red_team = ["a","b","c"]), 'CODENAME'))
+		turbo.push(turbo.replace(render_template('red_team.html',red_team = ["a","b","c"]), 'RED'))
+		turbo.push(turbo.replace(render_template('blue_team.html',blue_team = ["a","b","c"]), 'BLUE'))
 
 #Traffic generator provided by Mr. Strother
 @celery.task()
@@ -279,7 +280,7 @@ def plyr_scrn():
 	print(red_team_test)
 	print(blue_team_test)
 	
-	return render_template("actionScreen.html", red_team = red_team_test, blue_team = blue_team_test)
+	return render_template("actionScreen.html")
 
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #Please comment the purpose of this function !!!!!!!!!!!!!!!!
