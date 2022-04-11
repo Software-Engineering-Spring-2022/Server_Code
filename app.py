@@ -132,13 +132,10 @@ def listen_to_udp():
 		msg="{}".format(trafficEvents[0])
 		print(msg)
 		
-		#Update the array of events with the new event
-		events[4]=events[3]
-		events[3]=events[2]
-		events[2]=events[1]
-		events[1]=events[0]
-		events[0]=msg
+
 		
+		hitter = ""
+		hit = ""
 		BluePlayerNames = []
 		RedPlayerNames = []
 		
@@ -148,6 +145,9 @@ def listen_to_udp():
 			if(item.getID() == msg[2]):
 				item.score()
 				teamPlus = 1
+				hitter = item.getCode()
+			elif(item.getID() == msg[4]):
+				hit = item.getCode()
 			playerInfo = item.getCode() + " - " + str(item.getScore())
 			if(item.getTeam() == 1):
 				BluePlayerNames.append(playerInfo)
@@ -158,10 +158,15 @@ def listen_to_udp():
 				global RedTeamScore
 				RedTeamScore = RedTeamScore + teamPlus
 		
+		#Update the array of events with the new event
+		events[4]=events[3]
+		events[3]=events[2]
+		events[2]=events[1]
+		events[1]=events[0]
+		events[0]=(hitter + " hit " + hit)
+		
 		BluePlayerNames.insert(0, ("Team Score - " + str(BlueTeamScore)))
 		RedPlayerNames.insert(0, ("Team Score - " + str(RedTeamScore)))
-		
-		print(numPlayers)
 		
 		#Push updates to the action screen html
 		turbo.push(turbo.replace(render_template('events.html',events = events), 'EVENT'))
@@ -222,14 +227,14 @@ def traffic_generator():
 			# integer1=str(random.randint(3,4))
 			# integer2=str(random.randint(1,2))
 		
-		integer1 = 0
-		integer2 = 1
+		integer1 = random.randint(0,(numPlayers-1))
+		integer2 = random.randint(0,(numPlayers-1))
 
-		message = Players[integer1].getID()+":"+Players[integer2].getID()
-
-		print(message)
-		i+=1;
-		UDPClientSocketTransmit.sendto(str.encode(str(message)), serverAddressPort)
+		if(Players[integer1].getTeam() != Players[integer2].getTeam()):
+			message = Players[integer1].getID()+":"+Players[integer2].getID()
+			print(message)
+			i+=1;
+			UDPClientSocketTransmit.sendto(str.encode(str(message)), serverAddressPort)
 		time.sleep(random.randint(1,3))
 		
 	print("program complete")
@@ -352,9 +357,6 @@ def plyr_scrn():
 	
 	return render_template("actionScreen.html")
 
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#Please comment the purpose of this function !!!!!!!!!!!!!!!!
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 @app.route("/_event_update", methods = ["GET"]) #game action screen page	
 def event_update():
 	return jsonify(events)
