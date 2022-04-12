@@ -5,9 +5,15 @@
         </thead>
         <tbody>
             {% for item in blue_team %}
-            <tr>
-                <td>{{item}}</td>
-            </tr>
+                <colgroup>
+                  <col span="2">
+                </colgroup>
+                <tr>
+                  <th>{{item}}</th>
+                  <th></th>
+                  <th>score</th>
+                </tr>
+               
             {% endfor %}
         </tbody>
     </table>

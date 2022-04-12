@@ -3,12 +3,17 @@
         <thead>
             <td><strong>Team Red</strong></td>
         </thead>
-
         <tbody>
             {% for item in red_team %}
-            <tr>
-                <td>{{item}}</td>
-            </tr>
+                <colgroup>
+                  <col span="2">
+                </colgroup>
+                <tr>
+                  <th>{{item}}</th>
+                  <th></th>
+                  <th>score</th>
+                </tr>
+               
             {% endfor %}
         </tbody>
     </table>
