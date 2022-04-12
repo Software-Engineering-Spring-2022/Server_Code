@@ -21,5 +21,3 @@ Authors:
 
 UARK CSCE 3513 Software Engineering
 https://computer-science-and-computer-engineering.uark.edu/
-
-The traffic generator is embedded within the app.py program and runs automatically after the game waiting timer
