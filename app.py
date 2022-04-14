@@ -170,8 +170,6 @@ def listen_to_udp():
 		
 		#Push updates to the action screen html
 		turbo.push(turbo.replace(render_template('events.html',events = events), 'EVENT'))
-		# turbo.push(turbo.replace(render_template('actionScreen.html',TeamRed = "Team Score - " + str(RedTeamScore)), 'RED'))
-		# turbo.push(turbo.replace(render_template('actionScreen.html',TeamBlue = "Team Score - " + str(BlueTeamScore)), 'BLUE'))
 		turbo.push(turbo.replace(render_template('red_team.html',red_team = RedPlayerNames), 'RED'))
 		turbo.push(turbo.replace(render_template('blue_team.html',blue_team = BluePlayerNames), 'BLUE'))
 
