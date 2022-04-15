@@ -76,7 +76,7 @@ celery = make_celery(app)
 turbo = Turbo(app)#Dynamic Page Updates
 
 #Add a player to the database.
-def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME, team):	# Call this to insert players into the database table player
+def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert players into the database table player
 	conn = None
 	try:
 		conn = psycopg2.connect( # connects to database
@@ -143,11 +143,17 @@ def search_player(ID, FIRST_NAME, LAST_NAME, CODENAME, team):	# Call this to ins
 			Players.append(Player(ID, CODENAME, FIRST_NAME, LAST_NAME, team))
 			numPlayers = numPlayers+1
 
-		# row = cur.fetchone()
+			print(ID)
+			print(FIRST_NAME)
+			print(LAST_NAME)
+			print(CODENAME)
+			print(team)
 
-		# while row is not None:
-		# 	print(row)
-		# 	row = cur.fetchone()
+		row = cur.fetchone()
+
+		while row is not None:
+			#print(row)
+			row = cur.fetchone()
 		
 		cur.close() # close communication with the database
 		
@@ -357,7 +363,7 @@ def edit():
 				elif(codename_new[x] == ''):
 					print("Skipping this line because the entire line was not filled out.")
 				else:
-					insert_player(iD_new[x],first_name_new[x],last_name_new[x],codename_new[x],1)
+					insert_player(iD_new[x],first_name_new[x],last_name_new[x],codename_new[x])
 				#we need to filter blank inputs so as to not fill the database with empty entries
 		except:
 			print("cant push new player data, check code")
@@ -393,7 +399,7 @@ def edit():
 				elif(codename_r[x] == ''):
 					print("Skipping this line because the entire line was not filled out.")
 				else:
-					search_player(iD_b[x],first_name_b[x],last_name_b[x],codename_b[x],2)
+					search_player(iD_r[x],first_name_r[x],last_name_r[x],codename_r[x],2)
 				#we need to filter blank inputs so as to not fill the database with empty entries
 		except:
 			print("cant push red team data, check code")
