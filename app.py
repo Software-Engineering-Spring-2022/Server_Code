@@ -143,17 +143,16 @@ def search_player(ID, FIRST_NAME, LAST_NAME, CODENAME, team):	# Call this to ins
 			Players.append(Player(ID, CODENAME, FIRST_NAME, LAST_NAME, team))
 			numPlayers = numPlayers+1
 
-			print(ID)
-			print(FIRST_NAME)
-			print(LAST_NAME)
-			print(CODENAME)
-			print(team)
+		#if there is not an id in the database
+		else:
+			print("error")
+			
 
-		row = cur.fetchone()
+		# row = cur.fetchone()
 
-		while row is not None:
-			#print(row)
-			row = cur.fetchone()
+		# while row is not None:
+		# 	#print(row)
+		# 	row = cur.fetchone()
 		
 		cur.close() # close communication with the database
 		
