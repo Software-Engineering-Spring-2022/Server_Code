@@ -113,6 +113,11 @@
 		{
   			document.getElementById("newPlayerForm").style.display = "none";	
 		}
+
+		function noID() 
+		{
+  			alert("The player you entered is not in the database.");
+		}
 		
 	</script>
 	</head>
@@ -122,6 +127,10 @@
 			<p style="color: azure; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; margin-bottom: 0px; margin-top: 0px;">PLAYER ENTRY</p>
 			<h1 style="color: azure; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; margin-bottom: 0px; margin-top: 0px;">Press f4 to enter game waiting lobby</h1>
 				
+				<!-- {% if message %}
+				<p class="message" onload=noID()>{{ message | safe }}</p>
+				{% endif %}  -->
+
 				<!-- Creating a new player button -->
 				<button type="button"; onclick="newplayer()" >New Player</button>
 

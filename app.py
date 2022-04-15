@@ -146,13 +146,7 @@ def search_player(ID, FIRST_NAME, LAST_NAME, CODENAME, team):	# Call this to ins
 		#if there is not an id in the database
 		else:
 			print(ID+" was not found. Please create the player before playing the game.")
-
-
-		# row = cur.fetchone()
-
-		# while row is not None:
-		# 	#print(row)
-		# 	row = cur.fetchone()
+			return 0
 		
 		cur.close() # close communication with the database
 		
@@ -380,6 +374,8 @@ def edit():
 				elif(codename_b[x] == ''):
 					print("Skipping this line because the entire line was not filled out.")
 				else:
+					# if( search_player(iD_b[x],first_name_b[x],last_name_b[x],codename_b[x],1) == 0):
+					# 	return render_template('playerEntry2.html', message='Please enter required fields')
 					search_player(iD_b[x],first_name_b[x],last_name_b[x],codename_b[x],1)
 				#we need to filter blank inputs so as to not fill the database with empty entries
 		except:
