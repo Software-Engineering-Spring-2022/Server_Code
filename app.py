@@ -145,8 +145,8 @@ def search_player(ID, FIRST_NAME, LAST_NAME, CODENAME, team):	# Call this to ins
 
 		#if there is not an id in the database
 		else:
-			print("error")
-			
+			print(ID+" was not found. Please create the player before playing the game.")
+
 
 		# row = cur.fetchone()
 
