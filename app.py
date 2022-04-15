@@ -211,22 +211,23 @@ def listen_to_udp():
 		
 		BluePlayerNames.insert(0, ("Team Score - " + str(BlueTeamScore)))
 		RedPlayerNames.insert(0, ("Team Score - " + str(RedTeamScore)))
-		if (BlueTeamScore > RedTeamScore): 
-			Red = False
-			Blue = True
-		else if (BlueTeamScore < RedTeamScore):
-			Red = True
-			Blue = False
-		else: 
-			Red = False
-			Blue = False
+		
+		# if (BlueTeamScore > RedTeamScore): 
+			# Red = False
+			# Blue = True
+		# else if (BlueTeamScore < RedTeamScore):
+			# Red = True
+			# Blue = False
+		# else: 
+			# Red = False
+			# Blue = False
 
-		Blink.insert(0, Red)
-		Blink.insert(1,Blue)
+		# Blink.insert(0, Red)
+		# Blink.insert(1,Blue)
 		
 		#Push updates to the action screen html
 		turbo.push(turbo.replace(render_template('events.html',events = events), 'EVENT'))
-		turbo.push(turbo.replace(render_template('actionScreen.html', Blink = Blink), 'TOP'))
+		# turbo.push(turbo.replace(render_template('actionScreen.html', Blink = Blink), 'TOP'))
 		turbo.push(turbo.replace(render_template('red_team.html',red_team = RedPlayerNames), 'RED'))
 		turbo.push(turbo.replace(render_template('blue_team.html',blue_team = BluePlayerNames), 'BLUE'))
 
