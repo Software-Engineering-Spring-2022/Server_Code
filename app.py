@@ -76,7 +76,7 @@ celery = make_celery(app)
 turbo = Turbo(app)#Dynamic Page Updates
 
 #Add a player to the database.
-def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME, team):	# Call this to insert players into the database table player
+def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert players into the database table player
 	conn = None
 	try:
 		conn = psycopg2.connect( # connects to database
@@ -105,10 +105,51 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME, team):	# Call this to ins
 		print(CODENAME)
 		
 		#Insert a player object into the player array
-		global Players
-		global numPlayers
-		Players.append(Player(ID, CODENAME, FIRST_NAME, LAST_NAME, team))
-		numPlayers = numPlayers+1
+		#removing this because you should only send players to action screen if they are already created
+		# global Players
+		# global numPlayers
+		# Players.append(Player(ID, CODENAME, FIRST_NAME, LAST_NAME, team))
+		# numPlayers = numPlayers+1
+	except (Exception, psycopg2.DatabaseError) as error:
+		print(error)
+	finally:
+		if conn is not None:
+			conn.close()
+
+
+#Searching the database to find a player.
+def search_player(ID, FIRST_NAME, LAST_NAME, CODENAME, team):	# Call this to insert players into the database table player
+	conn = None
+	try:
+		conn = psycopg2.connect( # connects to database
+			user="lezbitgtjkbfrs",
+			password="aa6fa77497eff9cdf22c8d618ab6277c8df71e537b9c2e46237fd3901277f7f8",
+			host="ec2-34-206-148-196.compute-1.amazonaws.com",
+			port="5432",
+			database="d2gpgbag2bgopb")
+		
+		cur = conn.cursor() # creating cursor object
+
+		""" Searching the database to find a player """
+		cur.execute("SELECT first_name, last_name, codename FROM player where id="+ ID)
+
+		#print("The number of parts: ", cur.rowcount) -- this is a print statement for debugging
+
+		#if there is more than 0 id's in our database
+		if(cur.rowcount > 0):
+			#Insert a player object into the player array to get pushed to the Action screen
+			global Players
+			global numPlayers
+			Players.append(Player(ID, CODENAME, FIRST_NAME, LAST_NAME, team))
+			numPlayers = numPlayers+1
+
+		#if there is not an id in the database
+		else:
+			print(ID+" was not found. Please create the player before playing the game.")
+			return 0
+		
+		cur.close() # close communication with the database
+		
 	except (Exception, psycopg2.DatabaseError) as error:
 		print(error)
 	finally:
@@ -285,6 +326,12 @@ def edit():
 
 		#data lists instantiated
 
+		#New Players
+		iD_new = []
+		codename_new=[]
+		first_name_new=[]
+		last_name_new=[]
+
 		#Blue Team
 		iD_b = []
 		codename_b=[]
@@ -312,10 +359,37 @@ def edit():
 		first_name_r = data.getlist("player_first_r")
 		last_name_r = data.getlist("player_last_r")
 
+		#New Players
+		iD_new = data.getlist("player_id_new")#the .getlist("name") method is from the flask module. changes the dict to an indexable list
+		codename_new = data.getlist("player_codename_new")
+		first_name_new = data.getlist("player_first_new")
+		last_name_new = data.getlist("player_last_new")
+
+		
+
 		#Testing that data was gotten
 
 		#using try catch in case the program breaks
-			
+
+		#new player
+		try:
+
+			for x in range(len(iD_new)): #there always be as many ID's as players				
+				if(iD_new[x] == ''):
+					print("Skipping this line because the entire line was not filled out.")
+				elif(first_name_new[x] == ''):
+					print("Skipping this line because the entire line was not filled out.")
+				elif(last_name_new[x] == ''):
+					print("Skipping this line because the entire line was not filled out.")
+				elif(codename_new[x] == ''):
+					print("Skipping this line because the entire line was not filled out.")
+				else:
+					insert_player(iD_new[x],first_name_new[x],last_name_new[x],codename_new[x])
+				#we need to filter blank inputs so as to not fill the database with empty entries
+		except:
+			print("cant push new player data, check code")
+
+		#blue team	
 		try:
 			
 			for x in range(len(iD_b)): #there always be as many ID's as players				
@@ -328,11 +402,14 @@ def edit():
 				elif(codename_b[x] == ''):
 					print("Skipping this line because the entire line was not filled out.")
 				else:
-					insert_player(iD_b[x],first_name_b[x],last_name_b[x],codename_b[x],1)
+					# if( search_player(iD_b[x],first_name_b[x],last_name_b[x],codename_b[x],1) == 0):
+					# 	return render_template('playerEntry2.html', message='Please enter required fields')
+					search_player(iD_b[x],first_name_b[x],last_name_b[x],codename_b[x],1)
 				#we need to filter blank inputs so as to not fill the database with empty entries
 		except:
 			print("cant push blue team data, check code")
 			
+		#red team
 		try:
 			
 			for x in range(len(iD_r)): #there always be as many ID's as players				
@@ -345,7 +422,7 @@ def edit():
 				elif(codename_r[x] == ''):
 					print("Skipping this line because the entire line was not filled out.")
 				else:
-					insert_player(iD_r[x],first_name_r[x],last_name_r[x],codename_r[x],2)
+					search_player(iD_r[x],first_name_r[x],last_name_r[x],codename_r[x],2)
 				#we need to filter blank inputs so as to not fill the database with empty entries
 		except:
 			print("cant push red team data, check code")
