@@ -105,10 +105,11 @@ def insert_player(ID, FIRST_NAME, LAST_NAME, CODENAME, team):	# Call this to ins
 		print(CODENAME)
 		
 		#Insert a player object into the player array
-		global Players
-		global numPlayers
-		Players.append(Player(ID, CODENAME, FIRST_NAME, LAST_NAME, team))
-		numPlayers = numPlayers+1
+		#removing this because you should only send players to action screen if they are already created
+		# global Players
+		# global numPlayers
+		# Players.append(Player(ID, CODENAME, FIRST_NAME, LAST_NAME, team))
+		# numPlayers = numPlayers+1
 	except (Exception, psycopg2.DatabaseError) as error:
 		print(error)
 	finally:
@@ -130,26 +131,26 @@ def search_player(ID, FIRST_NAME, LAST_NAME, CODENAME, team):	# Call this to ins
 		cur = conn.cursor() # creating cursor object
 
 		""" Searching the database to find a player """
-		sql = """SELECT vendor_id, vendor_name FROM vendors ORDER BY vendor_name"""#workin
-		
-		record_to_insert = (ID, FIRST_NAME, LAST_NAME, CODENAME)
+		cur.execute("SELECT first_name, last_name, codename FROM player where id="+ ID)
 
-		cur.execute(sql, record_to_insert) # execute the INSERT command
-		
-		conn.commit() # commit the changes to the database
+		#print("The number of parts: ", cur.rowcount) -- this is a print statement for debugging
+
+		#if there is more than 0 id's in our database
+		if(cur.rowcount > 0):
+			#Insert a player object into the player array to get pushed to the Action screen
+			global Players
+			global numPlayers
+			Players.append(Player(ID, CODENAME, FIRST_NAME, LAST_NAME, team))
+			numPlayers = numPlayers+1
+
+		# row = cur.fetchone()
+
+		# while row is not None:
+		# 	print(row)
+		# 	row = cur.fetchone()
 		
 		cur.close() # close communication with the database
 		
-		print(ID)
-		print(FIRST_NAME)
-		print(LAST_NAME)
-		print(CODENAME)
-		
-		#Insert a player object into the player array
-		global Players
-		global numPlayers
-		Players.append(Player(ID, CODENAME, FIRST_NAME, LAST_NAME, team))
-		numPlayers = numPlayers+1
 	except (Exception, psycopg2.DatabaseError) as error:
 		print(error)
 	finally:
@@ -373,8 +374,8 @@ def edit():
 					print("Skipping this line because the entire line was not filled out.")
 				elif(codename_b[x] == ''):
 					print("Skipping this line because the entire line was not filled out.")
-				#else:
-					#insert_player(iD_b[x],first_name_b[x],last_name_b[x],codename_b[x],1)
+				else:
+					search_player(iD_b[x],first_name_b[x],last_name_b[x],codename_b[x],1)
 				#we need to filter blank inputs so as to not fill the database with empty entries
 		except:
 			print("cant push blue team data, check code")
@@ -391,8 +392,8 @@ def edit():
 					print("Skipping this line because the entire line was not filled out.")
 				elif(codename_r[x] == ''):
 					print("Skipping this line because the entire line was not filled out.")
-				#else:
-					#insert_player(iD_r[x],first_name_r[x],last_name_r[x],codename_r[x],2)
+				else:
+					search_player(iD_b[x],first_name_b[x],last_name_b[x],codename_b[x],2)
 				#we need to filter blank inputs so as to not fill the database with empty entries
 		except:
 			print("cant push red team data, check code")
