@@ -132,29 +132,29 @@ def search_player(ID, FIRST_NAME, LAST_NAME, CODENAME, team):	# Call this to ins
 		""" Searching the database to find a player """
 		sql = """SELECT vendor_id, vendor_name FROM vendors ORDER BY vendor_name"""#workin
 		
-	# 	record_to_insert = (ID, FIRST_NAME, LAST_NAME, CODENAME)
+		record_to_insert = (ID, FIRST_NAME, LAST_NAME, CODENAME)
 
-	# 	cur.execute(sql, record_to_insert) # execute the INSERT command
+		cur.execute(sql, record_to_insert) # execute the INSERT command
 		
-	# 	conn.commit() # commit the changes to the database
+		conn.commit() # commit the changes to the database
 		
-	# 	cur.close() # close communication with the database
+		cur.close() # close communication with the database
 		
-	# 	print(ID)
-	# 	print(FIRST_NAME)
-	# 	print(LAST_NAME)
-	# 	print(CODENAME)
+		print(ID)
+		print(FIRST_NAME)
+		print(LAST_NAME)
+		print(CODENAME)
 		
-	# 	#Insert a player object into the player array
-	# 	global Players
-	# 	global numPlayers
-	# 	Players.append(Player(ID, CODENAME, FIRST_NAME, LAST_NAME, team))
-	# 	numPlayers = numPlayers+1
-	# except (Exception, psycopg2.DatabaseError) as error:
-	# 	print(error)
-	# finally:
-	# 	if conn is not None:
-	# 		conn.close()
+		#Insert a player object into the player array
+		global Players
+		global numPlayers
+		Players.append(Player(ID, CODENAME, FIRST_NAME, LAST_NAME, team))
+		numPlayers = numPlayers+1
+	except (Exception, psycopg2.DatabaseError) as error:
+		print(error)
+	finally:
+		if conn is not None:
+			conn.close()
 
 #UDP Listener and action screen updater
 @celery.task()
