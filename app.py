@@ -138,16 +138,6 @@ def new_player(ID, FIRST_NAME, LAST_NAME, CODENAME):	# Call this to insert playe
 		
 		cur.close() # close communication with the database
 		
-		print(ID)
-		print(FIRST_NAME)
-		print(LAST_NAME)
-		print(CODENAME)
-		
-		#Insert a player object into the player array
-		# global Players
-		# global numPlayers
-		# Players.append(Player(ID, CODENAME, FIRST_NAME, LAST_NAME, team))
-		# numPlayers = numPlayers+1
 	except (Exception, psycopg2.DatabaseError) as error:
 		print(error)
 	finally:
@@ -436,17 +426,16 @@ def edit():
 
 			for x in range(len(iD_new)): #there always be as many ID's as players				
 				if(iD_new[x] == ''):
-					print("Skipping this line because the entire line was not filled out.")
+					print("Player cannot be sent to the database because no ID was given.")
 				elif(first_name_new[x] == ''):
-					print("Skipping this line because the entire line was not filled out.")
+					print("Player cannot be sent to the database because first name was not given.")
 				elif(last_name_new[x] == ''):
-					print("Skipping this line because the entire line was not filled out.")
+					print("Player cannot be sent to the database because last name was not given.")
 				elif(codename_new[x] == ''):
-					print("Skipping this line because the entire line was not filled out.")
+					print("Player cannot be sent to the database because no codename was given.")
 				else:
 					new_player(iD_new[x],first_name_new[x],last_name_new[x],codename_new[x])
 					return render_template('playerEntry2.html', message='Welcome '+str(codename_new[x])+'!')
-				#we need to filter blank inputs so as to not fill the database with empty entries
 		except:
 			print("cant push new player data, check code")
 		
