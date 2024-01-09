@@ -27,6 +27,14 @@
 			padding: 5px;
 		}
 
+		.message {
+			background-color:rgb(255, 255, 255);
+			text-align: center;
+			font-size: 25px;
+			padding: 5px;
+			margin-top: 2rem;
+		}
+
 		.ENT1 {
 			position: relative;
 			display: flex;
@@ -60,7 +68,6 @@
 		position: center;
 		bottom: 0;
 		right: 15px;
-		
 		z-index: 9;
 		}
 
@@ -113,6 +120,11 @@
 		{
   			document.getElementById("newPlayerForm").style.display = "none";	
 		}
+
+		function noID() 
+		{
+  			alert("The player you entered is not in the database.");
+		}
 		
 	</script>
 	</head>
@@ -122,8 +134,32 @@
 			<p style="color: azure; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; margin-bottom: 0px; margin-top: 0px;">PLAYER ENTRY</p>
 			<h1 style="color: azure; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; margin-bottom: 0px; margin-top: 0px;">Press f4 to enter game waiting lobby</h1>
 				
+				{% if message %}
+				<p class="message" >{{ message | safe }}</p>
+				{% endif %}  
+
 				<!-- Creating a new player button -->
-				<!--button type="button"; onclick="newplayer()" >New Player</button -->
+				<button type="button"; onclick="newplayer()" >New Player</button>
+
+				<div class="new_player_popup" id="newPlayerForm">
+					<h1> Add New Player</h1>
+
+					<label for="ID"><b>ID: </b></label>
+					<input type="text" name="player_id_new">
+
+					<label for="CodeName"><b>Enter your code name: </b></label>
+					<input type="text" name="player_codename_new">
+
+					<label for="First Name"><b>Enter your first name: </b></label>
+					<input type="text" name="player_first_new">
+
+					<label for="Last Name" Name"><b>Enter your last name: </b></label>
+					<input type="text" name="player_last_new">
+
+
+					<button type="button" class="btn">Create New Player</button>
+					<button type="button" class="btn cancel" onclick="cancelNewPlayer()">Cancel</button>
+				</div>
 						
 				<div class = "ENT1">
 					<div class="CHILD1">	
@@ -165,30 +201,7 @@
 							<td><input type="text" name="player_first_b"></td>
 							<td><input type="text" name="player_last_b"></td>
 						</tr>
-						<!-- <tr name="row5">
-							<td><input type="text" name="player_id_b"></td>
-							<td><input type="text" name="player_codename_b"></td>
-							<td><input type="text" name="player_first_b"></td>
-							<td><input type="text" name="player_last_b"></td>
-						</tr>
-						<tr name="row6">
-							<td><input type="text" name="player_id_b"></td>
-							<td><input type="text" name="player_codename_b"></td>
-							<td><input type="text" name="player_first_b"></td>
-							<td><input type="text" name="player_last_b"></td>
-						</tr>
-						<tr name="row7">
-							<td><input type="text" name="player_id_b"></td>
-							<td><input type="text" name="player_codename_b"></td>
-							<td><input type="text" name="player_first_b"></td>
-							<td><input type="text" name="player_last_b"></td>
-						</tr>
-						<tr name="row8">
-							<td><input type="text" name="player_id_b"></td>
-							<td><input type="text" name="player_codename_b"></td>
-							<td><input type="text" name="player_first_b"></td>
-							<td><input type="text" name="player_last_b"></td>
-						</tr> -->
+				
 					</table>
 
 					<table class = "RED">
@@ -229,30 +242,7 @@
 							<td><input type="text" name="player_first_r"></td>
 							<td><input type="text" name="player_last_r"></td>
 						</tr>
-						<!-- <tr name="row5">
-							<td><input type="text" name="player_id_r"></td>
-							<td><input type="text" name="player_codename_r"></td>
-							<td><input type="text" name="player_first_r"></td>
-							<td><input type="text" name="player_last_r"></td>
-						</tr>
-						<tr name="row6">
-							<td><input type="text" name="player_id_r"></td>
-							<td><input type="text" name="player_codename_r"></td>
-							<td><input type="text" name="player_first_r"></td>
-							<td><input type="text" name="player_last_r"></td>
-						</tr>
-						<tr name="row7">
-							<td><input type="text" name="player_id_r"></td>
-							<td><input type="text" name="player_codename_r"></td>
-							<td><input type="text" name="player_first_r"></td>
-							<td><input type="text" name="player_last_r"></td>
-						</tr>
-						<tr name="row8">
-							<td><input type="text" name="player_id_r"></td>
-							<td><input type="text" name="player_codename_r"></td>
-							<td><input type="text" name="player_first_r"></td>
-							<td><input type="text" name="player_last_r"></td>
-						</tr> -->
+						
 					</table>
 					</div>
 			</div>

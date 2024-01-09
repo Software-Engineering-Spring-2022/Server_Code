@@ -9,7 +9,6 @@
 			table-layout: fixed;
 			border-collapse: collapse;
 		}
-
 		.BLUE {
 			position: relative;
 			width: 30vw;
@@ -72,7 +71,22 @@
 		}
 		
 
-
+		<!-- BLINK1{ -->
+			<!-- width: 30vw; -->
+			<!-- height: 84px; -->
+			<!-- background-color: rgb(11, 30, 124); -->
+			<!-- border: 5px solid rgb(40, 23, 196); -->
+			<!-- color: rgb(255, 255, 255); -->
+		<!-- } -->
+		
+		<!-- .BLINK2{ -->
+			<!-- width: 30vw; -->
+			<!-- height: 84px; -->
+			<!-- background-color: rgb(90, 1, 12); -->
+			<!-- border: 5px solid rgb(196, 23, 23); -->
+			<!-- color: rgb(255, 255, 255); -->
+		<!-- } -->
+		
 		body {
 
 			background-color: rgb(53, 53, 53);
@@ -145,10 +159,15 @@
 <body>
 
 	<form action="{{url_for("plyr_scrn")}}" method="get" style="text-align:center">
+
+	<!-- id="TOP" -->
+		<div class="TOP">
+
 		
+
 			<div class="BOTTOM">
 				{% include "blue_team.html" %}
-
+					<div style="background-color:rgb(11, 37, 124)"> </div> 
 				<h1>
 					<!-- Header -->
 				</h1>
@@ -167,6 +186,7 @@
 				</div>
 
 				{% include "red_team.html" %}
+				<div style="background-color:rgb(90, 12, 12)"> </div> 
 				<h1>
 					<!-- Header -->
 				</h1>
