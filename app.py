@@ -198,6 +198,34 @@ def listen_to_udp():
 		print(msg)
 		
 
+#John's Code
+
+		i=2
+		player1=[]
+		player2=[]
+		strp1=""
+		strp2=""
+
+		while (msg[i]!= ":"):
+			player1.append(msg[i])
+			i+=1
+
+		i+=1
+		e=0
+		
+		while (i<len(msg)-1):
+			player2.append(msg[i])
+			e+=1
+			i+=1
+
+		for x in player1:
+			strp1+=x
+		for y in player2:
+			strp2+=y
+
+		strp1=str(strp1) #first number
+		strp2=str(strp2) #second number
+
 		
 		hitter = ""
 		hit = ""
@@ -210,11 +238,11 @@ def listen_to_udp():
 		#Create arrays containing the info to print for all players
 		for item in Players:
 			teamPlus = 0
-			if(item.getID() == msg[2]):
+			if(item.getID() == strp1):
 				item.score()
 				teamPlus = 1
 				hitter = item.getCode()
-			elif(item.getID() == msg[4]):
+			elif(item.getID() == strp2):
 				hit = item.getCode()
 			playerInfo = item.getCode() + " - " + str(item.getScore())
 			if(item.getTeam() == 1):
@@ -280,7 +308,7 @@ def traffic_generator():
 
 	print('')
 	# counter = input('How many events do you want ==> ')
-	counter = 1000
+	counter = 150
 	# Create datagram socket
 	UDPClientSocketTransmit = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 
